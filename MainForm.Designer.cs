@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.coletaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iniciarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.finalizarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexãoComArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conectarAoArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarDoArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coletaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iniciarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.finalizarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesDeControleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesDosGráficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treinamentoDoSupervisórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treinamentoDoSupervisórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesDeControleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formsPlot1 = new ScottPlot.FormsPlot();
-            this.configuraçõesDosGráficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formsPlot2 = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -55,6 +56,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -85,15 +89,26 @@
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
             this.arquivoToolStripMenuItem.Text = "Geral";
             // 
-            // configuraçõesToolStripMenuItem
+            // conexãoComArduinoToolStripMenuItem
             // 
-            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tomadaDeDadosToolStripMenuItem,
-            this.configuraçõesDeControleToolStripMenuItem,
-            this.configuraçõesDosGráficosToolStripMenuItem});
-            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(122, 25);
-            this.configuraçõesToolStripMenuItem.Text = "Configurações";
+            this.conexãoComArduinoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.conectarAoArduinoToolStripMenuItem,
+            this.desconectarDoArduinoToolStripMenuItem});
+            this.conexãoComArduinoToolStripMenuItem.Name = "conexãoComArduinoToolStripMenuItem";
+            this.conexãoComArduinoToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.conexãoComArduinoToolStripMenuItem.Text = "Conexão com Arduino";
+            // 
+            // conectarAoArduinoToolStripMenuItem
+            // 
+            this.conectarAoArduinoToolStripMenuItem.Name = "conectarAoArduinoToolStripMenuItem";
+            this.conectarAoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.conectarAoArduinoToolStripMenuItem.Text = "Conectar ao Arduino";
+            // 
+            // desconectarDoArduinoToolStripMenuItem
+            // 
+            this.desconectarDoArduinoToolStripMenuItem.Name = "desconectarDoArduinoToolStripMenuItem";
+            this.desconectarDoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.desconectarDoArduinoToolStripMenuItem.Text = "Desconectar do Arduino";
             // 
             // coletaDeDadosToolStripMenuItem
             // 
@@ -116,26 +131,55 @@
             this.finalizarColetaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.finalizarColetaDeDadosToolStripMenuItem.Text = "Finalizar Coleta de Dados";
             // 
-            // conexãoComArduinoToolStripMenuItem
+            // configuraçõesToolStripMenuItem
             // 
-            this.conexãoComArduinoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.conectarAoArduinoToolStripMenuItem,
-            this.desconectarDoArduinoToolStripMenuItem});
-            this.conexãoComArduinoToolStripMenuItem.Name = "conexãoComArduinoToolStripMenuItem";
-            this.conexãoComArduinoToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-            this.conexãoComArduinoToolStripMenuItem.Text = "Conexão com Arduino";
+            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tomadaDeDadosToolStripMenuItem,
+            this.configuraçõesDeControleToolStripMenuItem,
+            this.configuraçõesDosGráficosToolStripMenuItem});
+            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
+            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(122, 25);
+            this.configuraçõesToolStripMenuItem.Text = "Configurações";
             // 
-            // conectarAoArduinoToolStripMenuItem
+            // tomadaDeDadosToolStripMenuItem
             // 
-            this.conectarAoArduinoToolStripMenuItem.Name = "conectarAoArduinoToolStripMenuItem";
-            this.conectarAoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.conectarAoArduinoToolStripMenuItem.Text = "Conectar ao Arduino";
+            this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
+            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
+            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados e Amostragem";
+            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
-            // desconectarDoArduinoToolStripMenuItem
+            // configuraçõesDeControleToolStripMenuItem
             // 
-            this.desconectarDoArduinoToolStripMenuItem.Name = "desconectarDoArduinoToolStripMenuItem";
-            this.desconectarDoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.desconectarDoArduinoToolStripMenuItem.Text = "Desconectar do Arduino";
+            this.configuraçõesDeControleToolStripMenuItem.Name = "configuraçõesDeControleToolStripMenuItem";
+            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
+            this.configuraçõesDeControleToolStripMenuItem.Text = "Configurações de Controle";
+            // 
+            // configuraçõesDosGráficosToolStripMenuItem
+            // 
+            this.configuraçõesDosGráficosToolStripMenuItem.Name = "configuraçõesDosGráficosToolStripMenuItem";
+            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
+            this.configuraçõesDosGráficosToolStripMenuItem.Text = "Configurações dos Gráficos";
+            // 
+            // ajudaToolStripMenuItem
+            // 
+            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manualDeOperaçãoToolStripMenuItem,
+            this.treinamentoDoSupervisórioToolStripMenuItem});
+            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(62, 25);
+            this.ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // manualDeOperaçãoToolStripMenuItem
+            // 
+            this.manualDeOperaçãoToolStripMenuItem.Name = "manualDeOperaçãoToolStripMenuItem";
+            this.manualDeOperaçãoToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
+            this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
+            // 
+            // treinamentoDoSupervisórioToolStripMenuItem
+            // 
+            this.treinamentoDoSupervisórioToolStripMenuItem.Name = "treinamentoDoSupervisórioToolStripMenuItem";
+            this.treinamentoDoSupervisórioToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
+            this.treinamentoDoSupervisórioToolStripMenuItem.Text = "Treinamento do Supervisório";
             // 
             // sobreToolStripMenuItem
             // 
@@ -146,15 +190,6 @@
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
             this.sobreToolStripMenuItem.Text = "Sobre";
-            // 
-            // ajudaToolStripMenuItem
-            // 
-            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manualDeOperaçãoToolStripMenuItem,
-            this.treinamentoDoSupervisórioToolStripMenuItem});
-            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(62, 25);
-            this.ajudaToolStripMenuItem.Text = "Ajuda";
             // 
             // sobreOProjetoPCAToolStripMenuItem
             // 
@@ -174,31 +209,6 @@
             this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
             // 
-            // manualDeOperaçãoToolStripMenuItem
-            // 
-            this.manualDeOperaçãoToolStripMenuItem.Name = "manualDeOperaçãoToolStripMenuItem";
-            this.manualDeOperaçãoToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
-            this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
-            // 
-            // treinamentoDoSupervisórioToolStripMenuItem
-            // 
-            this.treinamentoDoSupervisórioToolStripMenuItem.Name = "treinamentoDoSupervisórioToolStripMenuItem";
-            this.treinamentoDoSupervisórioToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
-            this.treinamentoDoSupervisórioToolStripMenuItem.Text = "Treinamento do Supervisório";
-            // 
-            // tomadaDeDadosToolStripMenuItem
-            // 
-            this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
-            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
-            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados e Amostragem";
-            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
-            // 
-            // configuraçõesDeControleToolStripMenuItem
-            // 
-            this.configuraçõesDeControleToolStripMenuItem.Name = "configuraçõesDeControleToolStripMenuItem";
-            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
-            this.configuraçõesDeControleToolStripMenuItem.Text = "Configurações de Controle";
-            // 
             // formsPlot1
             // 
             this.formsPlot1.AutoSize = true;
@@ -207,12 +217,6 @@
             this.formsPlot1.Name = "formsPlot1";
             this.formsPlot1.Size = new System.Drawing.Size(427, 221);
             this.formsPlot1.TabIndex = 1;
-            // 
-            // configuraçõesDosGráficosToolStripMenuItem
-            // 
-            this.configuraçõesDosGráficosToolStripMenuItem.Name = "configuraçõesDosGráficosToolStripMenuItem";
-            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
-            this.configuraçõesDosGráficosToolStripMenuItem.Text = "Configurações dos Gráficos";
             // 
             // formsPlot2
             // 
@@ -229,7 +233,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(161, 22);
             this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "Conexão com Arduino:";
+            this.textBox1.Text = "Conexão com a Porta:";
             // 
             // textBox2
             // 
@@ -264,8 +268,9 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(179, 62);
+            this.comboBox1.Location = new System.Drawing.Point(184, 65);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 7;
@@ -283,12 +288,34 @@
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 100);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 30);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Desconectar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(184, 100);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(121, 30);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Conectar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(857, 509);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
@@ -342,6 +369,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

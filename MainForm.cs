@@ -13,12 +13,12 @@ namespace Supervisório_PCA_2._0
 {
     public partial class MainForm : Form
     {
-        private SerialPort serialPort;
+       
 
         public MainForm()
         {
             InitializeComponent();
-            serialPort = new SerialPort(); // Adicione essa linha para inicializar o objeto serialPort
+            Globals.serialPort = new SerialPort(); // linha para inicializar o objeto serialPort 
         }
 
         private void tomadaDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace Supervisório_PCA_2._0
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace Supervisório_PCA_2._0
             SearchSerialPorts();
         }
 
-        private void SearchSerialPorts()
+        public void SearchSerialPorts()
         {
             // Limpar a lista de portas COM existente
             comboBox1.Items.Clear();
@@ -59,7 +59,7 @@ namespace Supervisório_PCA_2._0
             {
                 if (portNames.Length == 1)
                 {
-                    MessageBox.Show(portNames.Length + " porta COM foi encontrada!", "Porta COM encontrada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Uma porta COM foi encontrada!", "Porta COM encontrada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -79,33 +79,40 @@ namespace Supervisório_PCA_2._0
                 }
             }
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedPort = comboBox1.SelectedItem.ToString();
 
             // Exiba uma mensagem de confirmação
-            DialogResult result = MessageBox.Show("Deseja conectar-se à porta COM " + selectedPort + " selecionada?", "Confirmação de conexão", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Deseja conectar-se à porta " + selectedPort + " selecionada?", "Confirmação de conexão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                // Conecte-se à porta COM selecionada
-                try
-                {
-                    serialPort.PortName = selectedPort;
-                    serialPort.Open();
-                    MessageBox.Show("Conexão à porta " + selectedPort + " estabelecida com sucesso!","Conexão realizada com sucesso!",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao conectar-se à porta COM: " + ex.Message,"Erro na conexão!",MessageBoxButtons.RetryCancel,MessageBoxIcon.Warning);
-                }
+                // Tenta conectar à porta COM selecionada
+                GlobalMethods.ConnectSerialPort(selectedPort);
             }
             else
             {
                 // Cancelar a conexão
-                MessageBox.Show("Conexão cancelada pelo usuário.","Conexão cancelada!", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Conexão cancelada pelo usuário.", "Conexão cancelada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GlobalMethods.DisconnectSerialPort();
+            textBox2.Text = "Disconectado!";
+            textBox2.ForeColor = Color.Black;
+        }
+
+       
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string selectedPort = comboBox1.SelectedItem.ToString();
+            GlobalMethods.ConnectSerialPort(selectedPort);
+            textBox2.Text = "Conectado!";
+            textBox2.ForeColor = Color.Blue;
         }
     }
 }
