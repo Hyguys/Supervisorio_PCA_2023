@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexãoComArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conectarAoArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.desconectarDoArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coletaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.finalizarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,17 +46,16 @@
             this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formsPlot1 = new ScottPlot.FormsPlot();
-            this.formsPlot2 = new ScottPlot.FormsPlot();
+            this.flowPlot = new ScottPlot.FormsPlot();
+            this.tempPlot = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.searchPorts = new System.Windows.Forms.Button();
+            this.portsBox = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.disconnectPort = new System.Windows.Forms.Button();
+            this.connectPort = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -92,8 +89,7 @@
             // conexãoComArduinoToolStripMenuItem
             // 
             this.conexãoComArduinoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.conectarAoArduinoToolStripMenuItem,
-            this.desconectarDoArduinoToolStripMenuItem});
+            this.conectarAoArduinoToolStripMenuItem});
             this.conexãoComArduinoToolStripMenuItem.Name = "conexãoComArduinoToolStripMenuItem";
             this.conexãoComArduinoToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.conexãoComArduinoToolStripMenuItem.Text = "Conexão com Arduino";
@@ -101,14 +97,9 @@
             // conectarAoArduinoToolStripMenuItem
             // 
             this.conectarAoArduinoToolStripMenuItem.Name = "conectarAoArduinoToolStripMenuItem";
-            this.conectarAoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.conectarAoArduinoToolStripMenuItem.Text = "Conectar ao Arduino";
-            // 
-            // desconectarDoArduinoToolStripMenuItem
-            // 
-            this.desconectarDoArduinoToolStripMenuItem.Name = "desconectarDoArduinoToolStripMenuItem";
-            this.desconectarDoArduinoToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.desconectarDoArduinoToolStripMenuItem.Text = "Desconectar do Arduino";
+            this.conectarAoArduinoToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
+            this.conectarAoArduinoToolStripMenuItem.Text = "Configurar Conexão";
+            this.conectarAoArduinoToolStripMenuItem.Click += new System.EventHandler(this.conectarAoArduinoToolStripMenuItem_Click);
             // 
             // coletaDeDadosToolStripMenuItem
             // 
@@ -124,12 +115,14 @@
             this.iniciarColetaDeDadosToolStripMenuItem.Name = "iniciarColetaDeDadosToolStripMenuItem";
             this.iniciarColetaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.iniciarColetaDeDadosToolStripMenuItem.Text = "Iniciar Coleta de Dados";
+            this.iniciarColetaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.iniciarColetaDeDadosToolStripMenuItem_Click);
             // 
             // finalizarColetaDeDadosToolStripMenuItem
             // 
             this.finalizarColetaDeDadosToolStripMenuItem.Name = "finalizarColetaDeDadosToolStripMenuItem";
             this.finalizarColetaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.finalizarColetaDeDadosToolStripMenuItem.Text = "Finalizar Coleta de Dados";
+            this.finalizarColetaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.finalizarColetaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesToolStripMenuItem
             // 
@@ -146,7 +139,6 @@
             this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
             this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
             this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados e Amostragem";
-            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesDeControleToolStripMenuItem
             // 
@@ -209,22 +201,22 @@
             this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
             // 
-            // formsPlot1
+            // flowPlot
             // 
-            this.formsPlot1.AutoSize = true;
-            this.formsPlot1.Location = new System.Drawing.Point(415, 34);
-            this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.formsPlot1.Name = "formsPlot1";
-            this.formsPlot1.Size = new System.Drawing.Size(427, 221);
-            this.formsPlot1.TabIndex = 1;
+            this.flowPlot.AutoSize = true;
+            this.flowPlot.Location = new System.Drawing.Point(415, 34);
+            this.flowPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flowPlot.Name = "flowPlot";
+            this.flowPlot.Size = new System.Drawing.Size(427, 221);
+            this.flowPlot.TabIndex = 1;
             // 
-            // formsPlot2
+            // tempPlot
             // 
-            this.formsPlot2.Location = new System.Drawing.Point(415, 251);
-            this.formsPlot2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.formsPlot2.Name = "formsPlot2";
-            this.formsPlot2.Size = new System.Drawing.Size(427, 240);
-            this.formsPlot2.TabIndex = 2;
+            this.tempPlot.Location = new System.Drawing.Point(415, 251);
+            this.tempPlot.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.tempPlot.Name = "tempPlot";
+            this.tempPlot.Size = new System.Drawing.Size(427, 240);
+            this.tempPlot.TabIndex = 2;
             // 
             // textBox1
             // 
@@ -244,7 +236,7 @@
             this.textBox2.Size = new System.Drawing.Size(126, 22);
             this.textBox2.TabIndex = 4;
             this.textBox2.Text = "Não conectado!";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -256,25 +248,24 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // searchPorts
             // 
-            this.button1.Location = new System.Drawing.Point(12, 62);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 32);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Buscar Portas COM";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.searchPorts.Location = new System.Drawing.Point(12, 62);
+            this.searchPorts.Name = "searchPorts";
+            this.searchPorts.Size = new System.Drawing.Size(151, 32);
+            this.searchPorts.TabIndex = 6;
+            this.searchPorts.Text = "Buscar Portas COM";
+            this.searchPorts.UseVisualStyleBackColor = true;
+            this.searchPorts.Click += new System.EventHandler(this.searchPorts_Click);
             // 
-            // comboBox1
+            // portsBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(184, 65);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 29);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.portsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.portsBox.FormattingEnabled = true;
+            this.portsBox.Location = new System.Drawing.Point(169, 65);
+            this.portsBox.Name = "portsBox";
+            this.portsBox.Size = new System.Drawing.Size(136, 29);
+            this.portsBox.TabIndex = 7;
             // 
             // textBox3
             // 
@@ -286,27 +277,26 @@
             this.textBox3.TabIndex = 8;
             this.textBox3.Text = "Desenvolvido por Leandro Favaretto";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // button2
+            // disconnectPort
             // 
-            this.button2.Location = new System.Drawing.Point(12, 100);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 30);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Desconectar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.disconnectPort.Location = new System.Drawing.Point(12, 100);
+            this.disconnectPort.Name = "disconnectPort";
+            this.disconnectPort.Size = new System.Drawing.Size(151, 30);
+            this.disconnectPort.TabIndex = 9;
+            this.disconnectPort.Text = "Desconectar";
+            this.disconnectPort.UseVisualStyleBackColor = true;
+            this.disconnectPort.Click += new System.EventHandler(this.disconnectPort_Click);
             // 
-            // button3
+            // connectPort
             // 
-            this.button3.Location = new System.Drawing.Point(184, 100);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 30);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Conectar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.connectPort.Location = new System.Drawing.Point(169, 100);
+            this.connectPort.Name = "connectPort";
+            this.connectPort.Size = new System.Drawing.Size(136, 30);
+            this.connectPort.TabIndex = 10;
+            this.connectPort.Text = "Conectar";
+            this.connectPort.UseVisualStyleBackColor = true;
+            this.connectPort.Click += new System.EventHandler(this.connectPort_Click);
             // 
             // MainForm
             // 
@@ -314,16 +304,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(857, 509);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.connectPort);
+            this.Controls.Add(this.disconnectPort);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.portsBox);
+            this.Controls.Add(this.searchPorts);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.formsPlot2);
-            this.Controls.Add(this.formsPlot1);
+            this.Controls.Add(this.tempPlot);
+            this.Controls.Add(this.flowPlot);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -347,7 +337,6 @@
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conexãoComArduinoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conectarAoArduinoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desconectarDoArduinoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem coletaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarColetaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem finalizarColetaDeDadosToolStripMenuItem;
@@ -361,17 +350,16 @@
         private System.Windows.Forms.ToolStripMenuItem manualDeOperaçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem treinamentoDoSupervisórioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesDosGráficosToolStripMenuItem;
-        private ScottPlot.FormsPlot formsPlot1;
-        private ScottPlot.FormsPlot formsPlot2;
+        private ScottPlot.FormsPlot flowPlot;
+        private ScottPlot.FormsPlot tempPlot;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button searchPorts;
+        private System.Windows.Forms.ComboBox portsBox;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button disconnectPort;
+        private System.Windows.Forms.Button connectPort;
     }
 }
 

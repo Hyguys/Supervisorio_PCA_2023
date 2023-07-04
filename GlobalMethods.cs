@@ -12,14 +12,47 @@ namespace Supervisório_PCA_2._0
 {
     public static class GlobalMethods
     {
-        public static SerialPort serialPort;
+
+        public static string[] SearchSerialPorts()
+        {
+            // Obter todas as portas COM disponíveis no sistema
+            string[] portNames = SerialPort.GetPortNames();
+
+            // Verificar se há portas COM disponíveis
+            if (portNames.Length > 0)
+            {
+                if (portNames.Length == 1)
+                {
+                    MessageBox.Show(" Uma porta COM foi encontrada!", "Porta COM encontrada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(portNames.Length + " portas COM foram encontradas!", "Portas COM encontradas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                return portNames;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Nenhuma porta COM foi encontrada.", "Erro!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Retry)
+                {
+                    return SearchSerialPorts(); // Chama o método de pesquisa novamente
+                }
+                else
+                {
+                    return null; // Nenhuma porta COM encontrada
+                }
+            }
+        }
+
 
         public static void ConnectSerialPort(string selectedPort)
         {
             try
             {
-                serialPort.PortName = selectedPort;
-                serialPort.Open();
+                Globals.serialPort.PortName = selectedPort;
+                Globals.serialPort.Open();
                 Globals.serialConnected = true;
                 MessageBox.Show("Conexão à porta " + selectedPort + " estabelecida com sucesso!", "Conexão realizada com sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -59,5 +92,34 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        public static string ReadSerialPort(string serialPortName)
+        {
+            SerialPort serialPort = new SerialPort(serialPortName);
+
+            try
+            {
+                serialPort.Open();
+                Console.WriteLine("Serial port opened. Reading data...");
+
+                string strRead = serialPort.ReadExisting();
+
+                return strRead;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (serialPort.IsOpen)
+                    serialPort.Close();
+            }
+        }
+
+        public static string[] SplitStringBySpace(string input)
+        {
+            return input.Split(' ');
+        }
     }
 }

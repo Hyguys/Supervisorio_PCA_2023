@@ -30,51 +30,52 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.connectPortSub = new System.Windows.Forms.Button();
+            this.disconnectPortSub = new System.Windows.Forms.Button();
+            this.portsBoxSub = new System.Windows.Forms.ComboBox();
+            this.searchPortsSub = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button3
+            // connectPortSub
             // 
-            this.button3.Location = new System.Drawing.Point(187, 79);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 30);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Conectar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.connectPortSub.Location = new System.Drawing.Point(187, 79);
+            this.connectPortSub.Name = "connectPortSub";
+            this.connectPortSub.Size = new System.Drawing.Size(121, 30);
+            this.connectPortSub.TabIndex = 16;
+            this.connectPortSub.Text = "Conectar";
+            this.connectPortSub.UseVisualStyleBackColor = true;
+            this.connectPortSub.Click += new System.EventHandler(this.connectPortSub_Click);
             // 
-            // button2
+            // disconnectPortSub
             // 
-            this.button2.Location = new System.Drawing.Point(15, 79);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 30);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Desconectar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.disconnectPortSub.Location = new System.Drawing.Point(15, 79);
+            this.disconnectPortSub.Name = "disconnectPortSub";
+            this.disconnectPortSub.Size = new System.Drawing.Size(161, 30);
+            this.disconnectPortSub.TabIndex = 15;
+            this.disconnectPortSub.Text = "Desconectar";
+            this.disconnectPortSub.UseVisualStyleBackColor = true;
+            this.disconnectPortSub.Click += new System.EventHandler(this.disconnectPortSub_Click);
             // 
-            // comboBox1
+            // portsBoxSub
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(187, 44);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 29);
-            this.comboBox1.TabIndex = 14;
+            this.portsBoxSub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.portsBoxSub.FormattingEnabled = true;
+            this.portsBoxSub.Location = new System.Drawing.Point(187, 44);
+            this.portsBoxSub.Name = "portsBoxSub";
+            this.portsBoxSub.Size = new System.Drawing.Size(121, 29);
+            this.portsBoxSub.TabIndex = 14;
             // 
-            // button1
+            // searchPortsSub
             // 
-            this.button1.Location = new System.Drawing.Point(15, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 32);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Buscar Portas COM";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.searchPortsSub.Location = new System.Drawing.Point(15, 41);
+            this.searchPortsSub.Name = "searchPortsSub";
+            this.searchPortsSub.Size = new System.Drawing.Size(161, 32);
+            this.searchPortsSub.TabIndex = 13;
+            this.searchPortsSub.Text = "Buscar Portas COM";
+            this.searchPortsSub.UseVisualStyleBackColor = true;
+            this.searchPortsSub.Click += new System.EventHandler(this.searchPortsSub_Click);
             // 
             // textBox1
             // 
@@ -100,17 +101,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(554, 285);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(330, 125);
+            this.Controls.Add(this.connectPortSub);
+            this.Controls.Add(this.disconnectPortSub);
+            this.Controls.Add(this.portsBoxSub);
+            this.Controls.Add(this.searchPortsSub);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormConnectArduino";
-            this.Text = "SubFormConnectArduino";
+            this.Text = "Configurar Conexão com Arduino";
             this.Load += new System.EventHandler(this.SubFormConnectArduino_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -120,10 +121,10 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button connectPortSub;
+        private System.Windows.Forms.Button disconnectPortSub;
+        private System.Windows.Forms.ComboBox portsBoxSub;
+        private System.Windows.Forms.Button searchPortsSub;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
     }

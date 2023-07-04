@@ -19,8 +19,7 @@ namespace Supervisório_PCA_2._0
 
         private void SubFormConnectArduino_Load(object sender, EventArgs e)
         {
-            bool serialPortconnected = Globals.serialConnected;
-            if (serialPortconnected == true)
+            if (Globals.serialConnected == true)
             {
                 textBox2.Text = "Conectado!";
                 textBox2.ForeColor = Color.Blue;
@@ -32,14 +31,36 @@ namespace Supervisório_PCA_2._0
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void searchPortsSub_Click(object sender, EventArgs e)
         {
+            string[] ports = GlobalMethods.SearchSerialPorts();
 
+            if (ports != null)
+            {
+                portsBoxSub.Items.Clear();
+                portsBoxSub.Items.AddRange(ports);
+                portsBoxSub.SelectedIndex = 0; // Definir a primeira porta como selecionada
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void disconnectPortSub_Click(object sender, EventArgs e)
         {
             GlobalMethods.DisconnectSerialPort();
+            textBox2.Text = "Disconectado!";
+            textBox2.ForeColor = Color.Black;
         }
+
+        private void connectPortSub_Click(object sender, EventArgs e)
+        {
+            if (portsBoxSub.SelectedItem != null) // Verifica se um item foi selecionado na combobox
+            {
+                string selectedPort = portsBoxSub.SelectedItem.ToString();
+                GlobalMethods.ConnectSerialPort(selectedPort);
+                textBox2.Text = "Conectado!";
+                textBox2.ForeColor = Color.Blue;
+            }    
+        }
+
+        
     }
 }
