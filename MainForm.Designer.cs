@@ -1,4 +1,6 @@
-﻿namespace Supervisório_PCA_2._0
+﻿using System.Windows.Forms;
+
+namespace Supervisório_PCA_2._0
 {
     partial class MainForm
     {
@@ -139,12 +141,14 @@
             this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
             this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
             this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados e Amostragem";
+            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesDeControleToolStripMenuItem
             // 
             this.configuraçõesDeControleToolStripMenuItem.Name = "configuraçõesDeControleToolStripMenuItem";
             this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
             this.configuraçõesDeControleToolStripMenuItem.Text = "Configurações de Controle";
+            this.configuraçõesDeControleToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDeControleToolStripMenuItem_Click);
             // 
             // configuraçõesDosGráficosToolStripMenuItem
             // 
@@ -320,7 +324,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "SUPERVISÓRIO 2.0 PROJETO DE CONTROLE COM ARDUINO by Hyguys";
+            this.Text = "SUPERVISÓRIO 2.0 PROJETO DE CONTROLE COM ARDUINO por Leandro Favaretto";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

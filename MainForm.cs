@@ -32,6 +32,11 @@ namespace Supervisório_PCA_2._0
             
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          
+        }
+
         private void searchPorts_Click(object sender, EventArgs e)
         {
             string[] ports = GlobalMethods.SearchSerialPorts();
@@ -394,5 +399,16 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        private void tomadaDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormConfigSampling subFormConfigSampling = new SubFormConfigSampling();
+            subFormConfigSampling.ShowDialog();
+        }
+
+        private void configuraçõesDeControleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormConfigControl subFormConfigControl = new SubFormConfigControl();
+            subFormConfigControl.ShowDialog();
+        }
     }
 }

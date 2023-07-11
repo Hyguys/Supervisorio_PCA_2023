@@ -25,9 +25,21 @@ namespace Supervisório_PCA_2._0
         public static List<double> resPowerData = new List<double>();
         public static List<double> hysteresisTempData = new List<double>();
 
-        public static int numberFlowPoints = 10;
-        public static int numberTempPoints = 20;
         public static bool isRecordingData = false;
+        public static int intervalSampling = 500;
+
+        public static int numberFlowPoints = 10;
+        public static int mediaMovelFlow = 5;
+        public static double alfaFlow = 0.4;
+
+        public static int numberTempPoints = 20;
+        public static int mediaMovelTemp = 5;
+        public static double alfaTemp = 0.1;
+
+        public static double pumpPower = 0;
+        public static double setpointVazao = 0;
+        public static double histereseVazao = 0;
+        public static double ganhoVazao = 0;
     }
 
 }
