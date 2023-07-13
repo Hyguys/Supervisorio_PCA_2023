@@ -73,6 +73,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             this.tabTemp.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             // tabVazao
             // 
+            this.tabVazao.Controls.Add(this.label24);
             this.tabVazao.Controls.Add(this.btnVazao);
             this.tabVazao.Controls.Add(this.label20);
             this.tabVazao.Controls.Add(this.txtHysteresisVazao);
@@ -127,6 +129,7 @@
             this.btnVazao.TabIndex = 25;
             this.btnVazao.Text = "Confirmar";
             this.btnVazao.UseVisualStyleBackColor = true;
+            this.btnVazao.Click += new System.EventHandler(this.btnVazao_Click);
             // 
             // label20
             // 
@@ -211,6 +214,8 @@
             this.txtDerivativoVazao.TabIndex = 17;
             this.txtDerivativoVazao.Text = "0";
             this.txtDerivativoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDerivativoVazao.TextChanged += new System.EventHandler(this.txtDerivativoVazao_TextChanged);
+            this.txtDerivativoVazao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDerivativoVazao_KeyDown);
             // 
             // label11
             // 
@@ -241,6 +246,8 @@
             this.txtIntegralVazao.TabIndex = 14;
             this.txtIntegralVazao.Text = "0";
             this.txtIntegralVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIntegralVazao.TextChanged += new System.EventHandler(this.txtIntegralVazao_TextChanged);
+            this.txtIntegralVazao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIntegralVazao_KeyDown);
             // 
             // label9
             // 
@@ -272,6 +279,7 @@
             this.txtGanhoVazao.Text = "0";
             this.txtGanhoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoVazao.TextChanged += new System.EventHandler(this.txtGanhoVazao_TextChanged);
+            this.txtGanhoVazao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoVazao_KeyDown);
             // 
             // label7
             // 
@@ -582,6 +590,17 @@
             this.txtGanhoTemp.Text = "0";
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label24.Location = new System.Drawing.Point(179, 173);
+            this.label24.Name = "label24";
+            this.label24.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label24.Size = new System.Drawing.Size(15, 19);
+            this.label24.TabIndex = 26;
+            this.label24.Text = "c";
+            // 
             // SubFormConfigControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -649,5 +668,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnVazao;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label24;
     }
 }

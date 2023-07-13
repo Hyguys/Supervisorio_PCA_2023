@@ -261,6 +261,7 @@ namespace Supervisório_PCA_2._0
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormConfigSampling";
             this.Text = "Configurações de Amostragem";
+            this.Load += new System.EventHandler(this.SubFormConfigSampling_Load);
             this.grGeral.ResumeLayout(false);
             this.grGeral.PerformLayout();
             this.grVazao.ResumeLayout(false);

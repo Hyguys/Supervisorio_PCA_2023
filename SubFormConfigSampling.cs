@@ -176,5 +176,14 @@ namespace Supervisório_PCA_2._0
         {
 
         }
+
+        private void SubFormConfigSampling_Load(object sender, EventArgs e)
+        {
+            txtInterval.Text = Convert.ToString(Globals.intervalSampling);
+            txtMMVazao.Text = Convert.ToString(Globals.mediaMovelFlow);
+            txtEWMAVazao.Text = Convert.ToString(Globals.alfaFlow);
+            txtMMTemp.Text = Convert.ToString(Globals.mediaMovelTemp);
+            txtEWMATemp.Text = Convert.ToString(Globals.alfaTemp);
+        }
     }
 }

@@ -37,9 +37,21 @@ namespace Supervisório_PCA_2._0
         public static double alfaTemp = 0.1;
 
         public static double pumpPower = 0;
-        public static double setpointVazao = 0;
-        public static double histereseVazao = 0;
-        public static double ganhoVazao = 0;
+        public static double setpointVazao = 30;
+        public static double histereseVazao = 10;
+        public static double ganhoVazao = 1;
+        public static double integralVazao = 100;
+        public static double derivativoVazao = 10;
+
+        public static double resPower = 0;
+        public static double setpointTemp = 30;
+        public static double histereseTemp = 3;
+        public static double ganhoTemp = 500;
+        public static double integralTemp = 10;
+        public static double derivativoTemp = 5;
+
+        public static int controlTypeRes = 0;
+        public static int controlTypePump = 0;
     }
 
 }
