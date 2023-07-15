@@ -52,7 +52,7 @@
             this.cmbControlVazao = new System.Windows.Forms.ComboBox();
             this.lblInterval = new System.Windows.Forms.Label();
             this.tabTemp = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTemp = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.txtHysteresisTemp = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -73,7 +73,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             this.tabTemp.SuspendLayout();
@@ -91,7 +90,6 @@
             // 
             // tabVazao
             // 
-            this.tabVazao.Controls.Add(this.label24);
             this.tabVazao.Controls.Add(this.btnVazao);
             this.tabVazao.Controls.Add(this.label20);
             this.tabVazao.Controls.Add(this.txtHysteresisVazao);
@@ -148,7 +146,7 @@
             this.txtHysteresisVazao.Name = "txtHysteresisVazao";
             this.txtHysteresisVazao.ReadOnly = true;
             this.txtHysteresisVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtHysteresisVazao.TabIndex = 23;
+            this.txtHysteresisVazao.TabIndex = 3;
             this.txtHysteresisVazao.Text = "0";
             this.txtHysteresisVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHysteresisVazao.TextChanged += new System.EventHandler(this.txtHysteresisVazao_TextChanged);
@@ -179,7 +177,7 @@
             this.txtSetpointVazao.MaxLength = 3;
             this.txtSetpointVazao.Name = "txtSetpointVazao";
             this.txtSetpointVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtSetpointVazao.TabIndex = 20;
+            this.txtSetpointVazao.TabIndex = 0;
             this.txtSetpointVazao.Text = "0";
             this.txtSetpointVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSetpointVazao.TextChanged += new System.EventHandler(this.txtSetpointVazao_TextChanged);
@@ -222,9 +220,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(6, 236);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(161, 21);
+            this.label11.Size = new System.Drawing.Size(164, 21);
             this.label11.TabIndex = 18;
-            this.label11.Text = "Tempo Derivativo (τ  )\r\n";
+            this.label11.Text = "Tempo Derivativo (τD)\r\n";
             // 
             // label8
             // 
@@ -243,7 +241,7 @@
             this.txtIntegralVazao.Name = "txtIntegralVazao";
             this.txtIntegralVazao.ReadOnly = true;
             this.txtIntegralVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtIntegralVazao.TabIndex = 14;
+            this.txtIntegralVazao.TabIndex = 5;
             this.txtIntegralVazao.Text = "0";
             this.txtIntegralVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIntegralVazao.TextChanged += new System.EventHandler(this.txtIntegralVazao_TextChanged);
@@ -254,9 +252,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 201);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 21);
+            this.label9.Size = new System.Drawing.Size(139, 21);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Tempo Integral (τ  )\r\n";
+            this.label9.Text = "Tempo Integral (τI)\r\n";
             // 
             // label6
             // 
@@ -275,7 +273,7 @@
             this.txtGanhoVazao.Name = "txtGanhoVazao";
             this.txtGanhoVazao.ReadOnly = true;
             this.txtGanhoVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtGanhoVazao.TabIndex = 11;
+            this.txtGanhoVazao.TabIndex = 4;
             this.txtGanhoVazao.Text = "0";
             this.txtGanhoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoVazao.TextChanged += new System.EventHandler(this.txtGanhoVazao_TextChanged);
@@ -286,9 +284,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 166);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(197, 21);
+            this.label7.Size = new System.Drawing.Size(196, 21);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Ganho do Controlador (K  )\r\n";
+            this.label7.Text = "Ganho do Controlador (Kc)\r\n";
             // 
             // lblUnitInterval
             // 
@@ -306,7 +304,7 @@
             this.txtPotenciaBomba.MaxLength = 3;
             this.txtPotenciaBomba.Name = "txtPotenciaBomba";
             this.txtPotenciaBomba.Size = new System.Drawing.Size(110, 29);
-            this.txtPotenciaBomba.TabIndex = 3;
+            this.txtPotenciaBomba.TabIndex = 2;
             this.txtPotenciaBomba.Text = "0";
             this.txtPotenciaBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPotenciaBomba.TextChanged += new System.EventHandler(this.txtPotenciaBomba_TextChanged);
@@ -333,7 +331,7 @@
             this.cmbControlVazao.Location = new System.Drawing.Point(220, 61);
             this.cmbControlVazao.Name = "cmbControlVazao";
             this.cmbControlVazao.Size = new System.Drawing.Size(110, 29);
-            this.cmbControlVazao.TabIndex = 9;
+            this.cmbControlVazao.TabIndex = 1;
             this.cmbControlVazao.Text = "Manual";
             this.cmbControlVazao.SelectedIndexChanged += new System.EventHandler(this.cmbControlVazao_SelectedIndexChanged);
             // 
@@ -348,7 +346,7 @@
             // 
             // tabTemp
             // 
-            this.tabTemp.Controls.Add(this.button1);
+            this.tabTemp.Controls.Add(this.btnTemp);
             this.tabTemp.Controls.Add(this.label22);
             this.tabTemp.Controls.Add(this.txtHysteresisTemp);
             this.tabTemp.Controls.Add(this.label23);
@@ -377,14 +375,15 @@
             this.tabTemp.Text = "Temperatura";
             this.tabTemp.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnTemp
             // 
-            this.button1.Location = new System.Drawing.Point(337, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 29);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Confirmar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTemp.Location = new System.Drawing.Point(337, 61);
+            this.btnTemp.Name = "btnTemp";
+            this.btnTemp.Size = new System.Drawing.Size(89, 29);
+            this.btnTemp.TabIndex = 26;
+            this.btnTemp.Text = "Confirmar";
+            this.btnTemp.UseVisualStyleBackColor = true;
+            this.btnTemp.Click += new System.EventHandler(this.btnTemp_Click);
             // 
             // label22
             // 
@@ -406,6 +405,7 @@
             this.txtHysteresisTemp.TabIndex = 33;
             this.txtHysteresisTemp.Text = "0";
             this.txtHysteresisTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHysteresisTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHysteresisTemp_KeyDown);
             // 
             // label23
             // 
@@ -446,6 +446,7 @@
             this.txtSetpointTemp.Text = "0";
             this.txtSetpointTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSetpointTemp.TextChanged += new System.EventHandler(this.txtSetpointTemp_TextChanged);
+            this.txtSetpointTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSetpointTemp_KeyDown);
             // 
             // label19
             // 
@@ -484,6 +485,8 @@
             this.txtPotenciaResistencia.TabIndex = 20;
             this.txtPotenciaResistencia.Text = "0";
             this.txtPotenciaResistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPotenciaResistencia.TextChanged += new System.EventHandler(this.txtPotenciaResistencia_TextChanged);
+            this.txtPotenciaResistencia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPotenciaResistencia_KeyDown);
             // 
             // label12
             // 
@@ -505,6 +508,7 @@
             this.txtDerivativoTemp.TabIndex = 31;
             this.txtDerivativoTemp.Text = "0";
             this.txtDerivativoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDerivativoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDerivativoTemp_KeyDown);
             // 
             // label14
             // 
@@ -538,6 +542,7 @@
             this.cmbControlRes.Size = new System.Drawing.Size(110, 29);
             this.cmbControlRes.TabIndex = 23;
             this.cmbControlRes.Text = "Manual";
+            this.cmbControlRes.SelectedIndexChanged += new System.EventHandler(this.cmbControlRes_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -559,6 +564,7 @@
             this.txtIntegralTemp.TabIndex = 28;
             this.txtIntegralTemp.Text = "0";
             this.txtIntegralTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIntegralTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIntegralTemp_KeyDown);
             // 
             // label13
             // 
@@ -589,17 +595,7 @@
             this.txtGanhoTemp.TabIndex = 25;
             this.txtGanhoTemp.Text = "0";
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label24.Location = new System.Drawing.Point(179, 173);
-            this.label24.Name = "label24";
-            this.label24.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label24.Size = new System.Drawing.Size(15, 19);
-            this.label24.TabIndex = 26;
-            this.label24.Text = "c";
+            this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
             // 
             // SubFormConfigControl
             // 
@@ -643,31 +639,30 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPotenciaResistencia;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtDerivativoTemp;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cmbControlRes;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtIntegralTemp;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtGanhoTemp;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtSetpointVazao;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtSetpointTemp;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtHysteresisVazao;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtHysteresisTemp;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnVazao;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnTemp;
+        private System.Windows.Forms.TextBox txtHysteresisTemp;
+        private System.Windows.Forms.TextBox txtSetpointTemp;
+        private System.Windows.Forms.TextBox txtPotenciaResistencia;
+        private System.Windows.Forms.TextBox txtDerivativoTemp;
+        private System.Windows.Forms.ComboBox cmbControlRes;
+        private System.Windows.Forms.TextBox txtIntegralTemp;
+        private System.Windows.Forms.TextBox txtGanhoTemp;
     }
 }
