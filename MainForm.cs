@@ -24,6 +24,7 @@ namespace Supervisório_PCA_2._0
         {
             InitializeComponent();
             Globals.serialPort = new SerialPort(); // linha para inicializar o objeto serialPort 
+            Globals.serialPort.BaudRate = 115200;
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }
 
@@ -103,16 +104,27 @@ namespace Supervisório_PCA_2._0
                 }
 
                 // Verifica se a invocação é necessária
-                if (InvokeRequired)
+                // Verifica se o formulário não foi descartado e se a invocação é necessária
+                if (!IsDisposed && InvokeRequired)
                 {
-                    // Invoca o método novamente na thread da UI principal
-                    Invoke(new MethodInvoker(() => ProcessData(subStrings)));
+                    try
+                    {
+                        // Invoca o método novamente na thread da UI principal
+                        Invoke(new MethodInvoker(() => ProcessData(subStrings)));
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Trate a exceção ObjectDisposedException, se necessário
+                        // ou apenas retorne do método
+                        return;
+                    }
                 }
                 else
                 {
                     // Chama o método diretamente
                     ProcessData(subStrings);
                 }
+
             }
         }
 
@@ -126,12 +138,60 @@ namespace Supervisório_PCA_2._0
                 // Limpa o gráfico de fluxo e adiciona os pontos correspondentes aos dados
                 flowPlot.Plot.Clear();
                 var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray());
-                flowPlot.Render();
+                scatterFlowPlot.MarkerColor = Color.Blue;
+                scatterFlowPlot.LineColor = Color.Blue;
 
                 // Limpa o gráfico de temperatura e adiciona os pontos correspondentes aos dados
                 tempPlot.Plot.Clear();
                 var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray());
+                scatterTempPlot.MarkerColor = Color.Red;
+                scatterTempPlot.LineColor = Color.Red;
+
+
+                if (Globals.showHysteresisVazao == true)
+                {
+                    var scatterHysteresisFlowUpperLimit = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.hysteresisFlowUpperLimitData.ToArray());
+                    var scatterHysteresisFlowLowerLimit = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.hysteresisFlowLowerLimitData.ToArray());
+                    scatterHysteresisFlowUpperLimit.LineStyle = LineStyle.Dash;
+                    scatterHysteresisFlowLowerLimit.LineStyle = LineStyle.Dash;
+                    scatterHysteresisFlowUpperLimit.LineColor = Color.Green;
+                    scatterHysteresisFlowLowerLimit.LineColor = Color.Green;
+
+                    scatterHysteresisFlowUpperLimit.MarkerSize = 0;
+                    scatterHysteresisFlowLowerLimit.MarkerSize = 0;
+
+                }
+             
+                if (Globals.showHysteresisTemp == true)
+                {
+                    var scatterHysteresisTempUpperLimit = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.hysteresisTempUpperLimitData.ToArray());
+                    var scatterHysteresisTempLowerLimit = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.hysteresisTempLowerLimitData.ToArray());
+                    scatterHysteresisTempUpperLimit.LineStyle = LineStyle.Dash;
+                    scatterHysteresisTempLowerLimit.LineStyle = LineStyle.Dash;
+                    scatterHysteresisTempUpperLimit.LineColor = Color.Green;
+                    scatterHysteresisTempLowerLimit.LineColor = Color.Green;
+
+                    scatterHysteresisTempUpperLimit.MarkerSize = 0;
+                    scatterHysteresisTempLowerLimit.MarkerSize = 0;
+                }
+
+                if (Globals.showSPVazao == true)
+                {
+                    var scatterSPVazao = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowSPData.ToArray());
+                    scatterSPVazao.LineColor = Color.Green;
+                    scatterSPVazao.MarkerColor = Color.Green;
+                }
+                
+                if (Globals.showSPTemp)
+                {
+                    var scatterSPTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempSPData.ToArray());
+                    scatterSPTemp.LineColor = Color.Green;
+                    scatterSPTemp.MarkerColor = Color.Green;
+                }
+
+                flowPlot.Render();
                 tempPlot.Render();
+
             }
             catch (InvalidOperationException ex)
             {
@@ -143,7 +203,13 @@ namespace Supervisório_PCA_2._0
                 }
 
                 // Exibe uma MessageBox com a mensagem de exceção em caso de outros erros
-                MessageBox.Show("Ocorreu um erro ao realizar a plotagem: " + ex.Message, "Erro na plotagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao realizar a plotagem: " + ex.Message + "\nO arduino será desconectado, e os dados de leitura recentes serão apagados.", "Erro na plotagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(Globals.isRecordingData == true)
+                {
+                    finalizarColetaDeDadosToolStripMenuItem.PerformClick();
+                }
+                GlobalMethods.ClearLists();
+                disconnectPort.PerformClick();
                 throw;
             }
         }
@@ -171,13 +237,21 @@ namespace Supervisório_PCA_2._0
                 Globals.flowSPData.Add(double.Parse(subStrings[2], culture));
                 Globals.pumpPowerData.Add(double.Parse(subStrings[3].Replace("%", ""), culture));
                 Globals.hysteresisFlowData.Add(double.Parse(subStrings[4], culture));
+
+                Globals.hysteresisFlowLowerLimitData.Add(double.Parse(subStrings[2], culture) - double.Parse(subStrings[4], culture));
+                Globals.hysteresisFlowUpperLimitData.Add(double.Parse(subStrings[2], culture) + double.Parse(subStrings[4], culture));
+
+
                 Globals.tempInData.Add(double.Parse(subStrings[5], culture));
                 Globals.tempOutData.Add(double.Parse(subStrings[6], culture));
                 Globals.tempSPData.Add(double.Parse(subStrings[7], culture));
                 Globals.resPowerData.Add(double.Parse(subStrings[8].Replace("%", ""), culture));
                 Globals.hysteresisTempData.Add(double.Parse(subStrings[9], culture));
 
-            
+                Globals.hysteresisTempLowerLimitData.Add(double.Parse(subStrings[7], culture) - double.Parse(subStrings[9], culture));
+                Globals.hysteresisTempUpperLimitData.Add(double.Parse(subStrings[7], culture) + double.Parse(subStrings[9], culture));
+
+
                 // Verifique se a lista `Globals.timeTempData` excede o número máximo de pontos
                 if (Globals.timeTempData.Count > Globals.numberTempPoints)
                 {
@@ -187,6 +261,8 @@ namespace Supervisório_PCA_2._0
                     Globals.tempSPData.RemoveRange(0, excessCount);
                     Globals.resPowerData.RemoveRange(0, excessCount);
                     Globals.hysteresisTempData.RemoveRange(0, excessCount);
+                    Globals.hysteresisTempLowerLimitData.RemoveRange(0, excessCount);
+                    Globals.hysteresisTempUpperLimitData.RemoveRange(0, excessCount);
                     Globals.timeTempData.RemoveRange(0, excessCount);
                 }
 
@@ -199,7 +275,9 @@ namespace Supervisório_PCA_2._0
                     Globals.flowSPData.RemoveRange(0, excessCount);
                     Globals.pumpPowerData.RemoveRange(0, excessCount); 
                     Globals.hysteresisFlowData.RemoveRange(0, excessCount);
-                    
+                    Globals.hysteresisFlowLowerLimitData.RemoveRange(0, excessCount);
+                    Globals.hysteresisFlowUpperLimitData.RemoveRange(0, excessCount);
+
                 }
             }
             catch (FormatException ex)
@@ -208,11 +286,6 @@ namespace Supervisório_PCA_2._0
                 Console.WriteLine("Erro na conversão das substrings para double: " + ex.Message);
             }
         }
-
-
-
-
-
 
         private string ReadLineSerialPort()
         {
@@ -267,59 +340,7 @@ namespace Supervisório_PCA_2._0
         }
 
 
-        private void ReiniciarArduino()
-        {
-            try
-            {
-                // Verifica se a porta serial está aberta
-                if (Globals.serialPort.IsOpen)
-                {
-                    // Define o sinal DTR como true por um breve período de tempo
-                    Globals.serialPort.DtrEnable = true;
-                    Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
-
-                    // Limpa as listas globais de dados
-                    Globals.timeFlowData.Clear();
-                    Globals.timeTempData.Clear();
-                    Globals.flowData.Clear();
-                    Globals.flowSPData.Clear();
-                    Globals.pumpPowerData.Clear();
-                    Globals.hysteresisFlowData.Clear();
-                    Globals.tempInData.Clear();
-                    Globals.tempOutData.Clear();
-                    Globals.tempSPData.Clear();
-                    Globals.resPowerData.Clear();
-                    Globals.hysteresisTempData.Clear();
-
-                    Globals.serialPort.DtrEnable = false;  // Restaura o sinal DTR para false
-
-                    // Executa o clique do botão "disconnectPort" usando BeginInvoke para garantir que seja chamado no thread apropriado
-                    if (this.InvokeRequired)
-                    {
-                        this.BeginInvoke(new Action(() =>
-                        {
-                            disconnectPort.PerformClick();
-                        }));
-                    }
-                    else
-                    {
-                        disconnectPort.PerformClick();
-                    }
-
-                    MessageBox.Show("Comando de reinicialização enviado para o Arduino e porta serial fechada.", "Reinicialização do Arduino", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Não é possível reinicializar o Arduino. A porta serial não está aberta.", "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao reinicializar o Arduino: " + ex.Message, "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
+        
 
         private void conectarAoArduinoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -410,5 +431,48 @@ namespace Supervisório_PCA_2._0
             SubFormConfigControl subFormConfigControl = new SubFormConfigControl();
             subFormConfigControl.ShowDialog();
         }
+
+        private void ReiniciarArduino()
+        {
+            try
+            {
+                // Verifica se a porta serial está aberta
+                if (Globals.serialPort.IsOpen)
+                {
+                    // Define o sinal DTR como true por um breve período de tempo
+                    Globals.serialPort.DtrEnable = true;
+                    Thread.Sleep(250);  // Aguarda 500ms para permitir a reinicialização do Arduino
+
+                    GlobalMethods.ClearLists();
+                    GlobalMethods.ResetGlobalVariables();
+                    Globals.serialPort.DtrEnable = false;  // Restaura o sinal DTR para false
+
+                    // Executa o clique do botão "disconnectPort" usando BeginInvoke para garantir que seja chamado no thread apropriado
+                    if (this.InvokeRequired)
+                    {
+                        this.BeginInvoke(new Action(() =>
+                        {
+                            disconnectPort.PerformClick();
+                        }));
+                    }
+                    else
+                    {
+                        disconnectPort.PerformClick();
+                    }
+
+                    MessageBox.Show("Comando de reinicialização enviado para o Arduino e porta serial fechada.", "Reinicialização do Arduino", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Não é possível reinicializar o Arduino. A porta serial não está aberta.", "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao reinicializar o Arduino: " + ex.Message, "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

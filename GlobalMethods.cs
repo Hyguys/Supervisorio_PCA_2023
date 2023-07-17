@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -46,14 +47,84 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        public static void ResetGlobalVariables()
+        {
+            Globals.isRecordingData = Globals.defaultIsRecordingData;
+            Globals.intervalSampling = Globals.defaultIntervalSampling;
+
+            Globals.showHysteresisTemp = Globals.defaultShowHysteresisTemp;
+            Globals.showHysteresisVazao = Globals.defaultShowHysteresisVazao;
+            Globals.showSPTemp = Globals.defaultShowSPTemp;
+            Globals.showSPVazao = Globals.defaultShowSPVazao;
+
+            Globals.numberFlowPoints = Globals.defaultNumberFlowPoints;
+            Globals.mediaMovelFlow = Globals.defaultMediaMovelFlow;
+            Globals.alfaFlow = Globals.defaultAlfaFlow;
+
+            Globals.numberTempPoints = Globals.defaultNumberTempPoints;
+            Globals.mediaMovelTemp = Globals.defaultMediaMovelTemp;
+            Globals.alfaTemp = Globals.defaultAlfaTemp;
+
+            Globals.pumpPower = Globals.defaultPumpPower;
+            Globals.setpointVazao = Globals.defaultSetpointVazao;
+            Globals.histereseVazao = Globals.defaultHistereseVazao;
+            Globals.ganhoVazao = Globals.defaultGanhoVazao;
+            Globals.integralVazao = Globals.defaultIntegralVazao;
+            Globals.derivativoVazao = Globals.defaultDerivativoVazao;
+
+            Globals.resPower = Globals.defaultResPower;
+            Globals.setpointTemp = Globals.defaultSetpointTemp;
+            Globals.histereseTemp = Globals.defaultHistereseTemp;
+            Globals.ganhoTemp = Globals.defaultGanhoTemp;
+            Globals.integralTemp = Globals.defaultIntegralTemp;
+            Globals.derivativoTemp = Globals.defaultDerivativoTemp;
+
+            Globals.controlTypeRes = Globals.defaultControlTypeRes;
+            Globals.controlTypePump = Globals.defaultControlTypePump;
+        }
+
+
+        public static void ClearLists()
+        {
+            // Limpa as listas globais de dados
+            Globals.timeFlowData.Clear();
+            Globals.timeTempData.Clear();
+            Globals.flowData.Clear();
+            Globals.flowSPData.Clear();
+            Globals.pumpPowerData.Clear();
+            Globals.hysteresisFlowData.Clear();
+            Globals.hysteresisFlowLowerLimitData.Clear();
+            Globals.hysteresisFlowUpperLimitData.Clear();
+            Globals.tempInData.Clear();
+            Globals.tempOutData.Clear();
+            Globals.tempSPData.Clear();
+            Globals.resPowerData.Clear();
+            Globals.hysteresisTempData.Clear();
+            Globals.hysteresisTempLowerLimitData.Clear();
+            Globals.hysteresisTempUpperLimitData.Clear();
+        }
 
         public static void ConnectSerialPort(string selectedPort)
         {
+            if(Globals.serialConnected == true && Globals.serialPort.PortName == selectedPort)
+            {
+                MessageBox.Show("Conexão à porta " + selectedPort + " já está estabelecida!", "Conexão já estabelecida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             try
             {
                 Globals.serialPort.PortName = selectedPort;
                 Globals.serialPort.Open();
                 Globals.serialConnected = true;
+                Globals.serialPort.DtrEnable = true;
+
+                Thread.Sleep(250);  // Aguarda 500ms para permitir a reinicialização do Arduino
+
+                // Limpa as listas globais de dados
+                ClearLists();
+
+                Globals.serialPort.DtrEnable = false;
+
                 MessageBox.Show("Conexão à porta " + selectedPort + " estabelecida com sucesso!", "Conexão realizada com sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -78,16 +149,19 @@ namespace Supervisório_PCA_2._0
                 {
                     Globals.serialPort.Close();
                     Globals.serialConnected = false;
+                    GlobalMethods.ResetGlobalVariables();
                     MessageBox.Show("Desconectado da porta serial com sucesso.", "Desconectar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
                 {
+                    Globals.serialConnected = false;
                     MessageBox.Show("Nenhuma porta serial está atualmente conectada.", "Desconectar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             catch (Exception ex)
             {
+                Globals.serialConnected = false;
                 MessageBox.Show("Erro ao desconectar da porta serial: " + ex.Message, "Desconectar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

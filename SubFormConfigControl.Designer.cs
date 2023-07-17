@@ -582,7 +582,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 21);
             this.label5.TabIndex = 24;
-            this.label5.Text = "°C / %";
+            this.label5.Text = "% / °C";
             // 
             // txtGanhoTemp
             // 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace Supervisório_PCA_2._0
             txtGanhoTemp.Text = Convert.ToString(Globals.ganhoTemp);
             txtIntegralTemp.Text = Convert.ToString(Globals.integralTemp);
             txtDerivativoTemp.Text = Convert.ToString(Globals.derivativoTemp);
+            Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(SubFormDataReceivedHandler);
 
         }
 
@@ -33,6 +35,72 @@ namespace Supervisório_PCA_2._0
         {
 
         }
+
+        private void SubFormDataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            // Lógica para lidar com os dados recebidos na porta serial no SubFormConfigControl
+            if (Globals.controlTypePump == 1 || Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+            {
+                try
+                {
+                    if (!IsDisposed && txtPotenciaBomba.InvokeRequired)
+                    {
+                        // Executa o código na thread de interface do usuário usando Invoke
+                        Invoke((MethodInvoker)(() => txtPotenciaBomba.Text = Convert.ToString(Globals.pumpPowerData.Last())));
+                    }
+                    else
+                    {
+                        // Atualiza diretamente o controle na thread de interface do usuário
+                        txtPotenciaBomba.Text = Convert.ToString(Globals.pumpPowerData.Last());
+                    }
+                }
+                catch (InvalidOperationException ex)
+                {
+                    if (ex.Message == "Sequence contains no elements")
+                    {
+                        // Retorna da função caso a exceção seja "Sequence contains no elements"
+                        return;
+                    }
+                    else
+                    {
+                        // Lidar com a exceção de outra forma, se necessário
+                        throw;
+                    }
+                }
+            }
+
+            if (Globals.controlTypeRes == 1 || Globals.controlTypeRes == 2 || Globals.controlTypeRes == 3 || Globals.controlTypeRes == 4)
+            {
+                try
+                {
+                    if (!IsDisposed && txtPotenciaBomba.InvokeRequired)
+                    {
+                        // Executa o código na thread de interface do usuário usando Invoke
+                        Invoke((MethodInvoker)(() => txtPotenciaResistencia.Text = Convert.ToString(Globals.resPowerData.Last())));
+                    }
+                    else
+                    {
+                        // Atualiza diretamente o controle na thread de interface do usuário
+                        txtPotenciaResistencia.Text = Convert.ToString(Globals.resPowerData.Last());
+                    }
+                }
+                catch (InvalidOperationException ex)
+                {
+                    if (ex.Message == "Sequence contains no elements")
+                    {
+                        // Retorna da função caso a exceção seja "Sequence contains no elements"
+                        return;
+                    }
+                    else
+                    {
+                        // Lidar com a exceção de outra forma, se necessário
+                        throw;
+                    }
+                }
+            }
+
+        }
+
 
         private void txtPotenciaBomba_KeyDown(object sender, KeyEventArgs e)
         {
@@ -72,6 +140,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = true;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly=true;
+                    Globals.showHysteresisVazao = false;
+                    Globals.showSPVazao = false;
                     break;
                 case 1: //ON-OFF
                     txtPotenciaBomba.ReadOnly = true;
@@ -79,6 +149,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = true;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
+                    Globals.showHysteresisVazao = true;
+                    Globals.showSPVazao = true;
                     break; 
                 case 2: //Controle Proporcional
                     txtPotenciaBomba.ReadOnly = true;
@@ -86,6 +158,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
+                    Globals.showHysteresisVazao = false;
+                    Globals.showSPVazao = true;
                     break;
                 case 3: //Controle Proporcional Integral
                     txtPotenciaBomba.ReadOnly = true;
@@ -93,6 +167,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = false;
                     txtDerivativoVazao.ReadOnly = true;
+                    Globals.showHysteresisVazao = false;
+                    Globals.showSPVazao = true;
                     break;
                 case 4: //Controle Proporcional Integral e Derivativo
                     txtPotenciaBomba.ReadOnly = true;
@@ -100,6 +176,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = false;
                     txtDerivativoVazao.ReadOnly = false;
+                    Globals.showHysteresisVazao = false;
+                    Globals.showSPVazao = true;
                     break;
             }
             
@@ -151,7 +229,8 @@ namespace Supervisório_PCA_2._0
 
         private void SubFormConfigControl_Load(object sender, EventArgs e)
         {
-
+            cmbControlVazao.SelectedIndex = Globals.controlTypePump;
+            cmbControlRes.SelectedIndex = Globals.controlTypeRes;
         }
 
         private void txtHysteresisVazao_TextChanged(object sender, EventArgs e)
@@ -495,14 +574,14 @@ namespace Supervisório_PCA_2._0
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle proporcional iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
-                    "Ganho do controlador: " + Globals.ganhoTemp + " °C / %",
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 case 3:
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle proporcional-integral iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
-                    "Ganho do controlador: " + Globals.ganhoTemp + " °C / %\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n" +
                     "Tempo integral do controlador: " + Globals.integralTemp + " s",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -510,7 +589,7 @@ namespace Supervisório_PCA_2._0
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle proporcional-integral-derivativo iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
-                    "Ganho do controlador: " + Globals.ganhoTemp + " °C / %\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n" +
                     "Tempo integral do controlador: " + Globals.integralTemp + " s\n" +
                     "Tempo derivativo do controlador: " + Globals.derivativoTemp + " s",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -560,6 +639,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = true;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = false;
                     break;
                 case 1: // ON-OFF
                     txtPotenciaResistencia.ReadOnly = true;
@@ -567,6 +648,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = true;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = true;
+                    Globals.showSPTemp = true;
                     break;
                 case 2: // Controle Proporcional
                     txtPotenciaResistencia.ReadOnly = true;
@@ -574,6 +657,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
                     break;
                 case 3: // Controle Proporcional Integral
                     txtPotenciaResistencia.ReadOnly = true;
@@ -581,6 +666,8 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
                     break;
                 case 4: // Controle Proporcional Integral e Derivativo
                     txtPotenciaResistencia.ReadOnly = true;
@@ -588,6 +675,7 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = false;
+                    Globals.showHysteresisTemp = false;
                     break;
             }
         }

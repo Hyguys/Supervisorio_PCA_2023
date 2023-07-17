@@ -75,7 +75,7 @@ namespace Supervisório_PCA_2._0
             this.sobreToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(857, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(884, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -208,18 +208,18 @@ namespace Supervisório_PCA_2._0
             // flowPlot
             // 
             this.flowPlot.AutoSize = true;
-            this.flowPlot.Location = new System.Drawing.Point(415, 34);
+            this.flowPlot.Location = new System.Drawing.Point(13, 70);
             this.flowPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flowPlot.Name = "flowPlot";
-            this.flowPlot.Size = new System.Drawing.Size(427, 221);
+            this.flowPlot.Size = new System.Drawing.Size(427, 370);
             this.flowPlot.TabIndex = 1;
             // 
             // tempPlot
             // 
-            this.tempPlot.Location = new System.Drawing.Point(415, 251);
+            this.tempPlot.Location = new System.Drawing.Point(450, 70);
             this.tempPlot.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.tempPlot.Name = "tempPlot";
-            this.tempPlot.Size = new System.Drawing.Size(427, 240);
+            this.tempPlot.Size = new System.Drawing.Size(427, 370);
             this.tempPlot.TabIndex = 2;
             // 
             // textBox1
@@ -245,16 +245,16 @@ namespace Supervisório_PCA_2._0
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Supervisório_PCA_2._0.Properties.Resources.logoextensa;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 432);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 448);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(252, 65);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // searchPorts
             // 
-            this.searchPorts.Location = new System.Drawing.Point(12, 62);
+            this.searchPorts.Location = new System.Drawing.Point(311, 28);
             this.searchPorts.Name = "searchPorts";
             this.searchPorts.Size = new System.Drawing.Size(151, 32);
             this.searchPorts.TabIndex = 6;
@@ -266,7 +266,7 @@ namespace Supervisório_PCA_2._0
             // 
             this.portsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portsBox.FormattingEnabled = true;
-            this.portsBox.Location = new System.Drawing.Point(169, 65);
+            this.portsBox.Location = new System.Drawing.Point(468, 31);
             this.portsBox.Name = "portsBox";
             this.portsBox.Size = new System.Drawing.Size(136, 29);
             this.portsBox.TabIndex = 7;
@@ -275,7 +275,7 @@ namespace Supervisório_PCA_2._0
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.textBox3.Location = new System.Drawing.Point(651, 482);
+            this.textBox3.Location = new System.Drawing.Point(683, 482);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(194, 15);
             this.textBox3.TabIndex = 8;
@@ -284,9 +284,9 @@ namespace Supervisório_PCA_2._0
             // 
             // disconnectPort
             // 
-            this.disconnectPort.Location = new System.Drawing.Point(12, 100);
+            this.disconnectPort.Location = new System.Drawing.Point(610, 29);
             this.disconnectPort.Name = "disconnectPort";
-            this.disconnectPort.Size = new System.Drawing.Size(151, 30);
+            this.disconnectPort.Size = new System.Drawing.Size(119, 30);
             this.disconnectPort.TabIndex = 9;
             this.disconnectPort.Text = "Desconectar";
             this.disconnectPort.UseVisualStyleBackColor = true;
@@ -294,9 +294,9 @@ namespace Supervisório_PCA_2._0
             // 
             // connectPort
             // 
-            this.connectPort.Location = new System.Drawing.Point(169, 100);
+            this.connectPort.Location = new System.Drawing.Point(735, 29);
             this.connectPort.Name = "connectPort";
-            this.connectPort.Size = new System.Drawing.Size(136, 30);
+            this.connectPort.Size = new System.Drawing.Size(119, 30);
             this.connectPort.TabIndex = 10;
             this.connectPort.Text = "Conectar";
             this.connectPort.UseVisualStyleBackColor = true;
@@ -307,7 +307,7 @@ namespace Supervisório_PCA_2._0
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(857, 509);
+            this.ClientSize = new System.Drawing.Size(884, 509);
             this.Controls.Add(this.connectPort);
             this.Controls.Add(this.disconnectPort);
             this.Controls.Add(this.textBox3);
