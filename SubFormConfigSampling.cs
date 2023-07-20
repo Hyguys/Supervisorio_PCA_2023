@@ -38,7 +38,8 @@ namespace Supervisório_PCA_2._0
             Globals.intervalSampling = interval;
             string command = "IS " + interval;
             Globals.serialPort.WriteLine(command);
-
+            Globals.numberFlowPoints = (int)Math.Ceiling(Globals.HistoricoVazao * 1000.0 / Globals.intervalSampling);
+            Globals.numberTempPoints = (int)Math.Ceiling(Globals.HistoricoTemp * 1000.0 / Globals.intervalSampling);
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -157,10 +158,7 @@ namespace Supervisório_PCA_2._0
 
         }
 
-        private void txtInterval_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void txtMMVazao_TextChanged(object sender, EventArgs e)
         {
@@ -184,6 +182,16 @@ namespace Supervisório_PCA_2._0
             txtEWMAVazao.Text = Convert.ToString(Globals.alfaFlow);
             txtMMTemp.Text = Convert.ToString(Globals.mediaMovelTemp);
             txtEWMATemp.Text = Convert.ToString(Globals.alfaTemp);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para mais informações sobre essa seção, recomenda-se a leitura do apêndice A.1 do manual de operação do PCA.\n\n\nEm resumo, aqui estamos configurando o intervalo de amostragem e os filtros para atenuar os ruídos dos sensores.\n\nQuanto à amostragem, quanto menor o valor, mais imprecisa fica a leitura do sensor de vazão, pois toma um intervalo de tempo menor. Em compensação, você tem mais dados e consegue analisar melhor a resposta do sistema. \n\nQuanto aos filtros, se você configurar todos os parâmetros de filtragem como 1, você desliga os dois filtros, recebendo a leitura do sensor 'pura'.\n\nQuanto maior o tamanho da média móvel e quanto menor o valor de alfa, mais lento responde o sistema, mas mais suaves são os dados.\n\nVocê pode testar a eficácia do filtro plotando a variável filtrada e a variável pré-filtro simultâneamente, indo nas configurações dos gráficos.", "Ajuda - Tomada de Dados, Amostragem e Filtragem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void txtInterval_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

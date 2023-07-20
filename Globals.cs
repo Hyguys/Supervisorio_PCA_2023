@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ScottPlot;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -31,6 +33,12 @@ namespace Supervisório_PCA_2._0
         public static List<double> hysteresisTempData = new List<double>();
         public static List<double> hysteresisTempUpperLimitData = new List<double>();
         public static List<double> hysteresisTempLowerLimitData = new List<double>();
+
+        public static List<double> pureTempOutData = new List<double>();
+        public static List<double> pureFlowData = new List<double>();
+
+        /*SEÇÃO VALORES PADRÃO VARIÁVEIS GLOBAIS*/
+        public static int globalListsNumber = 12;
 
         public static bool defaultIsRecordingData = false;
         public static int defaultIntervalSampling = 500;
@@ -65,7 +73,38 @@ namespace Supervisório_PCA_2._0
         public static int defaultControlTypeRes = 0;
         public static int defaultControlTypePump = 0;
 
+        public static bool defaultRampFlowSP = false;
+        public static bool defaultRampTempSP = false;
 
+        public static bool defaultExibirGridVazao = true;
+        public static bool defaultExibirLegendaVazao = true;
+        public static bool defaultExibirPotenciaBomba = false;
+        public static bool defaultExibirVazaoPreFiltragem = false;
+        public static int defaultMarkerSizeVazao = 5;
+        public static int defaultLineSizeVazao = 1;
+        public static int defaultHistoricoVazao = 5;
+        public static Color defaultCorVazao = Color.Blue;
+        public static Color defaultCorSPVazao = Color.Green;
+        public static Color defaultCorPotenciaBomba = Color.DarkMagenta;
+        public static Color defaultCorVazaoPrefiltragem = Color.Aqua;
+
+        public static bool defaultExibirGridTemp = true;
+        public static bool defaultExibirLegendaTemp = true;
+        public static bool defaultExibirPotenciaResistencia = false;
+        public static bool defaultExibirTempEntrada = false;
+        public static bool defaultExibirTempPreFiltragem = false;
+        public static int defaultMarkerSizeTemp = 5;
+        public static int defaultLineSizeTemp = 1;
+        public static int defaultHistoricoTemp = 5;
+        public static Color defaultCorTemp = Color.Red;
+        public static Color defaultCorSPTemp = Color.Green;
+        public static Color defaultCorPotenciaRes = Color.DarkMagenta;
+        public static Color defaultCorTempPrefiltragem = Color.DarkSalmon;
+        public static Color defaultCorTempEntrada = Color.Navy;
+
+
+
+        /*SEÇÃO INICIALIZAÇÃO VARIÁVEIS GLOBAIS*/
         public static bool isRecordingData = defaultIsRecordingData;
         public static int intervalSampling = defaultIntervalSampling;
 
@@ -99,6 +138,36 @@ namespace Supervisório_PCA_2._0
         public static int controlTypeRes = defaultControlTypeRes;
         public static int controlTypePump = defaultControlTypePump;
 
+        public static bool RampFlowSP = defaultRampFlowSP;
+        public static bool RampTempSP = defaultRampTempSP;
+
+        public static bool ExibirGridVazao = defaultExibirGridVazao;
+        public static bool ExibirLegendaVazao = defaultExibirLegendaVazao;
+        public static bool ExibirPotenciaBomba = defaultExibirPotenciaBomba;
+        public static bool ExibirVazaoPreFiltragem = defaultExibirVazaoPreFiltragem;
+        public static int MarkerSizeVazao = defaultMarkerSizeVazao;
+        public static int LineSizeVazao = defaultLineSizeVazao;
+        public static double HistoricoVazao = defaultHistoricoVazao;
+        public static Color CorVazao = defaultCorVazao;
+        public static Color CorSPVazao = defaultCorSPVazao;
+        public static Color CorPotenciaBomba = defaultCorPotenciaBomba;
+        public static Color CorVazaoPrefiltragem = defaultCorVazaoPrefiltragem;
+
+        public static bool ExibirGridTemp = defaultExibirGridTemp;
+        public static bool ExibirLegendaTemp = defaultExibirLegendaTemp;
+        public static bool ExibirPotenciaResistencia = defaultExibirPotenciaResistencia;
+        public static bool ExibirTempEntrada = defaultExibirTempEntrada;
+        public static bool ExibirTempPreFiltragem = defaultExibirTempPreFiltragem;
+        public static int MarkerSizeTemp = defaultMarkerSizeTemp;
+        public static int LineSizeTemp = defaultLineSizeTemp;
+        public static double HistoricoTemp = defaultHistoricoTemp;
+        public static Color CorTemp = defaultCorTemp;
+        public static Color CorSPTemp = defaultCorSPTemp;
+        public static Color CorPotenciaRes = defaultCorPotenciaRes;
+        public static Color CorTempPrefiltragem = defaultCorTempPrefiltragem;
+        public static Color CorTempEntrada = defaultCorTempEntrada;
+
+   
     }
 
 }

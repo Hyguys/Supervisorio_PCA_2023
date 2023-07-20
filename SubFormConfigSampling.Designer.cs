@@ -48,6 +48,8 @@ namespace Supervisório_PCA_2._0
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMMTemp = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.grGeral.SuspendLayout();
             this.grVazao.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -109,7 +111,7 @@ namespace Supervisório_PCA_2._0
             this.grVazao.Size = new System.Drawing.Size(449, 118);
             this.grVazao.TabIndex = 3;
             this.grVazao.TabStop = false;
-            this.grVazao.Text = "Parâmetros da Tomada de Vazão";
+            this.grVazao.Text = "Parâmetros da Filtragem da Tomada de Vazão";
             // 
             // label1
             // 
@@ -186,7 +188,7 @@ namespace Supervisório_PCA_2._0
             this.groupBox1.Size = new System.Drawing.Size(449, 118);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Parâmetros da Tomada de Temperatura";
+            this.groupBox1.Text = "Parâmetros da Filtragem da Tomada de Temperatura";
             // 
             // label2
             // 
@@ -248,12 +250,36 @@ namespace Supervisório_PCA_2._0
             this.txtMMTemp.TextChanged += new System.EventHandler(this.txtMMTemp_TextChanged);
             this.txtMMTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMMTemp_KeyDown);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 331);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(63, 31);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Ajuda";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.textBox3.Location = new System.Drawing.Point(267, 333);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(194, 31);
+            this.textBox3.TabIndex = 9;
+            this.textBox3.Text = "Recomenda-se a leitura do apêndice A.1 do manual de operação do PCA";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // SubFormConfigSampling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(473, 341);
+            this.ClientSize = new System.Drawing.Size(473, 369);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grVazao);
             this.Controls.Add(this.grGeral);
@@ -269,6 +295,7 @@ namespace Supervisório_PCA_2._0
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -292,5 +319,7 @@ namespace Supervisório_PCA_2._0
         private Label label4;
         private Label label5;
         private TextBox txtMMTemp;
+        private Button button1;
+        private TextBox textBox3;
     }
 }

@@ -216,9 +216,20 @@ namespace Supervisório_PCA_2._0
             }
 
             Globals.setpointVazao = setpointVazao;
-            string command = "SPF " + setpointVazao.ToString("0.00");
-            Globals.serialPort.WriteLine(command);
-            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (Globals.RampFlowSP == true)
+            {
+                float durationRampFlow = (float)rampDurationFlow.Value;
+                string command = "RSPF " + setpointVazao.ToString("0.00") + " " + durationRampFlow.ToString("0.00");
+                Globals.serialPort.WriteLine(command);
+                MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                string command = "SPF " + setpointVazao.ToString("0.00");
+                Globals.serialPort.WriteLine(command);
+                MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
 
@@ -231,6 +242,15 @@ namespace Supervisório_PCA_2._0
         {
             cmbControlVazao.SelectedIndex = Globals.controlTypePump;
             cmbControlRes.SelectedIndex = Globals.controlTypeRes;
+            if (Globals.RampFlowSP == true)
+            {
+                cmbFlowSPChange.SelectedIndex = 1;
+            }
+
+            if (Globals.RampTempSP == true)
+            {
+                cmbTempSPChange.SelectedIndex = 1;
+            }
         }
 
         private void txtHysteresisVazao_TextChanged(object sender, EventArgs e)
@@ -680,5 +700,36 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        private void cmbFlowSPChange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbFlowSPChange.SelectedIndex == 1)
+            {
+                Globals.RampFlowSP = true;
+                rampDurationFlow.Visible = true;
+                lblRampFlow.Visible = true;
+            }
+            else
+            {
+                Globals.RampFlowSP = false;
+                rampDurationFlow.Visible = false;
+                lblRampFlow.Visible = false;
+            }
+        }
+
+        private void cmbTempSPChange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTempSPChange.SelectedIndex == 1)
+            {
+                Globals.RampTempSP = true;
+                rampDurationTemp.Visible = true;
+                lblRampTemp.Visible = true;
+            }
+            else
+            {
+                Globals.RampTempSP = false;
+                rampDurationTemp.Visible = false;
+                lblRampTemp.Visible = false;
+            }
+        }
     }
 }

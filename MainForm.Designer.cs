@@ -52,12 +52,14 @@ namespace Supervisório_PCA_2._0
             this.tempPlot = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.searchPorts = new System.Windows.Forms.Button();
             this.portsBox = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.disconnectPort = new System.Windows.Forms.Button();
             this.connectPort = new System.Windows.Forms.Button();
+            this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -72,12 +74,14 @@ namespace Supervisório_PCA_2._0
             this.arquivoToolStripMenuItem,
             this.configuraçõesToolStripMenuItem,
             this.ajudaToolStripMenuItem,
-            this.sobreToolStripMenuItem});
+            this.sobreToolStripMenuItem,
+            this.ferramentasAvançadasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // arquivoToolStripMenuItem
             // 
@@ -139,22 +143,23 @@ namespace Supervisório_PCA_2._0
             // tomadaDeDadosToolStripMenuItem
             // 
             this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
-            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
-            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados e Amostragem";
+            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados, Amostragem e Filtragem";
             this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesDeControleToolStripMenuItem
             // 
             this.configuraçõesDeControleToolStripMenuItem.Name = "configuraçõesDeControleToolStripMenuItem";
-            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
-            this.configuraçõesDeControleToolStripMenuItem.Text = "Configurações de Controle";
+            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.configuraçõesDeControleToolStripMenuItem.Text = "Parâmetros de Controle (P/PI/PID)";
             this.configuraçõesDeControleToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDeControleToolStripMenuItem_Click);
             // 
             // configuraçõesDosGráficosToolStripMenuItem
             // 
             this.configuraçõesDosGráficosToolStripMenuItem.Name = "configuraçõesDosGráficosToolStripMenuItem";
-            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(309, 26);
-            this.configuraçõesDosGráficosToolStripMenuItem.Text = "Configurações dos Gráficos";
+            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.configuraçõesDosGráficosToolStripMenuItem.Text = "Customização dos Gráficos";
+            this.configuraçõesDosGráficosToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDosGráficosToolStripMenuItem_Click);
             // 
             // ajudaToolStripMenuItem
             // 
@@ -242,16 +247,6 @@ namespace Supervisório_PCA_2._0
             this.textBox2.Text = "Não conectado!";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Supervisório_PCA_2._0.Properties.Resources.logoextensa;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 448);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 49);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // searchPorts
             // 
             this.searchPorts.Location = new System.Drawing.Point(311, 28);
@@ -301,6 +296,32 @@ namespace Supervisório_PCA_2._0
             this.connectPort.Text = "Conectar";
             this.connectPort.UseVisualStyleBackColor = true;
             this.connectPort.Click += new System.EventHandler(this.connectPort_Click);
+            // 
+            // ferramentasAvançadasToolStripMenuItem
+            // 
+            this.ferramentasAvançadasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem});
+            this.ferramentasAvançadasToolStripMenuItem.Name = "ferramentasAvançadasToolStripMenuItem";
+            this.ferramentasAvançadasToolStripMenuItem.Size = new System.Drawing.Size(187, 25);
+            this.ferramentasAvançadasToolStripMenuItem.Text = "Ferramentas Avançadas";
+            this.ferramentasAvançadasToolStripMenuItem.Click += new System.EventHandler(this.ferramentasAvançadasToolStripMenuItem_Click);
+            // 
+            // sintoniaAutomáticaDeFOPTDToolStripMenuItem
+            // 
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Name = "sintoniaAutomáticaDeFOPTDToolStripMenuItem";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonia Automática de FOPTD";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Click += new System.EventHandler(this.sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Supervisório_PCA_2._0.Properties.Resources.logoextensa;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 448);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 49);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -365,6 +386,8 @@ namespace Supervisório_PCA_2._0
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button disconnectPort;
         private System.Windows.Forms.Button connectPort;
+        private ToolStripMenuItem ferramentasAvançadasToolStripMenuItem;
+        private ToolStripMenuItem sintoniaAutomáticaDeFOPTDToolStripMenuItem;
     }
 }
 

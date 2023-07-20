@@ -137,16 +137,38 @@ namespace Supervisório_PCA_2._0
 
                 // Limpa o gráfico de fluxo e adiciona os pontos correspondentes aos dados
                 flowPlot.Plot.Clear();
-                var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray());
-                scatterFlowPlot.MarkerColor = Color.Blue;
-                scatterFlowPlot.LineColor = Color.Blue;
+                var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "Vazão");
+                flowPlot.Plot.Grid(Globals.ExibirGridVazao);
+                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30,Color.Black));
+                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30, Color.Black));
+                flowPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.flowData.Max() * 1.2, 60)); 
+                flowPlot.Plot.SetAxisLimitsY(-3, 100,flowPlot.Plot.RightAxis.AxisIndex);
+                flowPlot.Plot.Title("Controle de Vazão");
+                flowPlot.Plot.YAxis.Label("Vazão (L/h)");
+                var flowLegend = flowPlot.Plot.Legend(Globals.ExibirLegendaVazao);
+                flowLegend.Location = Alignment.UpperLeft;
+                scatterFlowPlot.MarkerColor = Globals.CorVazao;
+                scatterFlowPlot.LineColor = Globals.CorVazao;
+                scatterFlowPlot.MarkerSize = Globals.MarkerSizeVazao;
+                scatterFlowPlot.LineWidth = Globals.LineSizeVazao;
+                
 
                 // Limpa o gráfico de temperatura e adiciona os pontos correspondentes aos dados
                 tempPlot.Plot.Clear();
-                var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray());
-                scatterTempPlot.MarkerColor = Color.Red;
-                scatterTempPlot.LineColor = Color.Red;
-
+                var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray(), label: "Temperatura");
+                tempPlot.Plot.Grid(Globals.ExibirGridTemp);
+                tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
+                tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
+                flowPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.tempOutData.Max() * 1.2, 30));
+                flowPlot.Plot.SetAxisLimitsY(-3, 100, tempPlot.Plot.RightAxis.AxisIndex);
+                tempPlot.Plot.Title("Controle de Temperatura");
+                tempPlot.Plot.YAxis.Label("Temperatura (°C)");
+                var tempLegend = tempPlot.Plot.Legend(Globals.ExibirLegendaTemp);
+                tempLegend.Location = Alignment.UpperLeft;
+                scatterTempPlot.MarkerColor = Globals.CorTemp;
+                scatterTempPlot.LineColor = Globals.CorTemp;
+                scatterFlowPlot.MarkerSize = Globals.MarkerSizeTemp;
+                scatterFlowPlot.LineWidth = Globals.LineSizeTemp;
 
                 if (Globals.showHysteresisVazao == true)
                 {
@@ -154,12 +176,11 @@ namespace Supervisório_PCA_2._0
                     var scatterHysteresisFlowLowerLimit = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.hysteresisFlowLowerLimitData.ToArray());
                     scatterHysteresisFlowUpperLimit.LineStyle = LineStyle.Dash;
                     scatterHysteresisFlowLowerLimit.LineStyle = LineStyle.Dash;
-                    scatterHysteresisFlowUpperLimit.LineColor = Color.Green;
-                    scatterHysteresisFlowLowerLimit.LineColor = Color.Green;
+                    scatterHysteresisFlowUpperLimit.LineColor = Globals.CorSPVazao;
+                    scatterHysteresisFlowLowerLimit.LineColor = Globals.CorSPVazao;
 
                     scatterHysteresisFlowUpperLimit.MarkerSize = 0;
                     scatterHysteresisFlowLowerLimit.MarkerSize = 0;
-
                 }
              
                 if (Globals.showHysteresisTemp == true)
@@ -168,8 +189,8 @@ namespace Supervisório_PCA_2._0
                     var scatterHysteresisTempLowerLimit = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.hysteresisTempLowerLimitData.ToArray());
                     scatterHysteresisTempUpperLimit.LineStyle = LineStyle.Dash;
                     scatterHysteresisTempLowerLimit.LineStyle = LineStyle.Dash;
-                    scatterHysteresisTempUpperLimit.LineColor = Color.Green;
-                    scatterHysteresisTempLowerLimit.LineColor = Color.Green;
+                    scatterHysteresisTempUpperLimit.LineColor = Globals.CorSPTemp;
+                    scatterHysteresisTempLowerLimit.LineColor = Globals.CorSPTemp;
 
                     scatterHysteresisTempUpperLimit.MarkerSize = 0;
                     scatterHysteresisTempLowerLimit.MarkerSize = 0;
@@ -177,16 +198,84 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.showSPVazao == true)
                 {
-                    var scatterSPVazao = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowSPData.ToArray());
-                    scatterSPVazao.LineColor = Color.Green;
-                    scatterSPVazao.MarkerColor = Color.Green;
+                    var scatterSPVazao = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowSPData.ToArray(),label: "SP Vazão");
+                    scatterSPVazao.LineColor = Globals.CorSPVazao;
+                    scatterSPVazao.MarkerColor = Globals.CorSPVazao;
+                    scatterSPVazao.MarkerSize = Globals.MarkerSizeVazao;
+                    scatterSPVazao.LineWidth = Globals.LineSizeVazao;
                 }
                 
                 if (Globals.showSPTemp)
                 {
-                    var scatterSPTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempSPData.ToArray());
-                    scatterSPTemp.LineColor = Color.Green;
-                    scatterSPTemp.MarkerColor = Color.Green;
+                    var scatterSPTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempSPData.ToArray(), label: "SP Temp.");
+                    scatterSPTemp.LineColor = Globals.CorSPTemp;
+                    scatterSPTemp.MarkerColor = Globals.CorSPTemp;
+                    scatterSPTemp.MarkerSize = Globals.MarkerSizeTemp;
+                    scatterFlowPlot.LineWidth = Globals.LineSizeTemp;
+                }
+
+                if (Globals.ExibirPotenciaBomba)
+                {
+                    var scatterPumpPower = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pumpPowerData.ToArray(), label: "Pot. Bomba");
+                    scatterPumpPower.LineColor = Globals.CorPotenciaBomba;
+                    scatterPumpPower.MarkerColor = Globals.CorPotenciaBomba;
+                    scatterPumpPower.MarkerSize = Globals.MarkerSizeVazao;
+                    scatterPumpPower.LineWidth = Globals.LineSizeVazao;
+                    scatterPumpPower.YAxisIndex = flowPlot.Plot.RightAxis.AxisIndex;
+                    flowPlot.Plot.RightAxis.Ticks(true);
+                    flowPlot.Plot.YAxis2.Label("Potência Bomba (%)");
+                    flowPlot.Plot.YAxis2.SetBoundary(0, 100);
+                }
+                else
+                {
+                    flowPlot.Plot.RightAxis.Ticks(false);
+                    flowPlot.Plot.YAxis2.Label("");
+                }
+
+                if (Globals.ExibirPotenciaResistencia)
+                {
+                    var scatterResPower = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.resPowerData.ToArray(), label: "Pot. Resistência");
+                    scatterResPower.LineColor = Globals.CorPotenciaRes;
+                    scatterResPower.MarkerColor = Globals.CorPotenciaRes;
+                    scatterResPower.MarkerSize = Globals.MarkerSizeTemp;
+                    scatterResPower.LineWidth = Globals.LineSizeTemp;
+                    scatterResPower.YAxisIndex = 1;
+                    scatterResPower.YAxisIndex = tempPlot.Plot.RightAxis.AxisIndex;
+                    tempPlot.Plot.RightAxis.Ticks(true);
+                    tempPlot.Plot.YAxis2.Label("Potência Resistência (%)");
+                    tempPlot.Plot.YAxis2.SetBoundary(0, 100);
+                }
+                else
+                {
+                    tempPlot.Plot.RightAxis.Ticks(false);
+                    tempPlot.Plot.YAxis2.Label("");
+                }
+
+                if (Globals.ExibirVazaoPreFiltragem)
+                {
+                    var scatterTrueFlow = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pureFlowData.ToArray(), label: "Vazão Pré-filtro");
+                    scatterTrueFlow.LineColor = Globals.CorVazaoPrefiltragem;
+                    scatterTrueFlow.MarkerColor = Globals.CorVazaoPrefiltragem;
+                    scatterTrueFlow.MarkerSize = Globals.MarkerSizeVazao;
+                    scatterTrueFlow.LineWidth = Globals.LineSizeVazao;
+                }
+
+                if (Globals.ExibirTempPreFiltragem)
+                {
+                    var scatterTrueTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.pureTempOutData.ToArray(), label: "Temp. Pré-filtro");
+                    scatterTrueTemp.LineColor = Globals.CorTempPrefiltragem;
+                    scatterTrueTemp.MarkerColor = Globals.CorTempPrefiltragem;
+                    scatterTrueTemp.MarkerSize = Globals.MarkerSizeTemp;
+                    scatterTrueTemp.LineWidth = Globals.LineSizeTemp;
+                }
+
+                if (Globals.ExibirTempEntrada)
+                {
+                    var scatterTempIn = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempInData.ToArray(), label: "Temp. Entrada");
+                    scatterTempIn.LineColor = Globals.CorTempEntrada;
+                    scatterTempIn.MarkerColor = Globals.CorTempEntrada;
+                    scatterTempIn.MarkerSize = Globals.MarkerSizeTemp;
+                    scatterTempIn.LineWidth = Globals.LineSizeTemp;
                 }
 
                 flowPlot.Render();
@@ -218,7 +307,7 @@ namespace Supervisório_PCA_2._0
         private void AssignSubstringsToLists(string[] subStrings)
         {
             // Verifique se o número de substrings é igual ao número de listas
-            if (subStrings.Length != 10)
+            if (subStrings.Length != Globals.globalListsNumber)
             {
                 // Se o número estiver incorreto, exiba uma mensagem de erro ou tome a ação necessária
                 Console.WriteLine("Número incorreto de substrings!");
@@ -251,6 +340,8 @@ namespace Supervisório_PCA_2._0
                 Globals.hysteresisTempLowerLimitData.Add(double.Parse(subStrings[7], culture) - double.Parse(subStrings[9], culture));
                 Globals.hysteresisTempUpperLimitData.Add(double.Parse(subStrings[7], culture) + double.Parse(subStrings[9], culture));
 
+                Globals.pureFlowData.Add(double.Parse(subStrings[10], culture));
+                Globals.pureTempOutData.Add(double.Parse(subStrings[11], culture));
 
                 // Verifique se a lista `Globals.timeTempData` excede o número máximo de pontos
                 if (Globals.timeTempData.Count > Globals.numberTempPoints)
@@ -264,6 +355,7 @@ namespace Supervisório_PCA_2._0
                     Globals.hysteresisTempLowerLimitData.RemoveRange(0, excessCount);
                     Globals.hysteresisTempUpperLimitData.RemoveRange(0, excessCount);
                     Globals.timeTempData.RemoveRange(0, excessCount);
+                    Globals.pureTempOutData.RemoveRange(0,excessCount);
                 }
 
                 // Verifique se a lista `Globals.timeFlowData` excede o número máximo de pontos
@@ -277,6 +369,7 @@ namespace Supervisório_PCA_2._0
                     Globals.hysteresisFlowData.RemoveRange(0, excessCount);
                     Globals.hysteresisFlowLowerLimitData.RemoveRange(0, excessCount);
                     Globals.hysteresisFlowUpperLimitData.RemoveRange(0, excessCount);
+                    Globals.pureFlowData.RemoveRange(0, excessCount);
 
                 }
             }
@@ -385,7 +478,7 @@ namespace Supervisório_PCA_2._0
 
                     // Cria o arquivo CSV e escreve o cabeçalho
                     dataStreamWriter = new StreamWriter(filePath);
-                    string header = "Tempo (segundos),Vazão medida (L/hr),Setpoint da Vazão (L/hr),Potência da Bomba (%),Histerese da Vazão (L/hr),Temperatura de Entrada (°C),Temperatura de Saída (°C),Setpoint da Temperatura de Saída (°C),Potência da Resistência (%),Histerese da Temperatura (°C)";
+                    string header = "Tempo (segundos),Vazão medida (L/hr),Setpoint da Vazão (L/hr),Potência da Bomba (%),Histerese da Vazão (L/hr),Temperatura de Entrada (°C),Temperatura de Saída (°C),Setpoint da Temperatura de Saída (°C),Potência da Resistência (%),Histerese da Temperatura (°C),Vazão Pura Pré-Filtro (L/hr), Temperatura de Saída Pura Pré-Filtro (°C)";
                     dataStreamWriter.WriteLine(header);
 
                     // Define a flag global como TRUE para indicar que a gravação de dados está ocorrendo
@@ -423,13 +516,13 @@ namespace Supervisório_PCA_2._0
         private void tomadaDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubFormConfigSampling subFormConfigSampling = new SubFormConfigSampling();
-            subFormConfigSampling.ShowDialog();
+            subFormConfigSampling.Show();
         }
 
         private void configuraçõesDeControleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubFormConfigControl subFormConfigControl = new SubFormConfigControl();
-            subFormConfigControl.ShowDialog();
+            subFormConfigControl.Show();
         }
 
         private void ReiniciarArduino()
@@ -473,6 +566,26 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
+
+        private void configuraçõesDosGráficosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormConfigGraficos subFormConfigGraficos = new SubFormConfigGraficos();
+            subFormConfigGraficos.Show();
+        }
+
+        private void ferramentasAvançadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormAutoTuningFOPTD subFOPTD = new SubFormAutoTuningFOPTD();
+            subFOPTD.Show();
+        }
     }
 }

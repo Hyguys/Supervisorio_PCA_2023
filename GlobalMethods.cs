@@ -81,9 +81,49 @@ namespace Supervisório_PCA_2._0
 
             Globals.controlTypeRes = Globals.defaultControlTypeRes;
             Globals.controlTypePump = Globals.defaultControlTypePump;
+
+            Globals.RampFlowSP = Globals.defaultRampFlowSP;
+            Globals.RampTempSP = Globals.defaultRampTempSP;
         }
 
+        public static DialogResult ShowInputDialog(ref string input)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
 
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Name";
+
+            System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            System.Windows.Forms.Button okButton = new System.Windows.Forms.Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            System.Windows.Forms.Button cancelButton = new System.Windows.Forms.Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
         public static void ClearLists()
         {
             // Limpa as listas globais de dados
@@ -102,11 +142,13 @@ namespace Supervisório_PCA_2._0
             Globals.hysteresisTempData.Clear();
             Globals.hysteresisTempLowerLimitData.Clear();
             Globals.hysteresisTempUpperLimitData.Clear();
+            Globals.pureFlowData.Clear();
+            Globals.pureTempOutData.Clear();
         }
 
         public static void ConnectSerialPort(string selectedPort)
         {
-            if(Globals.serialConnected == true && Globals.serialPort.PortName == selectedPort)
+            if (Globals.serialConnected == true && Globals.serialPort.PortName == selectedPort)
             {
                 MessageBox.Show("Conexão à porta " + selectedPort + " já está estabelecida!", "Conexão já estabelecida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -195,5 +237,35 @@ namespace Supervisório_PCA_2._0
         {
             return input.Split(' ');
         }
+
+
+
+        public static Color ColorPicker(Color currentColor)
+        {
+            // Create an instance of ColorDialog
+            ColorDialog colorDialog = new ColorDialog();
+
+            // Set the initial color of the ColorDialog to the current color
+            colorDialog.Color = currentColor;
+
+            // Display the ColorDialog
+            DialogResult result = colorDialog.ShowDialog();
+
+            // Check if the user selected a color
+            if (result == DialogResult.OK)
+            {
+                // Get the selected color
+                Color selectedColor = colorDialog.Color;
+
+                return selectedColor;
+            }
+            else
+            {
+                // If the user cancels, return the current color without changes
+                return currentColor;
+            }
+        }
     }
+
+
 }
