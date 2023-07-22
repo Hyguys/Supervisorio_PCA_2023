@@ -28,9 +28,9 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!int.TryParse(txtInterval.Text, out int interval) || interval < 100)
+            if (!int.TryParse(txtInterval.Text, out int interval) || interval < 50)
             {
-                MessageBox.Show("Digite um valor inteiro positivo acima de 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Digite um valor inteiro positivo acima de 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtInterval.Text = string.Empty;
                 return;
             }

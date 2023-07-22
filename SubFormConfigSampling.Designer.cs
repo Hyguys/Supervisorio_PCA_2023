@@ -137,7 +137,7 @@ namespace Supervisório_PCA_2._0
             this.txtEWMAVazao.MaxLength = 5;
             this.txtEWMAVazao.Name = "txtEWMAVazao";
             this.txtEWMAVazao.Size = new System.Drawing.Size(100, 29);
-            this.txtEWMAVazao.TabIndex = 3;
+            this.txtEWMAVazao.TabIndex = 2;
             this.txtEWMAVazao.Text = "0.4";
             this.txtEWMAVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEWMAVazao.TextChanged += new System.EventHandler(this.txtEWMAVazao_TextChanged);
@@ -169,7 +169,7 @@ namespace Supervisório_PCA_2._0
             this.txtMMVazao.MaxLength = 5;
             this.txtMMVazao.Name = "txtMMVazao";
             this.txtMMVazao.Size = new System.Drawing.Size(100, 29);
-            this.txtMMVazao.TabIndex = 0;
+            this.txtMMVazao.TabIndex = 1;
             this.txtMMVazao.Text = "5";
             this.txtMMVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtMMVazao.TextChanged += new System.EventHandler(this.txtMMVazao_TextChanged);
@@ -214,7 +214,7 @@ namespace Supervisório_PCA_2._0
             this.txtEWMATemp.MaxLength = 5;
             this.txtEWMATemp.Name = "txtEWMATemp";
             this.txtEWMATemp.Size = new System.Drawing.Size(100, 29);
-            this.txtEWMATemp.TabIndex = 3;
+            this.txtEWMATemp.TabIndex = 4;
             this.txtEWMATemp.Text = "0.1";
             this.txtEWMATemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEWMATemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEWMATemp_KeyDown);
@@ -244,7 +244,7 @@ namespace Supervisório_PCA_2._0
             this.txtMMTemp.MaxLength = 5;
             this.txtMMTemp.Name = "txtMMTemp";
             this.txtMMTemp.Size = new System.Drawing.Size(100, 29);
-            this.txtMMTemp.TabIndex = 0;
+            this.txtMMTemp.TabIndex = 3;
             this.txtMMTemp.Text = "5";
             this.txtMMTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtMMTemp.TextChanged += new System.EventHandler(this.txtMMTemp_TextChanged);

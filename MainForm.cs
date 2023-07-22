@@ -95,6 +95,7 @@ namespace Supervisório_PCA_2._0
                     return;
                 }
 
+
                 string[] subStrings = GlobalMethods.SplitStringBySpace(lineRead);
 
                 // Grava a linha de dados no StreamWriter caso esteja gravando dados
@@ -141,8 +142,8 @@ namespace Supervisório_PCA_2._0
                 flowPlot.Plot.Grid(Globals.ExibirGridVazao);
                 flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30,Color.Black));
                 flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30, Color.Black));
-                flowPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.flowData.Max() * 1.2, 60)); 
-                flowPlot.Plot.SetAxisLimitsY(-3, 100,flowPlot.Plot.RightAxis.AxisIndex);
+                flowPlot.Plot.SetAxisLimitsY(-3, 70); 
+                flowPlot.Plot.SetAxisLimitsY(-3, 110,flowPlot.Plot.RightAxis.AxisIndex);
                 flowPlot.Plot.Title("Controle de Vazão");
                 flowPlot.Plot.YAxis.Label("Vazão (L/h)");
                 var flowLegend = flowPlot.Plot.Legend(Globals.ExibirLegendaVazao);
@@ -159,16 +160,16 @@ namespace Supervisório_PCA_2._0
                 tempPlot.Plot.Grid(Globals.ExibirGridTemp);
                 tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
                 tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
-                flowPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.tempOutData.Max() * 1.2, 30));
-                flowPlot.Plot.SetAxisLimitsY(-3, 100, tempPlot.Plot.RightAxis.AxisIndex);
+                tempPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.tempOutData.Max() * 1.25, 40));
+                tempPlot.Plot.SetAxisLimitsY(-3, 110, tempPlot.Plot.RightAxis.AxisIndex);
                 tempPlot.Plot.Title("Controle de Temperatura");
                 tempPlot.Plot.YAxis.Label("Temperatura (°C)");
                 var tempLegend = tempPlot.Plot.Legend(Globals.ExibirLegendaTemp);
                 tempLegend.Location = Alignment.UpperLeft;
                 scatterTempPlot.MarkerColor = Globals.CorTemp;
                 scatterTempPlot.LineColor = Globals.CorTemp;
-                scatterFlowPlot.MarkerSize = Globals.MarkerSizeTemp;
-                scatterFlowPlot.LineWidth = Globals.LineSizeTemp;
+                scatterTempPlot.MarkerSize = Globals.MarkerSizeTemp;
+                scatterTempPlot.LineWidth = Globals.LineSizeTemp;
 
                 if (Globals.showHysteresisVazao == true)
                 {
@@ -291,6 +292,11 @@ namespace Supervisório_PCA_2._0
                     return;
                 }
 
+                if (ex.Message == "Sequence contains no elements")
+                {
+                    return;
+                }
+
                 // Exibe uma MessageBox com a mensagem de exceção em caso de outros erros
                 MessageBox.Show("Ocorreu um erro ao realizar a plotagem: " + ex.Message + "\nO arduino será desconectado, e os dados de leitura recentes serão apagados.", "Erro na plotagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if(Globals.isRecordingData == true)
@@ -311,6 +317,7 @@ namespace Supervisório_PCA_2._0
             {
                 // Se o número estiver incorreto, exiba uma mensagem de erro ou tome a ação necessária
                 Console.WriteLine("Número incorreto de substrings!");
+                GlobalMethods.ClearLists();
                 return;
             }
 
@@ -534,7 +541,7 @@ namespace Supervisório_PCA_2._0
                 {
                     // Define o sinal DTR como true por um breve período de tempo
                     Globals.serialPort.DtrEnable = true;
-                    Thread.Sleep(250);  // Aguarda 500ms para permitir a reinicialização do Arduino
+                    Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
 
                     GlobalMethods.ClearLists();
                     GlobalMethods.ResetGlobalVariables();
@@ -583,6 +590,11 @@ namespace Supervisório_PCA_2._0
         }
 
         private void sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+  
+        }
+
+        private void testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubFormAutoTuningFOPTD subFOPTD = new SubFormAutoTuningFOPTD();
             subFOPTD.Show();

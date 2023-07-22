@@ -60,6 +60,8 @@ namespace Supervisório_PCA_2._0
             this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -282,7 +284,7 @@ namespace Supervisório_PCA_2._0
             this.disconnectPort.Location = new System.Drawing.Point(610, 29);
             this.disconnectPort.Name = "disconnectPort";
             this.disconnectPort.Size = new System.Drawing.Size(119, 30);
-            this.disconnectPort.TabIndex = 9;
+            this.disconnectPort.TabIndex = 8;
             this.disconnectPort.Text = "Desconectar";
             this.disconnectPort.UseVisualStyleBackColor = true;
             this.disconnectPort.Click += new System.EventHandler(this.disconnectPort_Click);
@@ -292,7 +294,7 @@ namespace Supervisório_PCA_2._0
             this.connectPort.Location = new System.Drawing.Point(735, 29);
             this.connectPort.Name = "connectPort";
             this.connectPort.Size = new System.Drawing.Size(119, 30);
-            this.connectPort.TabIndex = 10;
+            this.connectPort.TabIndex = 9;
             this.connectPort.Text = "Conectar";
             this.connectPort.UseVisualStyleBackColor = true;
             this.connectPort.Click += new System.EventHandler(this.connectPort_Click);
@@ -308,9 +310,12 @@ namespace Supervisório_PCA_2._0
             // 
             // sintoniaAutomáticaDeFOPTDToolStripMenuItem
             // 
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem,
+            this.testeEmMalhaFechadaToolStripMenuItem});
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Name = "sintoniaAutomáticaDeFOPTDToolStripMenuItem";
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonia Automática de FOPTD";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonizador de FOPTD ";
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Click += new System.EventHandler(this.sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click);
             // 
             // pictureBox1
@@ -322,6 +327,19 @@ namespace Supervisório_PCA_2._0
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            // 
+            // testeDeDegrauEmMalhaAbertaToolStripMenuItem
+            // 
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Name = "testeDeDegrauEmMalhaAbertaToolStripMenuItem";
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Text = "Teste de Degrau em Malha Aberta";
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Click += new System.EventHandler(this.testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click);
+            // 
+            // testeEmMalhaFechadaToolStripMenuItem
+            // 
+            this.testeEmMalhaFechadaToolStripMenuItem.Name = "testeEmMalhaFechadaToolStripMenuItem";
+            this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeEmMalhaFechadaToolStripMenuItem.Text = "Teste em Malha Fechada";
             // 
             // MainForm
             // 
@@ -388,6 +406,8 @@ namespace Supervisório_PCA_2._0
         private System.Windows.Forms.Button connectPort;
         private ToolStripMenuItem ferramentasAvançadasToolStripMenuItem;
         private ToolStripMenuItem sintoniaAutomáticaDeFOPTDToolStripMenuItem;
+        private ToolStripMenuItem testeDeDegrauEmMalhaAbertaToolStripMenuItem;
+        private ToolStripMenuItem testeEmMalhaFechadaToolStripMenuItem;
     }
 }
 

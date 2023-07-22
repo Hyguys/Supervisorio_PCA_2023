@@ -41,7 +41,7 @@ namespace Supervisório_PCA_2._0
         public static int globalListsNumber = 12;
 
         public static bool defaultIsRecordingData = false;
-        public static int defaultIntervalSampling = 500;
+        public static int defaultIntervalSampling = 250;
 
         public static bool defaultShowHysteresisTemp = false;
         public static bool defaultShowHysteresisVazao = false;
@@ -50,17 +50,17 @@ namespace Supervisório_PCA_2._0
 
         public static int defaultNumberFlowPoints = 10;
         public static int defaultMediaMovelFlow = 5;
-        public static double defaultAlfaFlow = 0.4;
+        public static double defaultAlfaFlow = 0.7;
 
         public static int defaultNumberTempPoints = 20;
         public static int defaultMediaMovelTemp = 5;
         public static double defaultAlfaTemp = 0.1;
 
         public static double defaultPumpPower = 0;
-        public static double defaultSetpointVazao = 30;
+        public static double defaultSetpointVazao = 40;
         public static double defaultHistereseVazao = 10;
-        public static double defaultGanhoVazao = 1;
-        public static double defaultIntegralVazao = 100;
+        public static double defaultGanhoVazao = 2;
+        public static double defaultIntegralVazao = 5;
         public static double defaultDerivativoVazao = 10;
 
         public static double defaultResPower = 0;

@@ -96,7 +96,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(478, 333);
-            this.tabControl1.TabIndex = 9;
+            this.tabControl1.TabIndex = 10;
             // 
             // tabVazao
             // 
@@ -153,7 +153,7 @@
             0});
             this.rampDurationFlow.Name = "rampDurationFlow";
             this.rampDurationFlow.Size = new System.Drawing.Size(50, 29);
-            this.rampDurationFlow.TabIndex = 28;
+            this.rampDurationFlow.TabIndex = 2;
             this.rampDurationFlow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.rampDurationFlow.Value = new decimal(new int[] {
             5,
@@ -171,7 +171,7 @@
             this.cmbFlowSPChange.Location = new System.Drawing.Point(220, 53);
             this.cmbFlowSPChange.Name = "cmbFlowSPChange";
             this.cmbFlowSPChange.Size = new System.Drawing.Size(110, 29);
-            this.cmbFlowSPChange.TabIndex = 27;
+            this.cmbFlowSPChange.TabIndex = 1;
             this.cmbFlowSPChange.Text = "Degrau";
             this.cmbFlowSPChange.SelectedIndexChanged += new System.EventHandler(this.cmbFlowSPChange_SelectedIndexChanged);
             // 
@@ -189,7 +189,7 @@
             this.btnVazao.Location = new System.Drawing.Point(337, 88);
             this.btnVazao.Name = "btnVazao";
             this.btnVazao.Size = new System.Drawing.Size(89, 29);
-            this.btnVazao.TabIndex = 25;
+            this.btnVazao.TabIndex = 4;
             this.btnVazao.Text = "Confirmar";
             this.btnVazao.UseVisualStyleBackColor = true;
             this.btnVazao.Click += new System.EventHandler(this.btnVazao_Click);
@@ -211,7 +211,7 @@
             this.txtHysteresisVazao.Name = "txtHysteresisVazao";
             this.txtHysteresisVazao.ReadOnly = true;
             this.txtHysteresisVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtHysteresisVazao.TabIndex = 3;
+            this.txtHysteresisVazao.TabIndex = 6;
             this.txtHysteresisVazao.Text = "0";
             this.txtHysteresisVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHysteresisVazao.TextChanged += new System.EventHandler(this.txtHysteresisVazao_TextChanged);
@@ -274,7 +274,7 @@
             this.txtDerivativoVazao.Name = "txtDerivativoVazao";
             this.txtDerivativoVazao.ReadOnly = true;
             this.txtDerivativoVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtDerivativoVazao.TabIndex = 17;
+            this.txtDerivativoVazao.TabIndex = 9;
             this.txtDerivativoVazao.Text = "0";
             this.txtDerivativoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDerivativoVazao.TextChanged += new System.EventHandler(this.txtDerivativoVazao_TextChanged);
@@ -306,7 +306,7 @@
             this.txtIntegralVazao.Name = "txtIntegralVazao";
             this.txtIntegralVazao.ReadOnly = true;
             this.txtIntegralVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtIntegralVazao.TabIndex = 5;
+            this.txtIntegralVazao.TabIndex = 8;
             this.txtIntegralVazao.Text = "0";
             this.txtIntegralVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIntegralVazao.TextChanged += new System.EventHandler(this.txtIntegralVazao_TextChanged);
@@ -338,7 +338,7 @@
             this.txtGanhoVazao.Name = "txtGanhoVazao";
             this.txtGanhoVazao.ReadOnly = true;
             this.txtGanhoVazao.Size = new System.Drawing.Size(110, 29);
-            this.txtGanhoVazao.TabIndex = 4;
+            this.txtGanhoVazao.TabIndex = 7;
             this.txtGanhoVazao.Text = "0";
             this.txtGanhoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoVazao.TextChanged += new System.EventHandler(this.txtGanhoVazao_TextChanged);
@@ -369,7 +369,7 @@
             this.txtPotenciaBomba.MaxLength = 3;
             this.txtPotenciaBomba.Name = "txtPotenciaBomba";
             this.txtPotenciaBomba.Size = new System.Drawing.Size(110, 29);
-            this.txtPotenciaBomba.TabIndex = 2;
+            this.txtPotenciaBomba.TabIndex = 5;
             this.txtPotenciaBomba.Text = "0";
             this.txtPotenciaBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPotenciaBomba.TextChanged += new System.EventHandler(this.txtPotenciaBomba_TextChanged);
@@ -396,7 +396,7 @@
             this.cmbControlVazao.Location = new System.Drawing.Point(220, 88);
             this.cmbControlVazao.Name = "cmbControlVazao";
             this.cmbControlVazao.Size = new System.Drawing.Size(110, 29);
-            this.cmbControlVazao.TabIndex = 1;
+            this.cmbControlVazao.TabIndex = 3;
             this.cmbControlVazao.Text = "Manual";
             this.cmbControlVazao.SelectedIndexChanged += new System.EventHandler(this.cmbControlVazao_SelectedIndexChanged);
             // 
@@ -464,7 +464,7 @@
             0});
             this.rampDurationTemp.Name = "rampDurationTemp";
             this.rampDurationTemp.Size = new System.Drawing.Size(50, 29);
-            this.rampDurationTemp.TabIndex = 30;
+            this.rampDurationTemp.TabIndex = 13;
             this.rampDurationTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.rampDurationTemp.Value = new decimal(new int[] {
             5,
@@ -482,7 +482,7 @@
             this.cmbTempSPChange.Location = new System.Drawing.Point(220, 53);
             this.cmbTempSPChange.Name = "cmbTempSPChange";
             this.cmbTempSPChange.Size = new System.Drawing.Size(110, 29);
-            this.cmbTempSPChange.TabIndex = 36;
+            this.cmbTempSPChange.TabIndex = 12;
             this.cmbTempSPChange.Text = "Degrau";
             this.cmbTempSPChange.SelectedIndexChanged += new System.EventHandler(this.cmbTempSPChange_SelectedIndexChanged);
             // 
@@ -500,7 +500,7 @@
             this.btnTemp.Location = new System.Drawing.Point(337, 88);
             this.btnTemp.Name = "btnTemp";
             this.btnTemp.Size = new System.Drawing.Size(89, 29);
-            this.btnTemp.TabIndex = 26;
+            this.btnTemp.TabIndex = 16;
             this.btnTemp.Text = "Confirmar";
             this.btnTemp.UseVisualStyleBackColor = true;
             this.btnTemp.Click += new System.EventHandler(this.btnTemp_Click);
@@ -522,7 +522,7 @@
             this.txtHysteresisTemp.Name = "txtHysteresisTemp";
             this.txtHysteresisTemp.ReadOnly = true;
             this.txtHysteresisTemp.Size = new System.Drawing.Size(110, 29);
-            this.txtHysteresisTemp.TabIndex = 33;
+            this.txtHysteresisTemp.TabIndex = 18;
             this.txtHysteresisTemp.Text = "0";
             this.txtHysteresisTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHysteresisTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHysteresisTemp_KeyDown);
@@ -562,7 +562,7 @@
             this.txtSetpointTemp.MaxLength = 2;
             this.txtSetpointTemp.Name = "txtSetpointTemp";
             this.txtSetpointTemp.Size = new System.Drawing.Size(110, 29);
-            this.txtSetpointTemp.TabIndex = 23;
+            this.txtSetpointTemp.TabIndex = 11;
             this.txtSetpointTemp.Text = "0";
             this.txtSetpointTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSetpointTemp.TextChanged += new System.EventHandler(this.txtSetpointTemp_TextChanged);
@@ -602,7 +602,7 @@
             this.txtPotenciaResistencia.MaxLength = 3;
             this.txtPotenciaResistencia.Name = "txtPotenciaResistencia";
             this.txtPotenciaResistencia.Size = new System.Drawing.Size(110, 29);
-            this.txtPotenciaResistencia.TabIndex = 20;
+            this.txtPotenciaResistencia.TabIndex = 17;
             this.txtPotenciaResistencia.Text = "0";
             this.txtPotenciaResistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPotenciaResistencia.TextChanged += new System.EventHandler(this.txtPotenciaResistencia_TextChanged);
@@ -625,7 +625,7 @@
             this.txtDerivativoTemp.Name = "txtDerivativoTemp";
             this.txtDerivativoTemp.ReadOnly = true;
             this.txtDerivativoTemp.Size = new System.Drawing.Size(110, 29);
-            this.txtDerivativoTemp.TabIndex = 31;
+            this.txtDerivativoTemp.TabIndex = 21;
             this.txtDerivativoTemp.Text = "0";
             this.txtDerivativoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDerivativoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDerivativoTemp_KeyDown);
@@ -660,7 +660,7 @@
             this.cmbControlRes.Location = new System.Drawing.Point(220, 88);
             this.cmbControlRes.Name = "cmbControlRes";
             this.cmbControlRes.Size = new System.Drawing.Size(110, 29);
-            this.cmbControlRes.TabIndex = 23;
+            this.cmbControlRes.TabIndex = 15;
             this.cmbControlRes.Text = "Manual";
             this.cmbControlRes.SelectedIndexChanged += new System.EventHandler(this.cmbControlRes_SelectedIndexChanged);
             // 
@@ -681,7 +681,7 @@
             this.txtIntegralTemp.Name = "txtIntegralTemp";
             this.txtIntegralTemp.ReadOnly = true;
             this.txtIntegralTemp.Size = new System.Drawing.Size(110, 29);
-            this.txtIntegralTemp.TabIndex = 28;
+            this.txtIntegralTemp.TabIndex = 20;
             this.txtIntegralTemp.Text = "0";
             this.txtIntegralTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIntegralTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIntegralTemp_KeyDown);
@@ -712,7 +712,7 @@
             this.txtGanhoTemp.Name = "txtGanhoTemp";
             this.txtGanhoTemp.ReadOnly = true;
             this.txtGanhoTemp.Size = new System.Drawing.Size(110, 29);
-            this.txtGanhoTemp.TabIndex = 25;
+            this.txtGanhoTemp.TabIndex = 19;
             this.txtGanhoTemp.Text = "0";
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
