@@ -48,6 +48,10 @@ namespace Supervisório_PCA_2._0
             this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPlot = new ScottPlot.FormsPlot();
             this.tempPlot = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -57,11 +61,7 @@ namespace Supervisório_PCA_2._0
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.disconnectPort = new System.Windows.Forms.Button();
             this.connectPort = new System.Windows.Forms.Button();
-            this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -212,6 +212,39 @@ namespace Supervisório_PCA_2._0
             this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
             // 
+            // ferramentasAvançadasToolStripMenuItem
+            // 
+            this.ferramentasAvançadasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem});
+            this.ferramentasAvançadasToolStripMenuItem.Name = "ferramentasAvançadasToolStripMenuItem";
+            this.ferramentasAvançadasToolStripMenuItem.Size = new System.Drawing.Size(187, 25);
+            this.ferramentasAvançadasToolStripMenuItem.Text = "Ferramentas Avançadas";
+            this.ferramentasAvançadasToolStripMenuItem.Click += new System.EventHandler(this.ferramentasAvançadasToolStripMenuItem_Click);
+            // 
+            // sintoniaAutomáticaDeFOPTDToolStripMenuItem
+            // 
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem,
+            this.testeEmMalhaFechadaToolStripMenuItem});
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Name = "sintoniaAutomáticaDeFOPTDToolStripMenuItem";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonizador de FOPTD ";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Click += new System.EventHandler(this.sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click);
+            // 
+            // testeDeDegrauEmMalhaAbertaToolStripMenuItem
+            // 
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Name = "testeDeDegrauEmMalhaAbertaToolStripMenuItem";
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Text = "Teste de Degrau em Malha Aberta";
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Click += new System.EventHandler(this.testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click);
+            // 
+            // testeEmMalhaFechadaToolStripMenuItem
+            // 
+            this.testeEmMalhaFechadaToolStripMenuItem.Name = "testeEmMalhaFechadaToolStripMenuItem";
+            this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeEmMalhaFechadaToolStripMenuItem.Text = "Teste em Malha Fechada (On-Off)";
+            this.testeEmMalhaFechadaToolStripMenuItem.Click += new System.EventHandler(this.testeEmMalhaFechadaToolStripMenuItem_Click);
+            // 
             // flowPlot
             // 
             this.flowPlot.AutoSize = true;
@@ -299,25 +332,6 @@ namespace Supervisório_PCA_2._0
             this.connectPort.UseVisualStyleBackColor = true;
             this.connectPort.Click += new System.EventHandler(this.connectPort_Click);
             // 
-            // ferramentasAvançadasToolStripMenuItem
-            // 
-            this.ferramentasAvançadasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem});
-            this.ferramentasAvançadasToolStripMenuItem.Name = "ferramentasAvançadasToolStripMenuItem";
-            this.ferramentasAvançadasToolStripMenuItem.Size = new System.Drawing.Size(187, 25);
-            this.ferramentasAvançadasToolStripMenuItem.Text = "Ferramentas Avançadas";
-            this.ferramentasAvançadasToolStripMenuItem.Click += new System.EventHandler(this.ferramentasAvançadasToolStripMenuItem_Click);
-            // 
-            // sintoniaAutomáticaDeFOPTDToolStripMenuItem
-            // 
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem,
-            this.testeEmMalhaFechadaToolStripMenuItem});
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Name = "sintoniaAutomáticaDeFOPTDToolStripMenuItem";
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonizador de FOPTD ";
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Click += new System.EventHandler(this.sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Supervisório_PCA_2._0.Properties.Resources.logoextensa;
@@ -327,19 +341,6 @@ namespace Supervisório_PCA_2._0
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            // 
-            // testeDeDegrauEmMalhaAbertaToolStripMenuItem
-            // 
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Name = "testeDeDegrauEmMalhaAbertaToolStripMenuItem";
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Text = "Teste de Degrau em Malha Aberta";
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Click += new System.EventHandler(this.testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click);
-            // 
-            // testeEmMalhaFechadaToolStripMenuItem
-            // 
-            this.testeEmMalhaFechadaToolStripMenuItem.Name = "testeEmMalhaFechadaToolStripMenuItem";
-            this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
-            this.testeEmMalhaFechadaToolStripMenuItem.Text = "Teste em Malha Fechada";
             // 
             // MainForm
             // 

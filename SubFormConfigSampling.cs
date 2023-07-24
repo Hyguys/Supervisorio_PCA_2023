@@ -31,7 +31,7 @@ namespace Supervisório_PCA_2._0
             if (!int.TryParse(txtInterval.Text, out int interval) || interval < 50)
             {
                 MessageBox.Show("Digite um valor inteiro positivo acima de 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtInterval.Text = string.Empty;
+                txtInterval.Text = Globals.intervalSampling.ToString("0");
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace Supervisório_PCA_2._0
             if (!int.TryParse(txtMMVazao.Text, out int mmVazao) || mmVazao < 1)
             {
                 MessageBox.Show("Digite um valor inteiro positivo válido maior do que um.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMMVazao.Text = string.Empty;
+                txtMMVazao.Text = Globals.mediaMovelFlow.ToString("0");
                 return;
             }
 
@@ -91,7 +91,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtEWMAVazao.Text, out float alfaFlow) || alfaFlow <= 0 || alfaFlow > 1)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEWMAVazao.Text = string.Empty;
+                txtEWMAVazao.Text = Globals.alfaFlow.ToString("0.0");
                 return;
             }
 
@@ -119,7 +119,7 @@ namespace Supervisório_PCA_2._0
             if (!int.TryParse(txtMMTemp.Text, out int mmTemp) || mmTemp < 1)
             {
                 MessageBox.Show("Digite um valor inteiro positivo válido maior do que um.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMMVazao.Text = string.Empty;
+                txtMMTemp.Text = Globals.mediaMovelFlow.ToString("0");
                 return;
             }
 
@@ -146,7 +146,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtEWMATemp.Text, out float alfaTemp) || alfaTemp <= 0 || alfaTemp > 1)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEWMAVazao.Text = string.Empty;
+                txtEWMATemp.Text = Globals.alfaTemp.ToString("0.0");
                 return;
             }
 
@@ -177,11 +177,11 @@ namespace Supervisório_PCA_2._0
 
         private void SubFormConfigSampling_Load(object sender, EventArgs e)
         {
-            txtInterval.Text = Convert.ToString(Globals.intervalSampling);
-            txtMMVazao.Text = Convert.ToString(Globals.mediaMovelFlow);
-            txtEWMAVazao.Text = Convert.ToString(Globals.alfaFlow);
-            txtMMTemp.Text = Convert.ToString(Globals.mediaMovelTemp);
-            txtEWMATemp.Text = Convert.ToString(Globals.alfaTemp);
+            txtInterval.Text = Globals.intervalSampling.ToString("0");
+            txtMMVazao.Text = Globals.mediaMovelFlow.ToString("0");
+            txtEWMAVazao.Text = Globals.alfaFlow.ToString("0.0");
+            txtMMTemp.Text = Globals.mediaMovelTemp.ToString("0");
+            txtEWMATemp.Text = Globals.alfaTemp.ToString("0.0");
         }
 
         private void button1_Click(object sender, EventArgs e)

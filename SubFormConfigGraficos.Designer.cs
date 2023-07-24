@@ -85,7 +85,6 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -116,10 +115,10 @@
             this.tabPage1.Controls.Add(this.checkPotenciaBomba);
             this.tabPage1.Controls.Add(this.checkLegendaVazao);
             this.tabPage1.Controls.Add(this.checkGridVazao);
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(666, 360);
+            this.tabPage1.Size = new System.Drawing.Size(666, 363);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Vazão";
             // 
@@ -386,10 +385,10 @@
             this.tabPage2.Controls.Add(this.checkPotenciaRes);
             this.tabPage2.Controls.Add(this.checkLegendaTemp);
             this.tabPage2.Controls.Add(this.checkGridTemp);
-            this.tabPage2.Location = new System.Drawing.Point(4, 33);
+            this.tabPage2.Location = new System.Drawing.Point(3, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(666, 360);
+            this.tabPage2.Size = new System.Drawing.Size(533, 290);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Temperatura";
             // 
@@ -671,6 +670,7 @@
             this.ClientSize = new System.Drawing.Size(698, 421);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormConfigGraficos";
             this.Text = "Configuração dos Gráficos";

@@ -95,7 +95,7 @@ namespace Supervisório_PCA_2._0
             if (!double.TryParse(txtPotenciaBomba.Text,out stepPumpPower) || stepPumpPower < -100 || stepPumpPower > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre -100 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPotenciaBomba.Text = string.Empty;
+                txtPotenciaBomba.Text = Globals.pumpPower.ToString("0.00");
                 return;
             }
 
@@ -617,12 +617,15 @@ namespace Supervisório_PCA_2._0
                 case "Vazão":
                     lblDegrau.Text = "Degrau da Potência da Bomba";
                     selectedSystem = comboBox1.SelectedItem.ToString();
+                    tabela.Columns[1].HeaderText = "Ganho do Processo (Kp) [L/% h]";
+                    tabelaControle.Columns[1].HeaderText = "Kc [% h/L]";
                     break;
                 case "Temperatura":
                     lblDegrau.Text = "Degrau da Potência da Resistência";
                     selectedSystem = comboBox1.SelectedItem.ToString();
+                    tabela.Columns[1].HeaderText = "Ganho do Processo (Kp) [°C/%]";
+                    tabelaControle.Columns[1].HeaderText = "Kc [%/°C]";
                     break;
-
             }
         }
     }

@@ -525,6 +525,7 @@
             this.txtHysteresisTemp.TabIndex = 18;
             this.txtHysteresisTemp.Text = "0";
             this.txtHysteresisTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHysteresisTemp.TextChanged += new System.EventHandler(this.txtHysteresisTemp_TextChanged);
             this.txtHysteresisTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHysteresisTemp_KeyDown);
             // 
             // label23
@@ -721,10 +722,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(497, 354);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormConfigControl";
             this.Text = "Configurações de Controle";

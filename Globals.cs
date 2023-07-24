@@ -48,11 +48,11 @@ namespace Supervisório_PCA_2._0
         public static bool defaultShowSPTemp = false;
         public static bool defaultShowSPVazao = false;
 
-        public static int defaultNumberFlowPoints = 10;
+        public static int defaultNumberFlowPoints = 5*1000/250;
         public static int defaultMediaMovelFlow = 5;
         public static double defaultAlfaFlow = 0.7;
 
-        public static int defaultNumberTempPoints = 20;
+        public static int defaultNumberTempPoints = 10 * 1000 / 250;
         public static int defaultMediaMovelTemp = 5;
         public static double defaultAlfaTemp = 0.1;
 
@@ -80,9 +80,9 @@ namespace Supervisório_PCA_2._0
         public static bool defaultExibirLegendaVazao = true;
         public static bool defaultExibirPotenciaBomba = false;
         public static bool defaultExibirVazaoPreFiltragem = false;
-        public static int defaultMarkerSizeVazao = 5;
+        public static int defaultMarkerSizeVazao = 4;
         public static int defaultLineSizeVazao = 1;
-        public static int defaultHistoricoVazao = 5;
+        public static int defaultHistoricoVazao = 10;
         public static Color defaultCorVazao = Color.Blue;
         public static Color defaultCorSPVazao = Color.Green;
         public static Color defaultCorPotenciaBomba = Color.DarkMagenta;
@@ -93,9 +93,9 @@ namespace Supervisório_PCA_2._0
         public static bool defaultExibirPotenciaResistencia = false;
         public static bool defaultExibirTempEntrada = false;
         public static bool defaultExibirTempPreFiltragem = false;
-        public static int defaultMarkerSizeTemp = 5;
+        public static int defaultMarkerSizeTemp = 4;
         public static int defaultLineSizeTemp = 1;
-        public static int defaultHistoricoTemp = 5;
+        public static int defaultHistoricoTemp = 20;
         public static Color defaultCorTemp = Color.Red;
         public static Color defaultCorSPTemp = Color.Green;
         public static Color defaultCorPotenciaRes = Color.DarkMagenta;

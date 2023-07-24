@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtPotenciaBomba = new System.Windows.Forms.TextBox();
@@ -44,12 +44,12 @@
             this.sp = new ScottPlot.FormsPlot();
             this.lblEquilibrium = new System.Windows.Forms.Label();
             this.tabelaControle = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Método = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tau = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -158,6 +158,47 @@
             this.tabelaControle.Size = new System.Drawing.Size(353, 202);
             this.tabelaControle.TabIndex = 29;
             // 
+            // Método
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Método.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Método.HeaderText = "Método";
+            this.Método.Name = "Método";
+            this.Método.ReadOnly = true;
+            this.Método.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Método.Width = 140;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Kc [% h/L]";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn2.HeaderText = "τI [s]";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn3.HeaderText = "τD [s]";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -180,47 +221,6 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Sistema a ser identificado";
             // 
-            // Método
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Método.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Método.HeaderText = "Método";
-            this.Método.Name = "Método";
-            this.Método.ReadOnly = true;
-            this.Método.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Método.Width = 140;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Kc [% h/L]";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn2.HeaderText = "τI [s]";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxColumn3.HeaderText = "τD [s]";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // index
             // 
             this.index.HeaderText = "ID";
@@ -230,17 +230,17 @@
             // 
             // Kp
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Kp.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Kp.HeaderText = "Ganho do Processo (Kp) [L/% hr]";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Kp.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Kp.HeaderText = "Ganho do Processo (Kp) [L/% h]";
             this.Kp.Name = "Kp";
             this.Kp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Kp.Width = 120;
             // 
             // tau
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tau.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tau.DefaultCellStyle = dataGridViewCellStyle2;
             this.tau.HeaderText = "Constante de tempo (τ) [s]";
             this.tau.Name = "tau";
             this.tau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -249,8 +249,8 @@
             // Theta
             // 
             this.Theta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Theta.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Theta.DefaultCellStyle = dataGridViewCellStyle3;
             this.Theta.HeaderText = "Atraso (θ) [s]";
             this.Theta.Name = "Theta";
             this.Theta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -260,7 +260,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(862, 480);
+            this.ClientSize = new System.Drawing.Size(851, 486);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tabelaControle);
@@ -273,9 +273,11 @@
             this.Controls.Add(this.lblDegrau);
             this.Controls.Add(this.btnIniciar);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormAutoTuningFOPTD";
-            this.Text = "SubFormAutoTuningFOPTD";
+            this.Text = "Sintonia de FOPTD (sistema de primeira ordem com atraso no tempo) por meio da res" +
+    "posta à um degrau";
             this.Load += new System.EventHandler(this.SubFormAutoTuningFOPTD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabela)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaControle)).EndInit();

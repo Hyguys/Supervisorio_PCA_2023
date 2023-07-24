@@ -118,7 +118,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtPotenciaBomba.Text, out float pumpPower) || pumpPower < 0 || pumpPower > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPotenciaBomba.Text = string.Empty;
+                txtPotenciaBomba.Text = Globals.pumpPower.ToString("0.00");
                 return;
             }
 
@@ -134,16 +134,24 @@ namespace Supervisório_PCA_2._0
         {
             switch(cmbControlVazao.SelectedIndex)
             {
-                case 0: //MANUAL
+                case 0: // MANUAL
                     txtPotenciaBomba.ReadOnly = false;
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = true;
                     txtIntegralVazao.ReadOnly = true;
-                    txtDerivativoVazao.ReadOnly=true;
+                    txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = false;
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaBomba.BackColor = Color.White;
+                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
+                    //txtGanhoVazao.BackColor = Color.Gainsboro;
+                    //txtIntegralVazao.BackColor = Color.Gainsboro;
+                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
                     break;
-                case 1: //ON-OFF
+
+                case 1: // ON-OFF
                     txtPotenciaBomba.ReadOnly = true;
                     txtHysteresisVazao.ReadOnly = false;
                     txtGanhoVazao.ReadOnly = true;
@@ -151,8 +159,16 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = true;
                     Globals.showSPVazao = true;
-                    break; 
-                case 2: //Controle Proporcional
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
+                    //txtHysteresisVazao.BackColor = Color.White;
+                    //txtGanhoVazao.BackColor = Color.Gainsboro;
+                    //txtIntegralVazao.BackColor = Color.Gainsboro;
+                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
+                    break;
+
+                case 2: // Controle Proporcional
                     txtPotenciaBomba.ReadOnly = true;
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = false;
@@ -160,8 +176,16 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
+                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
+                    //txtGanhoVazao.BackColor = Color.White;
+                    //txtIntegralVazao.BackColor = Color.Gainsboro;
+                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
                     break;
-                case 3: //Controle Proporcional Integral
+
+                case 3: // Controle Proporcional Integral
                     txtPotenciaBomba.ReadOnly = true;
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = false;
@@ -169,8 +193,16 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
+                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
+                    //txtGanhoVazao.BackColor = Color.White;
+                    //txtIntegralVazao.BackColor = Color.White;
+                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
                     break;
-                case 4: //Controle Proporcional Integral e Derivativo
+
+                case 4: // Controle Proporcional Integral e Derivativo
                     txtPotenciaBomba.ReadOnly = true;
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = false;
@@ -178,9 +210,17 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoVazao.ReadOnly = false;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
+                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
+                    //txtGanhoVazao.BackColor = Color.White;
+                    //txtIntegralVazao.BackColor = Color.White;
+                    //txtDerivativoVazao.BackColor = Color.White;
                     break;
+
             }
-            
+
 
         }
 
@@ -211,7 +251,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtSetpointVazao.Text, out float setpointVazao) || setpointVazao < 0 || setpointVazao > 80)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 80.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSetpointVazao.Text = string.Empty;
+                txtSetpointVazao.Text = Globals.setpointVazao.ToString("0.00");
                 return;
             }
 
@@ -274,7 +314,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtHysteresisVazao.Text, out float histereseVazao) || histereseVazao < 0 || histereseVazao > 50)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtHysteresisVazao.Text = string.Empty;
+                txtHysteresisVazao.Text = Globals.histereseVazao.ToString("0.00");
                 return;
             }
 
@@ -306,7 +346,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtGanhoVazao.Text, out float ganhoVazao) || ganhoVazao < 0 || ganhoVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtHysteresisVazao.Text = string.Empty;
+                txtGanhoVazao.Text = Globals.ganhoVazao.ToString("0.00");
                 return;
             }
 
@@ -334,7 +374,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtIntegralVazao.Text, out float integralVazao) || integralVazao < 0 || integralVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtHysteresisVazao.Text = string.Empty;
+                txtIntegralVazao.Text = Globals.integralVazao.ToString("0.00");
                 return;
             }
 
@@ -363,7 +403,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtDerivativoVazao.Text, out float derivativoVazao) || derivativoVazao < 0 || derivativoVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDerivativoVazao.Text = string.Empty;
+                txtDerivativoVazao.Text =  Globals.derivativoVazao.ToString("0.00");
                 return;
             }
 
@@ -451,7 +491,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtSetpointTemp.Text, out float setpointTemp) || setpointTemp < 0 || setpointTemp > 50)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSetpointTemp.Text = string.Empty;
+                txtSetpointTemp.Text = Globals.setpointTemp.ToString("0.00");
                 return;
             }
 
@@ -477,7 +517,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtHysteresisTemp.Text, out float histereseTemp) || histereseTemp < 0 || histereseTemp > 10)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 10.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtHysteresisTemp.Text = string.Empty;
+                txtHysteresisTemp.Text = Globals.histereseTemp.ToString("0.00");
                 return;
             }
 
@@ -503,7 +543,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtGanhoTemp.Text, out float ganhoTemp) || ganhoTemp < 0 || ganhoTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtGanhoTemp.Text = string.Empty;
+                txtGanhoTemp.Text = Globals.ganhoTemp.ToString("0.00");
                 return;
             }
 
@@ -530,7 +570,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtIntegralTemp.Text, out float integralTemp) || integralTemp < 0 || integralTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtIntegralTemp.Text = string.Empty;
+                txtIntegralTemp.Text = Globals.integralTemp.ToString("0.00");
                 return;
             }
 
@@ -557,7 +597,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtDerivativoTemp.Text, out float derivativoTemp) || derivativoTemp < 0 || derivativoTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDerivativoTemp.Text = string.Empty;
+                txtDerivativoTemp.Text = Globals.derivativoTemp.ToString("0.00");
                 return;
             }
 
@@ -633,7 +673,7 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtPotenciaResistencia.Text, out float resPower) || resPower < 0 || resPower > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPotenciaResistencia.Text = string.Empty;
+                txtPotenciaResistencia.Text = Globals.resPower.ToString("0.00");
                 return;
             }
 
@@ -661,6 +701,14 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoTemp.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = false;
+
+                    // Definir cores dos TextBox
+                   // txtPotenciaResistencia.BackColor = Color.White;
+                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
+                   /// txtGanhoTemp.BackColor = Color.Gainsboro;
+                   // txtIntegralTemp.BackColor = Color.Gainsboro;
+                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
+
                     break;
                 case 1: // ON-OFF
                     txtPotenciaResistencia.ReadOnly = true;
@@ -670,6 +718,14 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoTemp.ReadOnly = true;
                     Globals.showHysteresisTemp = true;
                     Globals.showSPTemp = true;
+
+
+                    // Definir cores dos TextBox
+                   // txtPotenciaResistencia.BackColor = Color.Gainsboro;
+                   // txtHysteresisTemp.BackColor = Color.White;
+                   // txtGanhoTemp.BackColor = Color.Gainsboro;
+                   // txtIntegralTemp.BackColor = Color.Gainsboro;
+                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
                     break;
                 case 2: // Controle Proporcional
                     txtPotenciaResistencia.ReadOnly = true;
@@ -679,6 +735,14 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoTemp.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
+
+
+                    // Definir cores dos TextBox
+                   // txtPotenciaResistencia.BackColor = Color.Gainsboro;
+                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
+                   // txtGanhoTemp.BackColor = Color.White;
+                   // txtIntegralTemp.BackColor = Color.Gainsboro;
+                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
                     break;
                 case 3: // Controle Proporcional Integral
                     txtPotenciaResistencia.ReadOnly = true;
@@ -688,6 +752,14 @@ namespace Supervisório_PCA_2._0
                     txtDerivativoTemp.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
+
+
+                    // Definir cores dos TextBox
+                  //  txtPotenciaResistencia.BackColor = Color.Gainsboro;
+                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
+                   // txtGanhoTemp.BackColor = Color.White;
+                   // txtIntegralTemp.BackColor = Color.White;
+                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
                     break;
                 case 4: // Controle Proporcional Integral e Derivativo
                     txtPotenciaResistencia.ReadOnly = true;
@@ -696,6 +768,14 @@ namespace Supervisório_PCA_2._0
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = false;
                     Globals.showHysteresisTemp = false;
+
+
+                    // Definir cores dos TextBox
+                    //txtPotenciaResistencia.BackColor = Color.Gainsboro;
+                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
+                   // txtGanhoTemp.BackColor = Color.White;
+                   // txtIntegralTemp.BackColor = Color.White;
+                   // txtDerivativoTemp.BackColor = Color.White;
                     break;
             }
         }
@@ -730,6 +810,11 @@ namespace Supervisório_PCA_2._0
                 rampDurationTemp.Visible = false;
                 lblRampTemp.Visible = false;
             }
+        }
+
+        private void txtHysteresisTemp_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

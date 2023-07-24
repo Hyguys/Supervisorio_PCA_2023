@@ -284,6 +284,7 @@ namespace Supervisório_PCA_2._0
             this.Controls.Add(this.grVazao);
             this.Controls.Add(this.grGeral);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SubFormConfigSampling";
             this.Text = "Configurações de Amostragem";

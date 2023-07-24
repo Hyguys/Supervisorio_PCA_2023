@@ -140,8 +140,8 @@ namespace Supervisório_PCA_2._0
                 flowPlot.Plot.Clear();
                 var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "Vazão");
                 flowPlot.Plot.Grid(Globals.ExibirGridVazao);
-                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30,Color.Black));
-                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(30, Color.Black));
+                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(40,Color.Black));
+                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(40, Color.Black));
                 flowPlot.Plot.SetAxisLimitsY(-3, 70); 
                 flowPlot.Plot.SetAxisLimitsY(-3, 110,flowPlot.Plot.RightAxis.AxisIndex);
                 flowPlot.Plot.Title("Controle de Vazão");
@@ -158,8 +158,8 @@ namespace Supervisório_PCA_2._0
                 tempPlot.Plot.Clear();
                 var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray(), label: "Temperatura");
                 tempPlot.Plot.Grid(Globals.ExibirGridTemp);
-                tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
-                tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(30, Color.Black));
+                tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(40, Color.Black));
+                tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(40, Color.Black));
                 tempPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.tempOutData.Max() * 1.25, 40));
                 tempPlot.Plot.SetAxisLimitsY(-3, 110, tempPlot.Plot.RightAxis.AxisIndex);
                 tempPlot.Plot.Title("Controle de Temperatura");
@@ -598,6 +598,12 @@ namespace Supervisório_PCA_2._0
         {
             SubFormAutoTuningFOPTD subFOPTD = new SubFormAutoTuningFOPTD();
             subFOPTD.Show();
+        }
+
+        private void testeEmMalhaFechadaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormONOFFTuningZieglerNichols subONOFF = new SubFormONOFFTuningZieglerNichols();
+            subONOFF.Show();
         }
     }
 }
