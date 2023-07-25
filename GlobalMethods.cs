@@ -84,6 +84,12 @@ namespace Supervisório_PCA_2._0
 
             Globals.RampFlowSP = Globals.defaultRampFlowSP;
             Globals.RampTempSP = Globals.defaultRampTempSP;
+
+            Globals.lowerLimitPump = Globals.defaultLowerLimitPump;
+            Globals.upperLimitPump = Globals.defaultUpperLimitPump;
+
+            Globals.lowerLimitRes = Globals.defaultLowerLimitRes;
+            Globals.upperLimitRes = Globals.defaultUpperLimitRes;
         }
 
         public static DialogResult ShowInputDialog(ref string input)
@@ -153,14 +159,18 @@ namespace Supervisório_PCA_2._0
                 MessageBox.Show("Conexão à porta " + selectedPort + " já está estabelecida!", "Conexão já estabelecida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             try
             {
+                ClearLists();
+                ResetGlobalVariables();
+
                 Globals.serialPort.PortName = selectedPort;
                 Globals.serialPort.Open();
                 Globals.serialConnected = true;
                 Globals.serialPort.DtrEnable = true;
 
-                Thread.Sleep(250);  // Aguarda 500ms para permitir a reinicialização do Arduino
+                Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
 
                 // Limpa as listas globais de dados
                 ClearLists();
@@ -172,12 +182,20 @@ namespace Supervisório_PCA_2._0
             }
             catch (Exception ex)
             {
-                DialogResult result = MessageBox.Show("Erro ao conectar-se à porta COM: " + ex.Message, "Erro na conexão!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.Retry)
+                if (ex.Message.Contains("Access to the port"))
                 {
-                    // Tenta novamente a conexão
-                    ConnectSerialPort(selectedPort);
+                    // Display a custom message box for "Access denied" exception
+                    MessageBox.Show("Acesso à porta " + selectedPort + " foi negado. Verifique se outro programa (como o Serial Monitor da IDE do Arduino, ou o Excel Data Streamer) está utilizando a porta ou se você tem permissão de acesso.\n\nExperimente fechar o monitor serial da Arduino IDE ou o Excel e verifique se o erro permanece, se sim, feche todos os programas e abra somente o Supervisório PCA.", "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Erro ao conectar-se à porta COM: " + ex.Message, "Erro na conexão!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Retry)
+                    {
+                        // Tenta novamente a conexão
+                        ConnectSerialPort(selectedPort);
+                    }
                 }
             }
         }

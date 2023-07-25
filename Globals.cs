@@ -38,7 +38,7 @@ namespace Supervisório_PCA_2._0
         public static List<double> pureFlowData = new List<double>();
 
         /*SEÇÃO VALORES PADRÃO VARIÁVEIS GLOBAIS*/
-        public static int globalListsNumber = 12;
+        public static int globalListsNumber = 13;
 
         public static bool defaultIsRecordingData = false;
         public static int defaultIntervalSampling = 250;
@@ -49,19 +49,19 @@ namespace Supervisório_PCA_2._0
         public static bool defaultShowSPVazao = false;
 
         public static int defaultNumberFlowPoints = 5*1000/250;
-        public static int defaultMediaMovelFlow = 5;
-        public static double defaultAlfaFlow = 0.7;
+        public static int defaultMediaMovelFlow = 8;
+        public static double defaultAlfaFlow = 0.4;
 
         public static int defaultNumberTempPoints = 10 * 1000 / 250;
-        public static int defaultMediaMovelTemp = 5;
+        public static int defaultMediaMovelTemp = 10;
         public static double defaultAlfaTemp = 0.1;
 
         public static double defaultPumpPower = 0;
-        public static double defaultSetpointVazao = 40;
+        public static double defaultSetpointVazao = 35;
         public static double defaultHistereseVazao = 10;
-        public static double defaultGanhoVazao = 2;
-        public static double defaultIntegralVazao = 5;
-        public static double defaultDerivativoVazao = 10;
+        public static double defaultGanhoVazao = 1;
+        public static double defaultIntegralVazao = 2;
+        public static double defaultDerivativoVazao = 1;
 
         public static double defaultResPower = 0;
         public static double defaultSetpointTemp = 30;
@@ -75,6 +75,17 @@ namespace Supervisório_PCA_2._0
 
         public static bool defaultRampFlowSP = false;
         public static bool defaultRampTempSP = false;
+
+
+
+        public static double defaultLowerLimitPump = 0;
+        public static double defaultUpperLimitPump = 100;
+
+        public static double defaultLowerLimitRes = 0;
+        public static double defaultUpperLimitRes = 100;
+
+
+
 
         public static bool defaultExibirGridVazao = true;
         public static bool defaultExibirLegendaVazao = true;
@@ -140,6 +151,19 @@ namespace Supervisório_PCA_2._0
 
         public static bool RampFlowSP = defaultRampFlowSP;
         public static bool RampTempSP = defaultRampTempSP;
+
+
+
+
+        public static double lowerLimitPump = 0;
+        public static double upperLimitPump = 100;
+
+        public static double lowerLimitRes = 0;
+        public static double upperLimitRes = 100;
+
+
+
+
 
         public static bool ExibirGridVazao = defaultExibirGridVazao;
         public static bool ExibirLegendaVazao = defaultExibirLegendaVazao;

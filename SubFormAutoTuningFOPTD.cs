@@ -45,11 +45,11 @@ namespace Supervisório_PCA_2._0
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(AutoTuningFOPTDDataHandler);
         }
 
-        // Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 1%)
-        private double equilibriumThreshold = 0.01;
+        // Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 2%)
+        private double equilibriumThreshold = 0.02;
 
-        // Número de pontos a serem considerados para verificar a variação, baseados em 10 segundos de pontos
-        private int numPointsToCheck = (int)(10/((double)Globals.intervalSampling/1000)); 
+        // Número de pontos a serem considerados para verificar a variação, baseados em 5 segundos de pontos
+        private int numPointsToCheck = (int)(5/((double)Globals.intervalSampling/1000)); 
 
         // Função para verificar se o sistema atingiu o equilíbrio
         private bool HasSystemReachedEquilibrium(List<double> data)
@@ -322,7 +322,7 @@ namespace Supervisório_PCA_2._0
 
             // Definir os limites inferior e superior para as variáveis de decisão
             ///////////////////////////////////////////////////////////////K  THETA   TAU
-            Vector<double> lowerBound = DenseVector.OfArray(new double[] { 0, 0.05, 0.05 });
+            Vector<double> lowerBound = DenseVector.OfArray(new double[] { 0, (double)Globals.intervalSampling/500, 0.05 });
             Vector<double> upperBound = DenseVector.OfArray(new double[] { 5, 20, 1000 });
 
             // Resolver o problema de otimização usando o Particle Swarm Optimization

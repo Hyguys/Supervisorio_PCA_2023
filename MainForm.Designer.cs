@@ -41,17 +41,17 @@ namespace Supervisório_PCA_2._0
             this.tomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDeControleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDosGráficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treinamentoDoSupervisórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPlot = new ScottPlot.FormsPlot();
             this.tempPlot = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -75,9 +75,9 @@ namespace Supervisório_PCA_2._0
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arquivoToolStripMenuItem,
             this.configuraçõesToolStripMenuItem,
+            this.ferramentasAvançadasToolStripMenuItem,
             this.ajudaToolStripMenuItem,
-            this.sobreToolStripMenuItem,
-            this.ferramentasAvançadasToolStripMenuItem});
+            this.sobreToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 29);
@@ -137,7 +137,8 @@ namespace Supervisório_PCA_2._0
             this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tomadaDeDadosToolStripMenuItem,
             this.configuraçõesDeControleToolStripMenuItem,
-            this.configuraçõesDosGráficosToolStripMenuItem});
+            this.configuraçõesDosGráficosToolStripMenuItem,
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
             this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(122, 25);
             this.configuraçõesToolStripMenuItem.Text = "Configurações";
@@ -163,54 +164,12 @@ namespace Supervisório_PCA_2._0
             this.configuraçõesDosGráficosToolStripMenuItem.Text = "Customização dos Gráficos";
             this.configuraçõesDosGráficosToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDosGráficosToolStripMenuItem_Click);
             // 
-            // ajudaToolStripMenuItem
+            // limitesDaBombaEDaResistênciaToolStripMenuItem
             // 
-            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manualDeOperaçãoToolStripMenuItem,
-            this.treinamentoDoSupervisórioToolStripMenuItem});
-            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(62, 25);
-            this.ajudaToolStripMenuItem.Text = "Ajuda";
-            // 
-            // manualDeOperaçãoToolStripMenuItem
-            // 
-            this.manualDeOperaçãoToolStripMenuItem.Name = "manualDeOperaçãoToolStripMenuItem";
-            this.manualDeOperaçãoToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
-            this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
-            // 
-            // treinamentoDoSupervisórioToolStripMenuItem
-            // 
-            this.treinamentoDoSupervisórioToolStripMenuItem.Name = "treinamentoDoSupervisórioToolStripMenuItem";
-            this.treinamentoDoSupervisórioToolStripMenuItem.Size = new System.Drawing.Size(281, 26);
-            this.treinamentoDoSupervisórioToolStripMenuItem.Text = "Treinamento do Supervisório";
-            // 
-            // sobreToolStripMenuItem
-            // 
-            this.sobreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sobreOProjetoPCAToolStripMenuItem,
-            this.sobreOMóduloToolStripMenuItem,
-            this.sobreODesenvolvedorToolStripMenuItem});
-            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
-            this.sobreToolStripMenuItem.Text = "Sobre";
-            // 
-            // sobreOProjetoPCAToolStripMenuItem
-            // 
-            this.sobreOProjetoPCAToolStripMenuItem.Name = "sobreOProjetoPCAToolStripMenuItem";
-            this.sobreOProjetoPCAToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreOProjetoPCAToolStripMenuItem.Text = "Sobre o Projeto PCA";
-            // 
-            // sobreOMóduloToolStripMenuItem
-            // 
-            this.sobreOMóduloToolStripMenuItem.Name = "sobreOMóduloToolStripMenuItem";
-            this.sobreOMóduloToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreOMóduloToolStripMenuItem.Text = "Sobre o Módulo";
-            // 
-            // sobreODesenvolvedorToolStripMenuItem
-            // 
-            this.sobreODesenvolvedorToolStripMenuItem.Name = "sobreODesenvolvedorToolStripMenuItem";
-            this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Name = "limitesDaBombaEDaResistênciaToolStripMenuItem";
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Text = "Limites da Bomba e da Resistência";
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Click += new System.EventHandler(this.limitesDaBombaEDaResistênciaToolStripMenuItem_Click);
             // 
             // ferramentasAvançadasToolStripMenuItem
             // 
@@ -244,6 +203,48 @@ namespace Supervisório_PCA_2._0
             this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.testeEmMalhaFechadaToolStripMenuItem.Text = "Teste em Malha Fechada (On-Off)";
             this.testeEmMalhaFechadaToolStripMenuItem.Click += new System.EventHandler(this.testeEmMalhaFechadaToolStripMenuItem_Click);
+            // 
+            // ajudaToolStripMenuItem
+            // 
+            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manualDeOperaçãoToolStripMenuItem});
+            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(62, 25);
+            this.ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // manualDeOperaçãoToolStripMenuItem
+            // 
+            this.manualDeOperaçãoToolStripMenuItem.Name = "manualDeOperaçãoToolStripMenuItem";
+            this.manualDeOperaçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
+            // 
+            // sobreToolStripMenuItem
+            // 
+            this.sobreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sobreOProjetoPCAToolStripMenuItem,
+            this.sobreOMóduloToolStripMenuItem,
+            this.sobreODesenvolvedorToolStripMenuItem});
+            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
+            this.sobreToolStripMenuItem.Text = "Sobre";
+            // 
+            // sobreOProjetoPCAToolStripMenuItem
+            // 
+            this.sobreOProjetoPCAToolStripMenuItem.Name = "sobreOProjetoPCAToolStripMenuItem";
+            this.sobreOProjetoPCAToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.sobreOProjetoPCAToolStripMenuItem.Text = "Sobre o Projeto PCA";
+            // 
+            // sobreOMóduloToolStripMenuItem
+            // 
+            this.sobreOMóduloToolStripMenuItem.Name = "sobreOMóduloToolStripMenuItem";
+            this.sobreOMóduloToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.sobreOMóduloToolStripMenuItem.Text = "Sobre o Módulo";
+            // 
+            // sobreODesenvolvedorToolStripMenuItem
+            // 
+            this.sobreODesenvolvedorToolStripMenuItem.Name = "sobreODesenvolvedorToolStripMenuItem";
+            this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
             // 
             // flowPlot
             // 
@@ -393,7 +394,6 @@ namespace Supervisório_PCA_2._0
         private System.Windows.Forms.ToolStripMenuItem tomadaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesDeControleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualDeOperaçãoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem treinamentoDoSupervisórioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesDosGráficosToolStripMenuItem;
         private ScottPlot.FormsPlot flowPlot;
         private ScottPlot.FormsPlot tempPlot;
@@ -409,6 +409,7 @@ namespace Supervisório_PCA_2._0
         private ToolStripMenuItem sintoniaAutomáticaDeFOPTDToolStripMenuItem;
         private ToolStripMenuItem testeDeDegrauEmMalhaAbertaToolStripMenuItem;
         private ToolStripMenuItem testeEmMalhaFechadaToolStripMenuItem;
+        private ToolStripMenuItem limitesDaBombaEDaResistênciaToolStripMenuItem;
     }
 }
 

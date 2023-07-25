@@ -200,181 +200,193 @@ namespace Supervisório_PCA_2._0
         private void ONOFFTuningDataHandler(object sender, SerialDataReceivedEventArgs e)
         {
             // Verificar se o experimento está em execução
-            if (experimentRunning)
+            if (!experimentRunning)
             {
-                if (selectedSystem == "Vazão")
+                return;
+            }
+            if (selectedSystem == "Vazão")
+            {
+
+                // Obter os dados mais recentes das listas globais (Globals.timeFlowData e Globals.flowData)
+                // Nota: É importante sincronizar o acesso a essas listas para evitar problemas de concorrência.
+                // Você pode usar o bloqueio (lock) para garantir que apenas um thread acesse as listas de cada vez.
+
+                double timeData;
+                double flowData;
+
+                lock (Globals.timeFlowData) // Bloqueia o acesso à lista Globals.timeFlowData
                 {
-
-                    // Obter os dados mais recentes das listas globais (Globals.timeFlowData e Globals.flowData)
-                    // Nota: É importante sincronizar o acesso a essas listas para evitar problemas de concorrência.
-                    // Você pode usar o bloqueio (lock) para garantir que apenas um thread acesse as listas de cada vez.
-
-                    double timeData;
-                    double flowData;
-
-                    lock (Globals.timeFlowData) // Bloqueia o acesso à lista Globals.timeFlowData
+                    // Obter o valor mais recente de Globals.timeFlowData
+                    if (Globals.timeFlowData.Count > 0)
                     {
-                        // Obter o valor mais recente de Globals.timeFlowData
-                        if (Globals.timeFlowData.Count > 0)
-                        {
-                            timeData = Globals.timeFlowData[Globals.timeFlowData.Count - 1];
-                        }
-                        else
-                        {
-                            // Se a lista estiver vazia, atribuir um valor padrão
-                            timeData = 0.0;
-                        }
-                    }
-
-                    lock (Globals.flowData) // Bloqueia o acesso à lista Globals.flowData
-                    {
-                        // Obter o valor mais recente de Globals.flowData
-                        if (Globals.flowData.Count > 0)
-                        {
-                            flowData = Globals.flowData[Globals.flowData.Count - 1];
-                        }
-                        else
-                        {
-                            // Se a lista estiver vazia, atribuir um valor padrão
-                            flowData = 0.0;
-                        }
-                    }
-
-                    timeExp.Add(timeData);
-                    flowExp.Add(flowData);
-
-
-                    CalculatePeriodAndAmplitude(timeExp, flowExp);
-                    if (!IsDisposed && txtPeriod.InvokeRequired)
-                    {
-                        // Executa o código na thread de interface do usuário usando Invoke
-                        Invoke((MethodInvoker)(() => txtPeriod.Text = period.ToString("0.00")));
-                        Invoke((MethodInvoker)(() => txtAmplitude.Text = amplitude.ToString("0.00")));
+                        timeData = Globals.timeFlowData[Globals.timeFlowData.Count - 1];
                     }
                     else
                     {
-                        // Atualiza diretamente o controle na thread de interface do usuário
-                        txtPeriod.Text = period.ToString("0.00");
-                        txtAmplitude.Text = amplitude.ToString("0.00");
+                        // Se a lista estiver vazia, atribuir um valor padrão
+                        timeData = 0.0;
                     }
                 }
 
-                else if (selectedSystem == "Temperatura")
+                lock (Globals.flowData) // Bloqueia o acesso à lista Globals.flowData
                 {
-                    //
-                    // Obter os dados mais recentes das listas globais (Globals.timeFlowData e Globals.flowData)
-                    // Nota: É importante sincronizar o acesso a essas listas para evitar problemas de concorrência.
-                    // Você pode usar o bloqueio (lock) para garantir que apenas um thread acesse as listas de cada vez.
-
-                    double timeData;
-                    double tempData;
-
-                    lock (Globals.timeTempData) // Bloqueia o acesso à lista Globals.timeTempData
+                    // Obter o valor mais recente de Globals.flowData
+                    if (Globals.flowData.Count > 0)
                     {
-                        // Obter o valor mais recente de Globals.timeTempData
-                        if (Globals.timeTempData.Count > 0)
-                        {
-                            timeData = Globals.timeTempData[Globals.timeTempData.Count - 1];
-                        }
-                        else
-                        {
-                            // Se a lista estiver vazia, atribuir um valor padrão
-                            timeData = 0.0;
-                        }
-                    }
-
-                    lock (Globals.tempOutData) // Bloqueia o acesso à lista Globals.tempOutData
-                    {
-                        // Obter o valor mais recente de Globals.tempOutData
-                        if (Globals.tempOutData.Count > 0)
-                        {
-                            tempData = Globals.tempOutData[Globals.tempOutData.Count - 1];
-                        }
-                        else
-                        {
-                            // Se a lista estiver vazia, atribuir um valor padrão
-                            tempData = 0.0;
-                        }
-                    }
-
-                    timeExp.Add(timeData);
-                    tempExp.Add(tempData);
-
-
-                    CalculatePeriodAndAmplitude(timeExp, tempExp);
-                    
-                    
-                    if (!IsDisposed && txtPeriod.InvokeRequired)
-                    {
-                        // Executa o código na thread de interface do usuário usando Invoke
-                        Invoke((MethodInvoker)(() => txtPeriod.Text = period.ToString("0.00")));
-                        Invoke((MethodInvoker)(() => txtAmplitude.Text = amplitude.ToString("0.00")));
+                        flowData = Globals.flowData[Globals.flowData.Count - 1];
                     }
                     else
                     {
-                        // Atualiza diretamente o controle na thread de interface do usuário
-                        txtPeriod.Text = period.ToString("0.00");
-                        txtAmplitude.Text = amplitude.ToString("0.00");
+                        // Se a lista estiver vazia, atribuir um valor padrão
+                        flowData = 0.0;
                     }
-                    
-                    
-
                 }
-            }
 
-            void CalculatePeriodAndAmplitude(List<double> timeExp, List<double> flowExp)
+                timeExp.Add(timeData);
+                flowExp.Add(flowData);
+
+
+                CalculatePeriodAndAmplitude(timeExp, flowExp);
+                if (!IsDisposed && txtPeriod.InvokeRequired)
+                {
+                    // Executa o código na thread de interface do usuário usando Invoke
+                    Invoke((MethodInvoker)(() => txtPeriod.Text = period.ToString("0.00")));
+                    Invoke((MethodInvoker)(() => txtAmplitude.Text = amplitude.ToString("0.00")));
+                }
+                else
+                {
+                    // Atualiza diretamente o controle na thread de interface do usuário
+                    txtPeriod.Text = period.ToString("0.00");
+                    txtAmplitude.Text = amplitude.ToString("0.00");
+                }
+
+            }
+            else if (selectedSystem == "Temperatura")
             {
-                if (timeExp.Count < 2 || flowExp.Count < 2)
-                {
-                    // Não há dados suficientes para calcular período e amplitude
-                    return;
-                }
+                //
+                // Obter os dados mais recentes das listas globais (Globals.timeFlowData e Globals.flowData)
+                // Nota: É importante sincronizar o acesso a essas listas para evitar problemas de concorrência.
+                // Você pode usar o bloqueio (lock) para garantir que apenas um thread acesse as listas de cada vez.
 
-                // Encontra os picos e vales da senoide
-                List<int> peaks = new List<int>();
-                List<int> valleys = new List<int>();
+                double timeData;
+                double tempData;
 
-                for (int i = 1; i < flowExp.Count - 1; i++)
+                lock (Globals.timeTempData) // Bloqueia o acesso à lista Globals.timeTempData
                 {
-                    if (flowExp[i] >= flowExp[i - 1] && flowExp[i] >= flowExp[i + 1])
+                    // Obter o valor mais recente de Globals.timeTempData
+                    if (Globals.timeTempData.Count > 0)
                     {
-                        peaks.Add(i);
+                        timeData = Globals.timeTempData[Globals.timeTempData.Count - 1];
                     }
-                    else if (flowExp[i] <= flowExp[i - 1] && flowExp[i] <= flowExp[i + 1])
+                    else
                     {
-                        valleys.Add(i);
+                        // Se a lista estiver vazia, atribuir um valor padrão
+                        timeData = 0.0;
                     }
                 }
 
-                if (peaks.Count < 2 || valleys.Count < 2)
+                lock (Globals.tempOutData) // Bloqueia o acesso à lista Globals.tempOutData
                 {
-                    // Não há picos e vales suficientes para calcular o período e a amplitude
-                    return;
+                    // Obter o valor mais recente de Globals.tempOutData
+                    if (Globals.tempOutData.Count > 0)
+                    {
+                        tempData = Globals.tempOutData[Globals.tempOutData.Count - 1];
+                    }
+                    else
+                    {
+                        // Se a lista estiver vazia, atribuir um valor padrão
+                        tempData = 0.0;
+                    }
                 }
 
-                // Calcula o período a partir dos índices dos picos
-                double periodSum = 0;
-                for (int i = 1; i < peaks.Count; i++)
+                timeExp.Add(timeData);
+                tempExp.Add(tempData);
+
+
+                CalculatePeriodAndAmplitude(timeExp, tempExp);
+
+
+                if (!IsDisposed && txtPeriod.InvokeRequired)
                 {
-                    periodSum += timeExp[peaks[i]] - timeExp[peaks[i - 1]];
+                    // Executa o código na thread de interface do usuário usando Invoke
+                    Invoke((MethodInvoker)(() => txtPeriod.Text = period.ToString("0.00")));
+                    Invoke((MethodInvoker)(() => txtAmplitude.Text = amplitude.ToString("0.00")));
                 }
-                periods.Add(periodSum / (peaks.Count - 1));
+                else
+                {
+                    // Atualiza diretamente o controle na thread de interface do usuário
+                    txtPeriod.Text = period.ToString("0.00");
+                    txtAmplitude.Text = amplitude.ToString("0.00");
+                }
+            }
+        }
 
-                // Encontra o maior e menor valor de fluxo entre os picos e vales
-                double maxFlow = flowExp[peaks.Max()];
-                double minFlow = flowExp[valleys.Min()];
-
-                // Calcula a amplitude a partir dos valores máximo e mínimo de fluxo
-                amplitudes.Add(maxFlow - minFlow);
-
-                period = CalculateAverageOfLastN(periods, numPointsToAverageAmplitudePeriod);
-                amplitude = CalculateAverageOfLastN(amplitudes, numPointsToAverageAmplitudePeriod);
-                // Aqui você pode usar os valores calculados (period e amplitude) conforme necessário.
-                // Por exemplo, pode exibi-los em caixas de texto, gráficos ou qualquer outra finalidade do seu aplicativo.
+        void CalculatePeriodAndAmplitude(List<double> timeExp, List<double> flowExp)
+        {
+            if (timeExp.Count < 2 || flowExp.Count < 2)
+            {
+                // Não há dados suficientes para calcular período e amplitude
+                return;
             }
 
+            // Encontra os picos e vales da senoide
+            List<int> peaksIndexes = new List<int>();
+            List<int> valleysIndexes = new List<int>();
 
+            for (int i = 1; i < flowExp.Count - 1; i++)
+            {
+                // Verifica a derivada discreta para encontrar mudanças de inclinação
+                double derivative1 = flowExp[i] - flowExp[i - 1];
+                double derivative2 = flowExp[i + 1] - flowExp[i];
 
+                // Verifica se houve uma mudança de inclinação para cima (pico)
+                if (derivative1 >= 0 && derivative2 < 0)
+                {
+                    peaksIndexes.Add(i);
+                }
+                // Verifica se houve uma mudança de inclinação para baixo (vale)
+                else if (derivative1 <= 0 && derivative2 > 0)
+                {
+                    valleysIndexes.Add(i);
+                }
+            }
+
+            if (peaksIndexes.Count < 2 || valleysIndexes.Count < 2)
+            {
+                // Não há picos e vales suficientes para calcular o período e a amplitude
+                return;
+            }
+
+            // Calcula o período a partir dos índices dos picos
+            double periodSum = 0;
+            for (int i = 1; i < peaksIndexes.Count; i++)
+            {
+                periodSum += timeExp[peaksIndexes[i]] - timeExp[peaksIndexes[i - 1]];
+            }
+            periods.Add(periodSum / (peaksIndexes.Count - 1));
+
+            // Ajusta os índices para que o cálculo da amplitude considere o mesmo número de picos e vales
+            if (peaksIndexes.Count > valleysIndexes.Count)
+            {
+                peaksIndexes.RemoveAt(peaksIndexes.Count - 1);
+            }
+            else if (valleysIndexes.Count > peaksIndexes.Count)
+            {
+                valleysIndexes.RemoveAt(0);
+            }
+
+            //Calcula amplitude
+            for (int i = 0; i < peaksIndexes.Count; i++)
+            {
+                double amplitude = flowExp[peaksIndexes[i]] - flowExp[valleysIndexes[i]];
+                amplitudes.Add(amplitude);
+            }
+        
+
+            period = CalculateAverageOfLastN(periods, numPointsToAverageAmplitudePeriod);
+            amplitude = CalculateAverageOfLastN(amplitudes, numPointsToAverageAmplitudePeriod);
+            // Aqui você pode usar os valores calculados (period e amplitude) conforme necessário.
+            // Por exemplo, pode exibi-los em caixas de texto, gráficos ou qualquer outra finalidade do seu aplicativo.
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -383,11 +395,11 @@ namespace Supervisório_PCA_2._0
 
             if (sistemaSelecionado.SelectedItem.ToString() == "Vazão")
             {
-                Kcu = (4 * Globals.histereseVazao) / (Math.PI * amplitude);
+                Kcu = (4 * (Globals.upperLimitPump - Globals.lowerLimitPump)/2 ) / (Math.PI * amplitude);
             }
             else if (sistemaSelecionado.SelectedItem.ToString() == "Temperatura")
             {
-                Kcu = (4 * Globals.histereseTemp) / (Math.PI * amplitude);
+                Kcu = (4 * (Globals.upperLimitRes - Globals.lowerLimitRes)/2 ) / (Math.PI * amplitude);
             }
             double Pu = period;
 

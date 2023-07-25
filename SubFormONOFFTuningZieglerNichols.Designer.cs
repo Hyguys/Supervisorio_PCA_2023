@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblUnitHisterese = new System.Windows.Forms.Label();
             this.txtHysteresis = new System.Windows.Forms.TextBox();
             this.lblHisterese = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             // lblUnitHisterese
             // 
             this.lblUnitHisterese.AutoSize = true;
-            this.lblUnitHisterese.Location = new System.Drawing.Point(432, 103);
+            this.lblUnitHisterese.Location = new System.Drawing.Point(393, 101);
             this.lblUnitHisterese.Name = "lblUnitHisterese";
             this.lblUnitHisterese.Size = new System.Drawing.Size(41, 21);
             this.lblUnitHisterese.TabIndex = 29;
@@ -90,7 +90,7 @@
             // lblUnitSP
             // 
             this.lblUnitSP.AutoSize = true;
-            this.lblUnitSP.Location = new System.Drawing.Point(432, 56);
+            this.lblUnitSP.Location = new System.Drawing.Point(393, 54);
             this.lblUnitSP.Name = "lblUnitSP";
             this.lblUnitSP.Size = new System.Drawing.Size(41, 21);
             this.lblUnitSP.TabIndex = 27;
@@ -145,9 +145,9 @@
             // 
             // Método
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Método.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Método.DefaultCellStyle = dataGridViewCellStyle5;
             this.Método.HeaderText = "Método";
             this.Método.Name = "Método";
             this.Método.ReadOnly = true;
@@ -156,8 +156,8 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn1.HeaderText = "Kc [% h/L]";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -165,8 +165,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn2.HeaderText = "τI [s]";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -175,8 +175,8 @@
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn3.HeaderText = "τD [s]";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -194,7 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(432, 145);
+            this.label2.Location = new System.Drawing.Point(393, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 21);
             this.label2.TabIndex = 35;
@@ -226,7 +226,7 @@
             // lblUnitAmplitude
             // 
             this.lblUnitAmplitude.AutoSize = true;
-            this.lblUnitAmplitude.Location = new System.Drawing.Point(432, 189);
+            this.lblUnitAmplitude.Location = new System.Drawing.Point(393, 187);
             this.lblUnitAmplitude.Name = "lblUnitAmplitude";
             this.lblUnitAmplitude.Size = new System.Drawing.Size(41, 21);
             this.lblUnitAmplitude.TabIndex = 38;
@@ -282,7 +282,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(520, 486);
+            this.ClientSize = new System.Drawing.Size(490, 486);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.sistemaSelecionado);
@@ -304,7 +304,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SubFormONOFFTuningZieglerNichols";
-            this.Text = "Sintonia por método do relay-autotuning com controlador ON-OFF";
+            this.Text = "Sintonia por método do Relay Auto-Tuning com controlador ON-OFF";
             this.Load += new System.EventHandler(this.SubFormONOFFTuningZieglerNichols_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabelaControle)).EndInit();
             this.ResumeLayout(false);

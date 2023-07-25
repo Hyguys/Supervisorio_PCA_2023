@@ -140,8 +140,8 @@ namespace Supervisório_PCA_2._0
                 flowPlot.Plot.Clear();
                 var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "Vazão");
                 flowPlot.Plot.Grid(Globals.ExibirGridVazao);
-                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(40,Color.Black));
-                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(40, Color.Black));
+                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(45,Color.Black));
+                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(45, Color.Black));
                 flowPlot.Plot.SetAxisLimitsY(-3, 70); 
                 flowPlot.Plot.SetAxisLimitsY(-3, 110,flowPlot.Plot.RightAxis.AxisIndex);
                 flowPlot.Plot.Title("Controle de Vazão");
@@ -539,6 +539,10 @@ namespace Supervisório_PCA_2._0
                 // Verifica se a porta serial está aberta
                 if (Globals.serialPort.IsOpen)
                 {
+
+                    GlobalMethods.ClearLists();
+                    GlobalMethods.ResetGlobalVariables();
+
                     // Define o sinal DTR como true por um breve período de tempo
                     Globals.serialPort.DtrEnable = true;
                     Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
@@ -604,6 +608,12 @@ namespace Supervisório_PCA_2._0
         {
             SubFormONOFFTuningZieglerNichols subONOFF = new SubFormONOFFTuningZieglerNichols();
             subONOFF.Show();
+        }
+
+        private void limitesDaBombaEDaResistênciaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormLimitsResPump subForm = new SubFormLimitsResPump();
+            subForm.Show();
         }
     }
 }

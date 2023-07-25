@@ -20,7 +20,7 @@ namespace Supervisório_PCA_2._0
             txtHysteresisVazao.Text = Convert.ToString(Globals.histereseVazao);
             txtGanhoVazao.Text = Convert.ToString(Globals.ganhoVazao);
             txtIntegralVazao.Text = Convert.ToString(Globals.integralVazao);
-            txtDerivativoVazao.Text = Convert.ToString(Globals.integralVazao);
+            txtDerivativoVazao.Text = Convert.ToString(Globals.derivativoVazao);
 
             txtSetpointTemp.Text = Convert.ToString(Globals.setpointTemp);
             txtHysteresisTemp.Text = Convert.ToString(Globals.histereseTemp);
@@ -135,7 +135,6 @@ namespace Supervisório_PCA_2._0
             switch(cmbControlVazao.SelectedIndex)
             {
                 case 0: // MANUAL
-                    txtPotenciaBomba.ReadOnly = false;
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = true;
                     txtIntegralVazao.ReadOnly = true;
@@ -152,6 +151,7 @@ namespace Supervisório_PCA_2._0
                     break;
 
                 case 1: // ON-OFF
+
                     txtPotenciaBomba.ReadOnly = true;
                     txtHysteresisVazao.ReadOnly = false;
                     txtGanhoVazao.ReadOnly = true;
@@ -183,6 +183,8 @@ namespace Supervisório_PCA_2._0
                     //txtGanhoVazao.BackColor = Color.White;
                     //txtIntegralVazao.BackColor = Color.Gainsboro;
                     //txtDerivativoVazao.BackColor = Color.Gainsboro;
+
+                    MessageBox.Show("O Controle Propocional digital, implementado na forma de velocidade, não é viável (não controla). Está disponível aqui somente para fins didáticos, mas o controle mais simples que pode ser implementado é o Controle PI","ALERTA!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     break;
 
                 case 3: // Controle Proporcional Integral
@@ -280,6 +282,7 @@ namespace Supervisório_PCA_2._0
 
         private void SubFormConfigControl_Load(object sender, EventArgs e)
         {
+            cmbControlVazao.SelectedIndex = Globals.controlTypePump;
             cmbControlVazao.SelectedIndex = Globals.controlTypePump;
             cmbControlRes.SelectedIndex = Globals.controlTypeRes;
             if (Globals.RampFlowSP == true)
@@ -437,6 +440,7 @@ namespace Supervisório_PCA_2._0
             switch (controlTypePump)
             {
                 case 0:
+                    txtPotenciaBomba.ReadOnly = false;
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle manual iniciado!", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -620,6 +624,7 @@ namespace Supervisório_PCA_2._0
             switch (controlTypeRes)
             {
                 case 0:
+                    txtPotenciaResistencia.ReadOnly = false;
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle manual iniciado!", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -694,7 +699,6 @@ namespace Supervisório_PCA_2._0
             switch (cmbControlRes.SelectedIndex)
             {
                 case 0: // MANUAL
-                    txtPotenciaResistencia.ReadOnly = false;
                     txtHysteresisTemp.ReadOnly = true;
                     txtGanhoTemp.ReadOnly = true;
                     txtIntegralTemp.ReadOnly = true;
@@ -738,11 +742,14 @@ namespace Supervisório_PCA_2._0
 
 
                     // Definir cores dos TextBox
-                   // txtPotenciaResistencia.BackColor = Color.Gainsboro;
-                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
-                   // txtGanhoTemp.BackColor = Color.White;
-                   // txtIntegralTemp.BackColor = Color.Gainsboro;
-                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
+                    // txtPotenciaResistencia.BackColor = Color.Gainsboro;
+                    // txtHysteresisTemp.BackColor = Color.Gainsboro;
+                    // txtGanhoTemp.BackColor = Color.White;
+                    // txtIntegralTemp.BackColor = Color.Gainsboro;
+                    // txtDerivativoTemp.BackColor = Color.Gainsboro;
+
+
+                    MessageBox.Show("O Controle Propocional digital, implementado na forma de velocidade, não é viável (não controla). Está disponível aqui somente para fins didáticos, mas o controle mais simples que pode ser implementado é o Controle PI", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 case 3: // Controle Proporcional Integral
                     txtPotenciaResistencia.ReadOnly = true;
