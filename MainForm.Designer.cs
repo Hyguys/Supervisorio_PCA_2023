@@ -30,6 +30,7 @@ namespace Supervisório_PCA_2._0
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexãoComArduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,10 +49,6 @@ namespace Supervisório_PCA_2._0
             this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreOProjetoPCAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreOMóduloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreODesenvolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPlot = new ScottPlot.FormsPlot();
             this.tempPlot = new ScottPlot.FormsPlot();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -76,8 +73,7 @@ namespace Supervisório_PCA_2._0
             this.arquivoToolStripMenuItem,
             this.configuraçõesToolStripMenuItem,
             this.ferramentasAvançadasToolStripMenuItem,
-            this.ajudaToolStripMenuItem,
-            this.sobreToolStripMenuItem});
+            this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 29);
@@ -217,34 +213,7 @@ namespace Supervisório_PCA_2._0
             this.manualDeOperaçãoToolStripMenuItem.Name = "manualDeOperaçãoToolStripMenuItem";
             this.manualDeOperaçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
-            // 
-            // sobreToolStripMenuItem
-            // 
-            this.sobreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sobreOProjetoPCAToolStripMenuItem,
-            this.sobreOMóduloToolStripMenuItem,
-            this.sobreODesenvolvedorToolStripMenuItem});
-            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
-            this.sobreToolStripMenuItem.Text = "Sobre";
-            // 
-            // sobreOProjetoPCAToolStripMenuItem
-            // 
-            this.sobreOProjetoPCAToolStripMenuItem.Name = "sobreOProjetoPCAToolStripMenuItem";
-            this.sobreOProjetoPCAToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreOProjetoPCAToolStripMenuItem.Text = "Sobre o Projeto PCA";
-            // 
-            // sobreOMóduloToolStripMenuItem
-            // 
-            this.sobreOMóduloToolStripMenuItem.Name = "sobreOMóduloToolStripMenuItem";
-            this.sobreOMóduloToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreOMóduloToolStripMenuItem.Text = "Sobre o Módulo";
-            // 
-            // sobreODesenvolvedorToolStripMenuItem
-            // 
-            this.sobreODesenvolvedorToolStripMenuItem.Name = "sobreODesenvolvedorToolStripMenuItem";
-            this.sobreODesenvolvedorToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.sobreODesenvolvedorToolStripMenuItem.Text = "Sobre o Desenvolvedor";
+            this.manualDeOperaçãoToolStripMenuItem.Click += new System.EventHandler(this.manualDeOperaçãoToolStripMenuItem_Click);
             // 
             // flowPlot
             // 
@@ -335,7 +304,7 @@ namespace Supervisório_PCA_2._0
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Supervisório_PCA_2._0.Properties.Resources.logoextensa;
+            this.pictureBox1.Image = global::Supervisório_PCA_2023.Properties.Resources.logoextensa;
             this.pictureBox1.Location = new System.Drawing.Point(12, 448);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 49);
@@ -361,6 +330,7 @@ namespace Supervisório_PCA_2._0
             this.Controls.Add(this.flowPlot);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
@@ -387,10 +357,6 @@ namespace Supervisório_PCA_2._0
         private System.Windows.Forms.ToolStripMenuItem iniciarColetaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem finalizarColetaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sobreOProjetoPCAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sobreOMóduloToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sobreODesenvolvedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tomadaDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesDeControleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualDeOperaçãoToolStripMenuItem;

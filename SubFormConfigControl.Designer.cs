@@ -239,7 +239,7 @@
             // 
             this.txtSetpointVazao.AcceptsReturn = true;
             this.txtSetpointVazao.Location = new System.Drawing.Point(220, 18);
-            this.txtSetpointVazao.MaxLength = 3;
+            this.txtSetpointVazao.MaxLength = 5;
             this.txtSetpointVazao.Name = "txtSetpointVazao";
             this.txtSetpointVazao.Size = new System.Drawing.Size(110, 29);
             this.txtSetpointVazao.TabIndex = 0;
@@ -366,7 +366,7 @@
             // 
             this.txtPotenciaBomba.AcceptsReturn = true;
             this.txtPotenciaBomba.Location = new System.Drawing.Point(220, 123);
-            this.txtPotenciaBomba.MaxLength = 3;
+            this.txtPotenciaBomba.MaxLength = 5;
             this.txtPotenciaBomba.Name = "txtPotenciaBomba";
             this.txtPotenciaBomba.Size = new System.Drawing.Size(110, 29);
             this.txtPotenciaBomba.TabIndex = 5;
@@ -560,7 +560,7 @@
             // 
             this.txtSetpointTemp.AcceptsReturn = true;
             this.txtSetpointTemp.Location = new System.Drawing.Point(220, 18);
-            this.txtSetpointTemp.MaxLength = 2;
+            this.txtSetpointTemp.MaxLength = 5;
             this.txtSetpointTemp.Name = "txtSetpointTemp";
             this.txtSetpointTemp.Size = new System.Drawing.Size(110, 29);
             this.txtSetpointTemp.TabIndex = 11;
@@ -600,7 +600,7 @@
             // 
             this.txtPotenciaResistencia.AcceptsReturn = true;
             this.txtPotenciaResistencia.Location = new System.Drawing.Point(220, 123);
-            this.txtPotenciaResistencia.MaxLength = 3;
+            this.txtPotenciaResistencia.MaxLength = 5;
             this.txtPotenciaResistencia.Name = "txtPotenciaResistencia";
             this.txtPotenciaResistencia.Size = new System.Drawing.Size(110, 29);
             this.txtPotenciaResistencia.TabIndex = 17;

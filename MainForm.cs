@@ -20,12 +20,34 @@ namespace Supervisório_PCA_2._0
         private StreamWriter dataStreamWriter; // Variável local para armazenar o objeto StreamWriter
 
 
+        private void CheckAndSetCustomCulture()
+        {
+            CultureInfo systemCulture = CultureInfo.CurrentCulture;
+
+            // Verifica se o separador decimal é diferente do ponto e o separador de milhar é diferente da vírgula
+            if (systemCulture.NumberFormat.NumberDecimalSeparator != "." && systemCulture.NumberFormat.NumberGroupSeparator != ",")
+            {
+                // Define uma cultura personalizada para a formatação
+                CultureInfo customCulture = new CultureInfo("pt-BR");
+                customCulture.NumberFormat.NumberDecimalSeparator = ".";
+                customCulture.NumberFormat.NumberGroupSeparator = ",";
+
+                // Define a cultura personalizada apenas para o contexto do programa
+                System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+                // Exibe a mensagem informando que a cultura foi alterada
+                MessageBox.Show("O separador decimal e o separador de milhar do sistema foram alterados para garantir o correto funcionamento do programa.\n\nAo digitar dados, use o PONTO como separador decimal e a VÍRGULA como separador de milhar.\n\nSe ainda assim, mesmo lendo essa mensagem, o tempo continua sendo plotado de maneira esquisita, sugere-se fazer a mudança no sistema operacional como um todo.", "Atenção - SEPARADOR DECIMAL ALTERADO!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
         public MainForm()
         {
             InitializeComponent();
             Globals.serialPort = new SerialPort(); // linha para inicializar o objeto serialPort 
             Globals.serialPort.BaudRate = 115200;
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            CheckAndSetCustomCulture();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -140,9 +162,16 @@ namespace Supervisório_PCA_2._0
                 flowPlot.Plot.Clear();
                 var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "Vazão");
                 flowPlot.Plot.Grid(Globals.ExibirGridVazao);
-                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(45,Color.Black));
-                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(45, Color.Black));
-                flowPlot.Plot.SetAxisLimitsY(-3, 70); 
+                flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(35,Color.Black));
+                flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(35, Color.Black));
+                if(Globals.flowData.Max()>75)
+                {
+                    flowPlot.Plot.SetAxisLimitsY(-3, Globals.flowData.Max()*1.2);
+                }
+                else
+                {
+                    flowPlot.Plot.SetAxisLimitsY(-3, 70);
+                }
                 flowPlot.Plot.SetAxisLimitsY(-3, 110,flowPlot.Plot.RightAxis.AxisIndex);
                 flowPlot.Plot.Title("Controle de Vazão");
                 flowPlot.Plot.YAxis.Label("Vazão (L/h)");
@@ -158,9 +187,9 @@ namespace Supervisório_PCA_2._0
                 tempPlot.Plot.Clear();
                 var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray(), label: "Temperatura");
                 tempPlot.Plot.Grid(Globals.ExibirGridTemp);
-                tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(40, Color.Black));
-                tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(40, Color.Black));
-                tempPlot.Plot.SetAxisLimitsY(-3, Math.Max(Globals.tempOutData.Max() * 1.25, 40));
+                tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
+                tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
+                tempPlot.Plot.SetAxisLimitsY(Globals.tempOutData.Min() * 0.8, Globals.tempOutData.Max() * 1.2);
                 tempPlot.Plot.SetAxisLimitsY(-3, 110, tempPlot.Plot.RightAxis.AxisIndex);
                 tempPlot.Plot.Title("Controle de Temperatura");
                 tempPlot.Plot.YAxis.Label("Temperatura (°C)");
@@ -614,6 +643,11 @@ namespace Supervisório_PCA_2._0
         {
             SubFormLimitsResPump subForm = new SubFormLimitsResPump();
             subForm.Show();
+        }
+
+        private void manualDeOperaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Entre em contato com a comissão do PCA do PET Engenharia Química da UEM para ter acesso ao manual de operação. Você encaminhar um e-mail para pet.uem.eq@gmail.com.", "Entrar em contato!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

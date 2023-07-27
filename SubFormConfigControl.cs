@@ -16,19 +16,21 @@ namespace Supervisório_PCA_2._0
         public SubFormConfigControl()
         {
             InitializeComponent();
+            Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(SubFormDataReceivedHandler);
+
             txtSetpointVazao.Text = Convert.ToString(Globals.setpointVazao);
             txtHysteresisVazao.Text = Convert.ToString(Globals.histereseVazao);
             txtGanhoVazao.Text = Convert.ToString(Globals.ganhoVazao);
             txtIntegralVazao.Text = Convert.ToString(Globals.integralVazao);
             txtDerivativoVazao.Text = Convert.ToString(Globals.derivativoVazao);
+            txtPotenciaBomba.Text = Globals.pumpPower.ToString("0.00");
 
             txtSetpointTemp.Text = Convert.ToString(Globals.setpointTemp);
             txtHysteresisTemp.Text = Convert.ToString(Globals.histereseTemp);
             txtGanhoTemp.Text = Convert.ToString(Globals.ganhoTemp);
             txtIntegralTemp.Text = Convert.ToString(Globals.integralTemp);
             txtDerivativoTemp.Text = Convert.ToString(Globals.derivativoTemp);
-            Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(SubFormDataReceivedHandler);
-
+            txtPotenciaResistencia.Text = Globals.resPower.ToString("");
         }
 
         private void txtPotenciaBomba_TextChanged(object sender, EventArgs e)
@@ -283,7 +285,6 @@ namespace Supervisório_PCA_2._0
         private void SubFormConfigControl_Load(object sender, EventArgs e)
         {
             cmbControlVazao.SelectedIndex = Globals.controlTypePump;
-            cmbControlVazao.SelectedIndex = Globals.controlTypePump;
             cmbControlRes.SelectedIndex = Globals.controlTypeRes;
             if (Globals.RampFlowSP == true)
             {
@@ -294,6 +295,8 @@ namespace Supervisório_PCA_2._0
             {
                 cmbTempSPChange.SelectedIndex = 1;
             }
+
+
         }
 
         private void txtHysteresisVazao_TextChanged(object sender, EventArgs e)

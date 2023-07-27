@@ -89,11 +89,11 @@ namespace Supervisório_PCA_2._0
 
         public static bool defaultExibirGridVazao = true;
         public static bool defaultExibirLegendaVazao = true;
-        public static bool defaultExibirPotenciaBomba = false;
+        public static bool defaultExibirPotenciaBomba = true;
         public static bool defaultExibirVazaoPreFiltragem = false;
-        public static int defaultMarkerSizeVazao = 4;
+        public static int defaultMarkerSizeVazao = 3;
         public static int defaultLineSizeVazao = 1;
-        public static int defaultHistoricoVazao = 10;
+        public static int defaultHistoricoVazao = 5;
         public static Color defaultCorVazao = Color.Blue;
         public static Color defaultCorSPVazao = Color.Green;
         public static Color defaultCorPotenciaBomba = Color.DarkMagenta;
@@ -101,12 +101,12 @@ namespace Supervisório_PCA_2._0
 
         public static bool defaultExibirGridTemp = true;
         public static bool defaultExibirLegendaTemp = true;
-        public static bool defaultExibirPotenciaResistencia = false;
+        public static bool defaultExibirPotenciaResistencia = true;
         public static bool defaultExibirTempEntrada = false;
         public static bool defaultExibirTempPreFiltragem = false;
-        public static int defaultMarkerSizeTemp = 4;
+        public static int defaultMarkerSizeTemp = 3;
         public static int defaultLineSizeTemp = 1;
-        public static int defaultHistoricoTemp = 20;
+        public static int defaultHistoricoTemp = 10;
         public static Color defaultCorTemp = Color.Red;
         public static Color defaultCorSPTemp = Color.Green;
         public static Color defaultCorPotenciaRes = Color.DarkMagenta;

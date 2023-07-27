@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervisório PCA 2.0", "Supervisório PCA 2.0.csproj", "{98B90A75-8CC4-461F-9AEE-6805C8712427}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervisório PCA 2023", "Supervisório PCA 2023.csproj", "{98B90A75-8CC4-461F-9AEE-6805C8712427}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
