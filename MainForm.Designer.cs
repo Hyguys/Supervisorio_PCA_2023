@@ -47,6 +47,8 @@ namespace Supervisório_PCA_2._0
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testeEmMalhaFechadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroDeModeloFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPlot = new ScottPlot.FormsPlot();
@@ -142,35 +144,36 @@ namespace Supervisório_PCA_2._0
             // tomadaDeDadosToolStripMenuItem
             // 
             this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
-            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
             this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados, Amostragem e Filtragem";
             this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesDeControleToolStripMenuItem
             // 
             this.configuraçõesDeControleToolStripMenuItem.Name = "configuraçõesDeControleToolStripMenuItem";
-            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
-            this.configuraçõesDeControleToolStripMenuItem.Text = "Parâmetros de Controle (P/PI/PID)";
+            this.configuraçõesDeControleToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
+            this.configuraçõesDeControleToolStripMenuItem.Text = "Parâmetros de Controle (P/PI/PID/Manual/ON-OFF)";
             this.configuraçõesDeControleToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDeControleToolStripMenuItem_Click);
             // 
             // configuraçõesDosGráficosToolStripMenuItem
             // 
             this.configuraçõesDosGráficosToolStripMenuItem.Name = "configuraçõesDosGráficosToolStripMenuItem";
-            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.configuraçõesDosGráficosToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
             this.configuraçõesDosGráficosToolStripMenuItem.Text = "Customização dos Gráficos";
             this.configuraçõesDosGráficosToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesDosGráficosToolStripMenuItem_Click);
             // 
             // limitesDaBombaEDaResistênciaToolStripMenuItem
             // 
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Name = "limitesDaBombaEDaResistênciaToolStripMenuItem";
-            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Size = new System.Drawing.Size(382, 26);
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Text = "Limites da Bomba e da Resistência";
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Click += new System.EventHandler(this.limitesDaBombaEDaResistênciaToolStripMenuItem_Click);
             // 
             // ferramentasAvançadasToolStripMenuItem
             // 
             this.ferramentasAvançadasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem});
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem,
+            this.cadastroDeModeloFOPTDToolStripMenuItem});
             this.ferramentasAvançadasToolStripMenuItem.Name = "ferramentasAvançadasToolStripMenuItem";
             this.ferramentasAvançadasToolStripMenuItem.Size = new System.Drawing.Size(187, 25);
             this.ferramentasAvançadasToolStripMenuItem.Text = "Ferramentas Avançadas";
@@ -180,25 +183,40 @@ namespace Supervisório_PCA_2._0
             // 
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem,
-            this.testeEmMalhaFechadaToolStripMenuItem});
+            this.testeEmMalhaFechadaToolStripMenuItem,
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem});
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Name = "sintoniaAutomáticaDeFOPTDToolStripMenuItem";
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
-            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Sintonizador de FOPTD ";
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
+            this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Text = "Identificador e Sintonizador de FOPTD ";
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem.Click += new System.EventHandler(this.sintoniaAutomáticaDeFOPTDToolStripMenuItem_Click);
             // 
             // testeDeDegrauEmMalhaAbertaToolStripMenuItem
             // 
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Name = "testeDeDegrauEmMalhaAbertaToolStripMenuItem";
-            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Text = "Teste de Degrau em Malha Aberta";
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem.Click += new System.EventHandler(this.testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click);
             // 
             // testeEmMalhaFechadaToolStripMenuItem
             // 
             this.testeEmMalhaFechadaToolStripMenuItem.Name = "testeEmMalhaFechadaToolStripMenuItem";
-            this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.testeEmMalhaFechadaToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
             this.testeEmMalhaFechadaToolStripMenuItem.Text = "Teste em Malha Fechada (On-Off)";
             this.testeEmMalhaFechadaToolStripMenuItem.Click += new System.EventHandler(this.testeEmMalhaFechadaToolStripMenuItem_Click);
+            // 
+            // testeEmMalhaFechadaPPIPIDToolStripMenuItem
+            // 
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem.Name = "testeEmMalhaFechadaPPIPIDToolStripMenuItem";
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem.Text = "Teste em Malha Fechada (P/PI/PID)";
+            this.testeEmMalhaFechadaPPIPIDToolStripMenuItem.Click += new System.EventHandler(this.testeEmMalhaFechadaPPIPIDToolStripMenuItem_Click);
+            // 
+            // cadastroDeModeloFOPTDToolStripMenuItem
+            // 
+            this.cadastroDeModeloFOPTDToolStripMenuItem.Name = "cadastroDeModeloFOPTDToolStripMenuItem";
+            this.cadastroDeModeloFOPTDToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
+            this.cadastroDeModeloFOPTDToolStripMenuItem.Text = "Cadastro de Modelo FOPTD";
+            this.cadastroDeModeloFOPTDToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeModeloFOPTDToolStripMenuItem_Click);
             // 
             // ajudaToolStripMenuItem
             // 
@@ -376,6 +394,8 @@ namespace Supervisório_PCA_2._0
         private ToolStripMenuItem testeDeDegrauEmMalhaAbertaToolStripMenuItem;
         private ToolStripMenuItem testeEmMalhaFechadaToolStripMenuItem;
         private ToolStripMenuItem limitesDaBombaEDaResistênciaToolStripMenuItem;
+        private ToolStripMenuItem cadastroDeModeloFOPTDToolStripMenuItem;
+        private ToolStripMenuItem testeEmMalhaFechadaPPIPIDToolStripMenuItem;
     }
 }
 

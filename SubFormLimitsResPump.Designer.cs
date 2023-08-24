@@ -52,15 +52,7 @@
             this.txtLowerPump.TabIndex = 1;
             this.txtLowerPump.Text = "0";
             this.txtLowerPump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
-            this.txtUpperPump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUpperPump_KeyDown);
-
             this.txtLowerPump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLowerPump_KeyDown);
-
-            this.txtUpperRes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUpperRes_KeyDown);
-
-            this.txtLowerRes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLowerRes_KeyDown);
-
             // 
             // label21
             // 
@@ -81,6 +73,8 @@
             this.txtLowerRes.TabIndex = 3;
             this.txtLowerRes.Text = "0";
             this.txtLowerRes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLowerRes.TextChanged += new System.EventHandler(this.txtLowerRes_TextChanged);
+            this.txtLowerRes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLowerRes_KeyDown);
             // 
             // label9
             // 
@@ -101,6 +95,7 @@
             this.txtUpperRes.TabIndex = 2;
             this.txtUpperRes.Text = "0";
             this.txtUpperRes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUpperRes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUpperRes_KeyDown);
             // 
             // label7
             // 
@@ -140,6 +135,7 @@
             this.txtUpperPump.Text = "0";
             this.txtUpperPump.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUpperPump.TextChanged += new System.EventHandler(this.txtUpperPump_TextChanged);
+            this.txtUpperPump.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUpperPump_KeyDown);
             // 
             // label1
             // 
@@ -173,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(414, 166);
+            this.ClientSize = new System.Drawing.Size(414, 161);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

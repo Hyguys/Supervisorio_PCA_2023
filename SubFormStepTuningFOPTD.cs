@@ -20,7 +20,7 @@ using System.Diagnostics;
 
 namespace Supervisório_PCA_2._0
 {
-    public partial class SubFormAutoTuningFOPTD : Form
+    public partial class SubFormStepTuningFOPTD : Form
     {
         private bool experimentRunning = false;
 
@@ -39,17 +39,17 @@ namespace Supervisório_PCA_2._0
 
         private bool messageEquilibriumShown = false;
 
-        public SubFormAutoTuningFOPTD()
+        public SubFormStepTuningFOPTD()
         {
             InitializeComponent();
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(AutoTuningFOPTDDataHandler);
         }
 
-        // Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 2%)
-        private double equilibriumThreshold = 0.02;
+        // Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 5%)
+        private double equilibriumThreshold = 0.05;
 
-        // Número de pontos a serem considerados para verificar a variação, baseados em 5 segundos de pontos
-        private int numPointsToCheck = (int)(5/((double)Globals.intervalSampling/1000)); 
+        // Número de pontos a serem considerados para verificar a variação, baseados em 2 segundos de pontos
+        private int numPointsToCheck = (int)(2/((double)Globals.intervalSampling/1000)); 
 
         // Função para verificar se o sistema atingiu o equilíbrio
         private bool HasSystemReachedEquilibrium(List<double> data)
@@ -101,11 +101,6 @@ namespace Supervisório_PCA_2._0
 
             if (selectedSystem == "Vazão")
             {
-                if (Globals.controlTypePump != 0)
-                {
-                    MessageBox.Show("Para início do experimento, o controle manual deve estar ligado e o sistema deve estar em estado estacionário. \n\nAltere o modo de controle para manual e em seguida clique em iniciar novamente.", "Atenção!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                    return;
-                }
                 // Obtém o índice do último elemento (Count - 1)
                 int lastIndex = Globals.pumpPowerData.Count - 1;
                 // Obtém o último elemento usando o índice
@@ -114,16 +109,16 @@ namespace Supervisório_PCA_2._0
                 double newPumpPower = lastPumpPower + stepPumpPower;
 
                 // Verifica se o novo valor é menor que 0 e ajusta para 0
-                if (newPumpPower < 0)
+                if (newPumpPower < Globals.lowerLimitPump)
                 {
-                    newPumpPower = 0;
+                    newPumpPower = Globals.lowerLimitPump;
                     stepPumpPower = -lastPumpPower;
                 }
                 // Verifica se o novo valor é maior que 100 e ajusta para 100
-                else if (newPumpPower > 100)
+                else if (newPumpPower >= Globals.upperLimitPump)
                 {
-                    newPumpPower = 100;
-                    stepPumpPower = 100 - lastPumpPower;
+                    newPumpPower = Globals.upperLimitPump;
+                    stepPumpPower = Globals.upperLimitPump - lastPumpPower;
                 }
 
                 Globals.pumpPower = newPumpPower;
@@ -135,13 +130,7 @@ namespace Supervisório_PCA_2._0
             }
             else if (selectedSystem == "Temperatura")
             {
-                if (Globals.controlTypeRes != 0)
-                {
-                    MessageBox.Show("Para início do experimento, o controle manual deve estar ligado e o sistema deve estar em estado estacionário. \n\nAltere o modo de controle para manual e em seguida clique em iniciar novamente.", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-
-                }
-
+               
                 //isso é pq o stepPumpPower é o valor do txtPotenciaBomba convertido para número.
                 stepResPower = stepPumpPower;
 
@@ -153,17 +142,17 @@ namespace Supervisório_PCA_2._0
                 double newResPower = lastResPower + stepResPower;
 
                 // Verifica se o novo valor é menor que 0 e ajusta para 0
-                if (newResPower < 0)
+                if (newResPower < Globals.lowerLimitRes)
                 {
-                    newResPower = 0;
+                    newResPower = Globals.lowerLimitRes;
                     stepResPower = -lastResPower;
                 }
                 // Verifica se o novo valor é maior que 100 e ajusta para 100
-                else if (newResPower > 100)
+                else if (newResPower > Globals.upperLimitRes)
                 {
-                    newResPower = 100;
+                    newResPower = Globals.upperLimitRes;
 
-                    stepResPower = 100-lastResPower;
+                    stepResPower = Globals.upperLimitRes-lastResPower;
                 }
 
                 Globals.resPower = newResPower;
@@ -184,6 +173,14 @@ namespace Supervisório_PCA_2._0
 
         private void AutoTuningFOPTDDataHandler(object sender, SerialDataReceivedEventArgs e)
         {
+            if (selectedSystem == "Vazão")
+            {
+                txtPotenciaInicial.Text = Globals.flowData.Last().ToString("0.00");
+            }
+            else
+            {
+                txtPotenciaInicial.Text = Globals.tempOutData.Last().ToString("0.00");
+            }
             // Verificar se o experimento está em execução
             if (experimentRunning)
             {
@@ -312,6 +309,7 @@ namespace Supervisório_PCA_2._0
             messageEquilibriumShown = false;
             sp.Plot.Clear();
 
+
             string command = "PP 0";
             Globals.serialPort.WriteLine(command);
 
@@ -322,7 +320,7 @@ namespace Supervisório_PCA_2._0
 
             // Definir os limites inferior e superior para as variáveis de decisão
             ///////////////////////////////////////////////////////////////K  THETA   TAU
-            Vector<double> lowerBound = DenseVector.OfArray(new double[] { 0, (double)Globals.intervalSampling/500, 0.05 });
+            Vector<double> lowerBound = DenseVector.OfArray(new double[] { 0, (double)Globals.intervalSampling/750, 0.05 });
             Vector<double> upperBound = DenseVector.OfArray(new double[] { 5, 20, 1000 });
 
             // Resolver o problema de otimização usando o Particle Swarm Optimization
@@ -616,12 +614,14 @@ namespace Supervisório_PCA_2._0
             {
                 case "Vazão":
                     lblDegrau.Text = "Degrau da Potência da Bomba";
+                    lblPotenciaInicial.Text = "Potência da Bomba Inicial";
                     selectedSystem = comboBox1.SelectedItem.ToString();
                     tabela.Columns[1].HeaderText = "Ganho do Processo (Kp) [L/% h]";
                     tabelaControle.Columns[1].HeaderText = "Kc [% h/L]";
                     break;
                 case "Temperatura":
                     lblDegrau.Text = "Degrau da Potência da Resistência";
+                    lblPotenciaInicial.Text = "Potência da Resistência Inicial";
                     selectedSystem = comboBox1.SelectedItem.ToString();
                     tabela.Columns[1].HeaderText = "Ganho do Processo (Kp) [°C/%]";
                     tabelaControle.Columns[1].HeaderText = "Kc [%/°C]";

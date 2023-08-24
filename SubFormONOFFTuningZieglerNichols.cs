@@ -38,6 +38,7 @@ namespace Supervisório_PCA_2._0
         private string selectedSystem = "Vazão";
 
         private double period = 0;
+        private double Kcu = 0;
         private double amplitude = 0;
 
         private int numPointsToAverageAmplitudePeriod = 5;
@@ -49,7 +50,10 @@ namespace Supervisório_PCA_2._0
 
         private void SubFormONOFFTuningZieglerNichols_Load(object sender, EventArgs e)
         {
-
+            txtUpperPump.Text = Globals.upperLimitPump.ToString("0.00");
+            txtLowerPump.Text = Globals.lowerLimitPump.ToString("0.00");
+            txtUpperRes.Text = Globals.upperLimitRes.ToString("0.00");
+            txtLowerRes.Text = Globals.lowerLimitRes.ToString("0.00");
         }
 
         private void txtSetpointVazao_TextChanged(object sender, EventArgs e)
@@ -59,6 +63,114 @@ namespace Supervisório_PCA_2._0
 
         }
 
+
+        private void txtUpperPump_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!float.TryParse(txtUpperPump.Text, out float upperPump) || upperPump < 0 || upperPump > 100)
+            {
+                MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUpperPump.Text = Globals.upperLimitPump.ToString("0.00");
+                return;
+            }
+
+            Globals.upperLimitPump = upperPump;
+            string command = "ULP " + upperPump.ToString("0.00");
+            Globals.serialPort.WriteLine(command);
+            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void txtLowerPump_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!float.TryParse(txtLowerPump.Text, out float lowerPump) || lowerPump < 0 || lowerPump > 100)
+            {
+                MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLowerPump.Text = Globals.lowerLimitPump.ToString("0.00");
+                return;
+            }
+
+            Globals.lowerLimitPump = lowerPump;
+            string command = "LLP " + lowerPump.ToString("0.00");
+            Globals.serialPort.WriteLine(command);
+            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void txtUpperRes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!float.TryParse(txtUpperRes.Text, out float upperRes) || upperRes < 0 || upperRes > 100)
+            {
+                MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUpperRes.Text = Globals.upperLimitRes.ToString("0.00");
+                return;
+            }
+
+            Globals.upperLimitRes = upperRes;
+            string command = "ULR " + upperRes.ToString("0.00");
+            Globals.serialPort.WriteLine(command);
+            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void txtLowerRes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!float.TryParse(txtLowerRes.Text, out float lowerRes) || lowerRes < 0 || lowerRes > 100)
+            {
+                MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLowerRes.Text = Globals.lowerLimitRes.ToString("0.00");
+                return;
+            }
+
+            Globals.lowerLimitRes = lowerRes;
+            string command = "LLR " + lowerRes.ToString("0.00");
+            Globals.serialPort.WriteLine(command);
+            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
 
         private void txtSetpointVazao_KeyDown(object sender, KeyEventArgs e)
         {
@@ -391,8 +503,6 @@ namespace Supervisório_PCA_2._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double Kcu = 0;
-
             if (sistemaSelecionado.SelectedItem.ToString() == "Vazão")
             {
                 Kcu = (4 * (Globals.upperLimitPump - Globals.lowerLimitPump)/2 ) / (Math.PI * amplitude);
@@ -433,6 +543,8 @@ namespace Supervisório_PCA_2._0
                 ,"Experimento finalizado!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            MessageBox.Show("Para identificar o sistema, entre com uma estimativa do atraso do sistema (theta) na tabela à direita." 
+            , "Atenção! Forneça o atraso (theta)!",MessageBoxButtons.OK, MessageBoxIcon.Information);
             experimentRunning = false;
 
             amplitudes.Clear();
@@ -455,6 +567,7 @@ namespace Supervisório_PCA_2._0
                 lblUnitHisterese.Text = "L / h";
                 lblUnitAmplitude.Text = "L / h";
                 tabelaControle.Columns[1].HeaderText = "Kc [% h/L]";
+                tabelaSistema.Columns[1].HeaderText = "Ganho do Processo (Kp) [L/% h]";
             }
             else if (sistemaSelecionado.SelectedItem.ToString() == "Temperatura")
             {
@@ -467,6 +580,7 @@ namespace Supervisório_PCA_2._0
                 lblUnitHisterese.Text = "°C";
                 lblUnitAmplitude.Text = "°C";
                 tabelaControle.Columns[1].HeaderText = "Kc [%/°C]";
+                tabelaSistema.Columns[1].HeaderText = "Ganho do Processo (Kp) [°C/%]";
             }
 
         }
@@ -491,5 +605,43 @@ namespace Supervisório_PCA_2._0
             return sum / lastNValues.Count;
         }
 
+        private void tabelaSistema_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabelaSistema_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica se a edição foi realizada na terceira coluna (índice 2) e se é uma nova linha
+            if (e.ColumnIndex == 3 && e.RowIndex == tabelaSistema.NewRowIndex - 1)
+            {
+                // Verifica se todas as três colunas foram preenchidas
+                if (tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[3].Value != null)
+                {
+                    // Recupera os valores das células da nova linha e realiza a conversão
+                    if (double.TryParse(tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[3].Value.ToString(), out double theta))
+                    {
+                        tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[0].Value = tabelaSistema.NewRowIndex;
+                        double tau = (period / (2 * Math.PI)) * Math.Tan((Math.PI * (period - 2 * theta)) / period);
+                        double Kp = Math.Sqrt((1 + Math.Pow((2 * Math.PI * tau / period), 2)));
+
+                        tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[1].Value = Kp.ToString("0.00");
+                        tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[2].Value = tau.ToString("0.00");
+                    }
+                    else
+                    {
+                        // Alguns valores não são numéricos, lide com isso de acordo com sua lógica
+                        MessageBox.Show("Digite apenas valores numéricos e somente na coluna theta.", "Erro de conversão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // A nova linha não foi totalmente preenchida, lide com isso de acordo com sua lógica
+                    MessageBox.Show("Digita apenas na coluna theta (atraso).", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+              
+            }
+        }
     }
 }

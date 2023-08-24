@@ -150,6 +150,8 @@ namespace Supervisório_PCA_2._0
             Globals.hysteresisTempUpperLimitData.Clear();
             Globals.pureFlowData.Clear();
             Globals.pureTempOutData.Clear();
+            Globals.flowModelCalc.Clear();
+            Globals.tempModelCalc.Clear();
         }
 
         public static void ConnectSerialPort(string selectedPort)
@@ -169,14 +171,15 @@ namespace Supervisório_PCA_2._0
                 Globals.serialPort.Open();
                 Globals.serialConnected = true;
                 Globals.serialPort.DtrEnable = true;
+                Globals.serialPort.DiscardInBuffer();
 
-                Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
+                Thread.Sleep(300);  // Aguarda 500ms para permitir a reinicialização do Arduino
 
                 // Limpa as listas globais de dados
                 ClearLists();
 
                 Globals.serialPort.DtrEnable = false;
-
+              
                 MessageBox.Show("Conexão à porta " + selectedPort + " estabelecida com sucesso!", "Conexão realizada com sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }

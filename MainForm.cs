@@ -12,6 +12,7 @@ using ScottPlot;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using Supervisório_PCA_2023;
 
 namespace Supervisório_PCA_2._0
 {
@@ -48,6 +49,7 @@ namespace Supervisório_PCA_2._0
             Globals.serialPort.BaudRate = 115200;
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             CheckAndSetCustomCulture();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -88,8 +90,13 @@ namespace Supervisório_PCA_2._0
             {
                 string selectedPort = portsBox.SelectedItem.ToString();
                 GlobalMethods.ConnectSerialPort(selectedPort);
-                textBox2.Text = "Conectado!";
-                textBox2.ForeColor = Color.Blue;
+                if (Globals.serialConnected)
+                {
+                    flowPlot.Reset();
+                    tempPlot.Reset();
+                    textBox2.Text = "Conectado!";
+                    textBox2.ForeColor = Color.Blue;
+                }
             }
         }
 
@@ -133,7 +140,7 @@ namespace Supervisório_PCA_2._0
                     try
                     {
                         // Invoca o método novamente na thread da UI principal
-                        Invoke(new MethodInvoker(() => ProcessData(subStrings)));
+                        BeginInvoke(new MethodInvoker(() => ProcessData(subStrings)));
                     }
                     catch (ObjectDisposedException)
                     {
@@ -153,14 +160,25 @@ namespace Supervisório_PCA_2._0
 
         private void ProcessData(string[] subStrings)
         {
+            if (subStrings is null)
+            {
+                Console.WriteLine("substrings nulas");
+                return;
+            }
+      
             try
             {
                 // Atribui as substrings às listas globais
-                AssignSubstringsToLists(subStrings);
-
+                if (!AssignSubstringsToLists(subStrings))
+                {
+                    Console.WriteLine("vou sair pois AssignSubstringsToLists retornou falso");
+                    return;
+                }
+      
+         
                 // Limpa o gráfico de fluxo e adiciona os pontos correspondentes aos dados
                 flowPlot.Plot.Clear();
-                var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "Vazão");
+                var scatterFlowPlot = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.flowData.ToArray(),label: "PV Vazão");
                 flowPlot.Plot.Grid(Globals.ExibirGridVazao);
                 flowPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(35,Color.Black));
                 flowPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridVazao, color: Color.FromArgb(35, Color.Black));
@@ -185,11 +203,11 @@ namespace Supervisório_PCA_2._0
 
                 // Limpa o gráfico de temperatura e adiciona os pontos correspondentes aos dados
                 tempPlot.Plot.Clear();
-                var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray(), label: "Temperatura");
+                var scatterTempPlot = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempOutData.ToArray(), label: "PV Temperatura");
                 tempPlot.Plot.Grid(Globals.ExibirGridTemp);
                 tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
                 tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
-                tempPlot.Plot.SetAxisLimitsY(Globals.tempOutData.Min() * 0.8, Globals.tempOutData.Max() * 1.2);
+                tempPlot.Plot.SetAxisLimitsY(Math.Min(Globals.tempOutData.Min() * 0.8,0), Math.Max(Globals.tempOutData.Max() * 1.2,0.1));
                 tempPlot.Plot.SetAxisLimitsY(-3, 110, tempPlot.Plot.RightAxis.AxisIndex);
                 tempPlot.Plot.Title("Controle de Temperatura");
                 tempPlot.Plot.YAxis.Label("Temperatura (°C)");
@@ -246,7 +264,7 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.ExibirPotenciaBomba)
                 {
-                    var scatterPumpPower = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pumpPowerData.ToArray(), label: "Pot. Bomba");
+                    var scatterPumpPower = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pumpPowerData.ToArray(), label: "MV Pot. Bomba");
                     scatterPumpPower.LineColor = Globals.CorPotenciaBomba;
                     scatterPumpPower.MarkerColor = Globals.CorPotenciaBomba;
                     scatterPumpPower.MarkerSize = Globals.MarkerSizeVazao;
@@ -264,7 +282,7 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.ExibirPotenciaResistencia)
                 {
-                    var scatterResPower = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.resPowerData.ToArray(), label: "Pot. Resistência");
+                    var scatterResPower = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.resPowerData.ToArray(), label: "MV Pot. Resistência");
                     scatterResPower.LineColor = Globals.CorPotenciaRes;
                     scatterResPower.MarkerColor = Globals.CorPotenciaRes;
                     scatterResPower.MarkerSize = Globals.MarkerSizeTemp;
@@ -283,7 +301,7 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.ExibirVazaoPreFiltragem)
                 {
-                    var scatterTrueFlow = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pureFlowData.ToArray(), label: "Vazão Pré-filtro");
+                    var scatterTrueFlow = flowPlot.Plot.AddScatter(Globals.timeFlowData.ToArray(), Globals.pureFlowData.ToArray(), label: "PV Vazão Pré-filtro");
                     scatterTrueFlow.LineColor = Globals.CorVazaoPrefiltragem;
                     scatterTrueFlow.MarkerColor = Globals.CorVazaoPrefiltragem;
                     scatterTrueFlow.MarkerSize = Globals.MarkerSizeVazao;
@@ -292,7 +310,7 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.ExibirTempPreFiltragem)
                 {
-                    var scatterTrueTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.pureTempOutData.ToArray(), label: "Temp. Pré-filtro");
+                    var scatterTrueTemp = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.pureTempOutData.ToArray(), label: "PV Temp. Pré-filtro");
                     scatterTrueTemp.LineColor = Globals.CorTempPrefiltragem;
                     scatterTrueTemp.MarkerColor = Globals.CorTempPrefiltragem;
                     scatterTrueTemp.MarkerSize = Globals.MarkerSizeTemp;
@@ -301,11 +319,21 @@ namespace Supervisório_PCA_2._0
 
                 if (Globals.ExibirTempEntrada)
                 {
-                    var scatterTempIn = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempInData.ToArray(), label: "Temp. Entrada");
+                    var scatterTempIn = tempPlot.Plot.AddScatter(Globals.timeTempData.ToArray(), Globals.tempInData.ToArray(), label: "DV Temp. Entrada");
                     scatterTempIn.LineColor = Globals.CorTempEntrada;
                     scatterTempIn.MarkerColor = Globals.CorTempEntrada;
                     scatterTempIn.MarkerSize = Globals.MarkerSizeTemp;
                     scatterTempIn.LineWidth = Globals.LineSizeTemp;
+                }
+
+                if(Globals.ExibirPrevisaoVazao)
+                {
+                    var scatterPrevisaoVazao = flowPlot.Plot.AddScatter(Globals.timeModelData.ToArray(), Globals.flowModelCalc.ToArray(), label: "Previsão Vazão");
+                    scatterPrevisaoVazao.MarkerColor = Globals.CorVazao;
+                    scatterPrevisaoVazao.LineStyle = LineStyle.Dot;
+                    scatterPrevisaoVazao.LineColor = Globals.CorVazao;
+                    scatterPrevisaoVazao.MarkerSize = 0;
+                    scatterPrevisaoVazao.LineWidth = Globals.LineSizeVazao;
                 }
 
                 flowPlot.Render();
@@ -339,7 +367,7 @@ namespace Supervisório_PCA_2._0
         }
 
 
-        private void AssignSubstringsToLists(string[] subStrings)
+        private bool AssignSubstringsToLists(string[] subStrings)
         {
             // Verifique se o número de substrings é igual ao número de listas
             if (subStrings.Length != Globals.globalListsNumber)
@@ -347,7 +375,7 @@ namespace Supervisório_PCA_2._0
                 // Se o número estiver incorreto, exiba uma mensagem de erro ou tome a ação necessária
                 Console.WriteLine("Número incorreto de substrings!");
                 GlobalMethods.ClearLists();
-                return;
+                return false;
             }
 
             // Use a cultura padrão para conversão de strings em double
@@ -378,6 +406,11 @@ namespace Supervisório_PCA_2._0
 
                 Globals.pureFlowData.Add(double.Parse(subStrings[10], culture));
                 Globals.pureTempOutData.Add(double.Parse(subStrings[11], culture));
+
+                if(Globals.ExibirPrevisaoVazao)
+                {
+                    Globals.timeModelData.Add(double.Parse(subStrings[0], culture));
+                }
 
                 // Verifique se a lista `Globals.timeTempData` excede o número máximo de pontos
                 if (Globals.timeTempData.Count > Globals.numberTempPoints)
@@ -414,6 +447,7 @@ namespace Supervisório_PCA_2._0
                 // Se ocorrer um erro de conversão, exiba uma mensagem de erro ou tome a ação necessária
                 Console.WriteLine("Erro na conversão das substrings para double: " + ex.Message);
             }
+            return true;
         }
 
         private string ReadLineSerialPort()
@@ -421,6 +455,11 @@ namespace Supervisório_PCA_2._0
             try
             {
                 string lineRead = Globals.serialPort.ReadLine();  // Lê uma linha da porta serial
+                if (lineRead.Length <  65)
+                {
+                    Console.WriteLine(lineRead.Length);
+                    return string.Empty;
+                }
                 return lineRead;
             }
             catch (Exception ex)
@@ -430,9 +469,9 @@ namespace Supervisório_PCA_2._0
                 if (result == DialogResult.Abort)
                 {
                     // Caso seja necessário abortar, invoca o clique do botão "disconnectPort"
-                    if (this.InvokeRequired)
+                    if (InvokeRequired)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        BeginInvoke((MethodInvoker)delegate
                         {
                             disconnectPort.PerformClick();  // Executa o clique do botão "disconnectPort" para desconectar da porta serial
                         });
@@ -445,9 +484,9 @@ namespace Supervisório_PCA_2._0
                 else if (result == DialogResult.Retry)
                 {
                     // Caso seja necessário reconectar, invoca a desconexão do porto serial e o clique do botão "connectPort"
-                    if (this.InvokeRequired)
+                    if (InvokeRequired)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        BeginInvoke((MethodInvoker)delegate
                         {
                             GlobalMethods.DisconnectSerialPort();  // Executa a desconexão da porta serial
                             connectPort.PerformClick();  // Executa o clique do botão "connectPort" para reconectar à porta serial
@@ -514,7 +553,7 @@ namespace Supervisório_PCA_2._0
 
                     // Cria o arquivo CSV e escreve o cabeçalho
                     dataStreamWriter = new StreamWriter(filePath);
-                    string header = "Tempo (segundos),Vazão medida (L/hr),Setpoint da Vazão (L/hr),Potência da Bomba (%),Histerese da Vazão (L/hr),Temperatura de Entrada (°C),Temperatura de Saída (°C),Setpoint da Temperatura de Saída (°C),Potência da Resistência (%),Histerese da Temperatura (°C),Vazão Pura Pré-Filtro (L/hr), Temperatura de Saída Pura Pré-Filtro (°C)";
+                    string header = "Tempo (segundos),PV Vazão medida (L/hr),SP Setpoint da Vazão (L/hr),MV Potência da Bomba (%),Histerese da Vazão (L/hr),DV Temperatura de Entrada (°C),PV Temperatura de Saída (°C),SP Setpoint da Temperatura de Saída (°C),MV Potência da Resistência (%),Histerese da Temperatura (°C),PV Vazão Pura Pré-Filtro (L/hr),PV Temperatura de Saída Pura Pré-Filtro (°C)";
                     dataStreamWriter.WriteLine(header);
 
                     // Define a flag global como TRUE para indicar que a gravação de dados está ocorrendo
@@ -629,7 +668,7 @@ namespace Supervisório_PCA_2._0
 
         private void testeDeDegrauEmMalhaAbertaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SubFormAutoTuningFOPTD subFOPTD = new SubFormAutoTuningFOPTD();
+            SubFormStepTuningFOPTD subFOPTD = new SubFormStepTuningFOPTD();
             subFOPTD.Show();
         }
 
@@ -648,6 +687,17 @@ namespace Supervisório_PCA_2._0
         private void manualDeOperaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Entre em contato com a comissão do PCA do PET Engenharia Química da UEM para ter acesso ao manual de operação. Você encaminhar um e-mail para pet.uem.eq@gmail.com.", "Entrar em contato!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cadastroDeModeloFOPTDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubFormConfigModeloFOPTD subForm = new SubFormConfigModeloFOPTD();
+            subForm.Show();
+        }
+
+        private void testeEmMalhaFechadaPPIPIDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

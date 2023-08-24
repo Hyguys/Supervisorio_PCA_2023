@@ -30,7 +30,7 @@ namespace Supervisório_PCA_2._0
             txtGanhoTemp.Text = Convert.ToString(Globals.ganhoTemp);
             txtIntegralTemp.Text = Convert.ToString(Globals.integralTemp);
             txtDerivativoTemp.Text = Convert.ToString(Globals.derivativoTemp);
-            txtPotenciaResistencia.Text = Globals.resPower.ToString("");
+            txtPotenciaResistencia.Text = Globals.resPower.ToString("0.00");
         }
 
         private void txtPotenciaBomba_TextChanged(object sender, EventArgs e)
@@ -124,6 +124,11 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
+            if (Globals.controlTypePump == 0)
+            {
+                //calcular modelo aqui
+            }
+
             Globals.pumpPower = pumpPower;
             string command = "PP " + pumpPower.ToString("0.00");
             Globals.serialPort.WriteLine(command);
@@ -139,6 +144,7 @@ namespace Supervisório_PCA_2._0
                 case 0: // MANUAL
                     txtHysteresisVazao.ReadOnly = true;
                     txtGanhoVazao.ReadOnly = true;
+                    txtPotenciaBomba.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
@@ -186,7 +192,7 @@ namespace Supervisório_PCA_2._0
                     //txtIntegralVazao.BackColor = Color.Gainsboro;
                     //txtDerivativoVazao.BackColor = Color.Gainsboro;
 
-                    MessageBox.Show("O Controle Propocional digital, implementado na forma de velocidade, não é viável (não controla). Está disponível aqui somente para fins didáticos, mas o controle mais simples que pode ser implementado é o Controle PI","ALERTA!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("O Controle Proporcional necessita do bias (saída do controle no setpoint desejado). Para o sistema de vazão, isso foi feito a partir de uma estimativa com o ganho do processo, dividindo o setpoint por um fator de 0.63 para se encontrar o bias.", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
 
                 case 3: // Controle Proporcional Integral
@@ -458,7 +464,8 @@ namespace Supervisório_PCA_2._0
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle proporcional iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da vazão: " + Globals.setpointVazao + " L/h\n" +
-                    "Ganho do controlador: " + Globals.ganhoVazao + " L h-1 %-1",
+                    "Ganho do controlador: " + Globals.ganhoVazao + " L h-1 %-1\n" +
+                    "Saída do controlador no estado estacionário estimada/empírica (bias ou viés):" + (Globals.setpointVazao/0.63).ToString("0.00") + "%\n",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 case 3:
@@ -662,6 +669,30 @@ namespace Supervisório_PCA_2._0
                     "Tempo derivativo do controlador: " + Globals.derivativoTemp + " s",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
+                case 5:
+                    MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
+                    "Controle cascata proporcional iniciado com os seguintes parâmetros:\n" +
+                    "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n",
+                    "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                case 6:
+                    MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
+                    "Controle cascata proporcional-integral iniciado com os seguintes parâmetros:\n" +
+                    "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n" +
+                    "Tempo integral do controlador: " + Globals.integralTemp + " s",
+                    "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                case 7:
+                    MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
+                    "Controle cascata proporcional-integral-derivativo iniciado com os seguintes parâmetros:\n" +
+                    "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n" +
+                    "Tempo integral do controlador: " + Globals.integralTemp + " s" +
+                    "Tempo derivativo do controlador: " + Globals.derivativoTemp + " s",
+                    "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
             }
         }
 
@@ -709,13 +740,7 @@ namespace Supervisório_PCA_2._0
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = false;
 
-                    // Definir cores dos TextBox
-                   // txtPotenciaResistencia.BackColor = Color.White;
-                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
-                   /// txtGanhoTemp.BackColor = Color.Gainsboro;
-                   // txtIntegralTemp.BackColor = Color.Gainsboro;
-                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
-
+                    txtSetpointVazao.ReadOnly = false;
                     break;
                 case 1: // ON-OFF
                     txtPotenciaResistencia.ReadOnly = true;
@@ -726,13 +751,7 @@ namespace Supervisório_PCA_2._0
                     Globals.showHysteresisTemp = true;
                     Globals.showSPTemp = true;
 
-
-                    // Definir cores dos TextBox
-                   // txtPotenciaResistencia.BackColor = Color.Gainsboro;
-                   // txtHysteresisTemp.BackColor = Color.White;
-                   // txtGanhoTemp.BackColor = Color.Gainsboro;
-                   // txtIntegralTemp.BackColor = Color.Gainsboro;
-                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
+                    txtSetpointVazao.ReadOnly = false;
                     break;
                 case 2: // Controle Proporcional
                     txtPotenciaResistencia.ReadOnly = true;
@@ -743,16 +762,8 @@ namespace Supervisório_PCA_2._0
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
 
-
-                    // Definir cores dos TextBox
-                    // txtPotenciaResistencia.BackColor = Color.Gainsboro;
-                    // txtHysteresisTemp.BackColor = Color.Gainsboro;
-                    // txtGanhoTemp.BackColor = Color.White;
-                    // txtIntegralTemp.BackColor = Color.Gainsboro;
-                    // txtDerivativoTemp.BackColor = Color.Gainsboro;
-
-
-                    MessageBox.Show("O Controle Propocional digital, implementado na forma de velocidade, não é viável (não controla). Está disponível aqui somente para fins didáticos, mas o controle mais simples que pode ser implementado é o Controle PI", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSetpointVazao.ReadOnly = false;
+                    MessageBox.Show("O Controle Proporcional necessita do bias (saída do controle no setpoint desejado). Atualmente para o sistema de temperatura isso não está implementado e o bias será a última saída do controlador. Portanto, somente use esse controle P para controle regulatório, para servo ele pode não funcionar devido à diferença de bias.", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 case 3: // Controle Proporcional Integral
                     txtPotenciaResistencia.ReadOnly = true;
@@ -763,13 +774,7 @@ namespace Supervisório_PCA_2._0
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
 
-
-                    // Definir cores dos TextBox
-                  //  txtPotenciaResistencia.BackColor = Color.Gainsboro;
-                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
-                   // txtGanhoTemp.BackColor = Color.White;
-                   // txtIntegralTemp.BackColor = Color.White;
-                   // txtDerivativoTemp.BackColor = Color.Gainsboro;
+                    txtSetpointVazao.ReadOnly = false;
                     break;
                 case 4: // Controle Proporcional Integral e Derivativo
                     txtPotenciaResistencia.ReadOnly = true;
@@ -778,14 +783,72 @@ namespace Supervisório_PCA_2._0
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = false;
                     Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
 
+                    txtPotenciaBomba.ReadOnly = false;
+                    txtSetpointVazao.ReadOnly = false;
+                    break;
+                case 5: // Controle Cascata Proporcional
+                    if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+                    {
 
-                    // Definir cores dos TextBox
-                    //txtPotenciaResistencia.BackColor = Color.Gainsboro;
-                   // txtHysteresisTemp.BackColor = Color.Gainsboro;
-                   // txtGanhoTemp.BackColor = Color.White;
-                   // txtIntegralTemp.BackColor = Color.White;
-                   // txtDerivativoTemp.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Para que seja possível acionar o controle em cascata, a bomba deve estar em modo de controle automático (P, PI, ou PID). Altere o modo de controle e tente novamente, não esquecendo de apertar CONFIRMAR.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    txtPotenciaResistencia.ReadOnly = false;
+                    txtHysteresisTemp.ReadOnly = true;
+                    txtGanhoTemp.ReadOnly = false;
+                    txtIntegralTemp.ReadOnly = true;
+                    txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
+
+                    txtPotenciaBomba.ReadOnly = true;
+                    txtSetpointVazao.ReadOnly = true;
+                    break;
+                case 6: // Controle Cascata Proporcional-Integral
+                    if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Para que seja possível acionar o controle em cascata, a bomba deve estar em modo de controle automático (P, PI, ou PID). Altere o modo de controle e tente novamente, não esquecendo de apertar CONFIRMAR.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    txtPotenciaResistencia.ReadOnly = false;
+                    txtHysteresisTemp.ReadOnly = true;
+                    txtGanhoTemp.ReadOnly = false;
+                    txtIntegralTemp.ReadOnly = false;
+                    txtDerivativoTemp.ReadOnly = true;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
+
+                    txtPotenciaBomba.ReadOnly = true;
+                    txtSetpointVazao.ReadOnly = true;
+                    break;
+                case 7: // Controle Cascata PID
+                    if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Para que seja possível acionar o controle em cascata, a bomba deve estar em modo de controle automático (P, PI, ou PID). Altere o modo de controle e tente novamente, não esquecendo de apertar CONFIRMAR.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    txtPotenciaResistencia.ReadOnly = false;
+                    txtHysteresisTemp.ReadOnly = true;
+                    txtGanhoTemp.ReadOnly = false;
+                    txtIntegralTemp.ReadOnly = false;
+                    txtDerivativoTemp.ReadOnly = false;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
+
+                    txtPotenciaBomba.ReadOnly = true;
+                    txtSetpointVazao.ReadOnly = true;
+
                     break;
             }
         }
@@ -823,6 +886,11 @@ namespace Supervisório_PCA_2._0
         }
 
         private void txtHysteresisTemp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabVazao_Click(object sender, EventArgs e)
         {
 
         }

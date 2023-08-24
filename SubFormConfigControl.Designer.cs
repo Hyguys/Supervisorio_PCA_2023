@@ -81,6 +81,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rampDurationFlow)).BeginInit();
@@ -95,11 +98,14 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(478, 333);
+            this.tabControl1.Size = new System.Drawing.Size(478, 372);
             this.tabControl1.TabIndex = 10;
             // 
             // tabVazao
             // 
+            this.tabVazao.Controls.Add(this.label26);
+            this.tabVazao.Controls.Add(this.textBox1);
+            this.tabVazao.Controls.Add(this.label27);
             this.tabVazao.Controls.Add(this.lblRampFlow);
             this.tabVazao.Controls.Add(this.rampDurationFlow);
             this.tabVazao.Controls.Add(this.cmbFlowSPChange);
@@ -128,10 +134,11 @@
             this.tabVazao.Location = new System.Drawing.Point(4, 30);
             this.tabVazao.Name = "tabVazao";
             this.tabVazao.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVazao.Size = new System.Drawing.Size(470, 299);
+            this.tabVazao.Size = new System.Drawing.Size(470, 338);
             this.tabVazao.TabIndex = 0;
             this.tabVazao.Text = "Vazão";
             this.tabVazao.UseVisualStyleBackColor = true;
+            this.tabVazao.Click += new System.EventHandler(this.tabVazao_Click);
             // 
             // lblRampFlow
             // 
@@ -392,7 +399,8 @@
             "On-Off",
             "Controle P",
             "Controle PI",
-            "Controle PID"});
+            "Controle PID",
+            "Controle PID-f"});
             this.cmbControlVazao.Location = new System.Drawing.Point(220, 88);
             this.cmbControlVazao.Name = "cmbControlVazao";
             this.cmbControlVazao.Size = new System.Drawing.Size(110, 29);
@@ -657,7 +665,11 @@
             "On-Off",
             "Controle P",
             "Controle PI",
-            "Controle PID"});
+            "Controle PID",
+            "Controle PID-f",
+            "Cascata P",
+            "Cascata PI",
+            "Cascata PID"});
             this.cmbControlRes.Location = new System.Drawing.Point(220, 88);
             this.cmbControlRes.Name = "cmbControlRes";
             this.cmbControlRes.Size = new System.Drawing.Size(110, 29);
@@ -718,13 +730,43 @@
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(332, 302);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(77, 21);
+            this.label26.TabIndex = 31;
+            this.label26.Text = "segundos";
+            // 
+            // textBox1
+            // 
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Location = new System.Drawing.Point(220, 298);
+            this.textBox1.MaxLength = 3;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(110, 29);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.Text = "0";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 298);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(164, 21);
+            this.label27.TabIndex = 32;
+            this.label27.Text = "Tempo Derivativo (τD)\r\n";
+            // 
             // SubFormConfigControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(497, 354);
+            this.ClientSize = new System.Drawing.Size(497, 389);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -797,5 +839,8 @@
         private System.Windows.Forms.NumericUpDown rampDurationFlow;
         private System.Windows.Forms.Label lblRampTemp;
         private System.Windows.Forms.NumericUpDown rampDurationTemp;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label27;
     }
 }

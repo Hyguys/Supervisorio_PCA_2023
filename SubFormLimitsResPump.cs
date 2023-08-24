@@ -73,11 +73,11 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtLowerPump.Text, out float lowerPump) || lowerPump < 0 || lowerPump > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLowerPump.Text = Globals.upperLimitPump.ToString("0.00");
+                txtLowerPump.Text = Globals.lowerLimitPump.ToString("0.00");
                 return;
             }
 
-            Globals.upperLimitPump = lowerPump;
+            Globals.lowerLimitPump = lowerPump;
             string command = "LLP " + lowerPump.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -127,16 +127,20 @@ namespace Supervisório_PCA_2._0
             if (!float.TryParse(txtLowerRes.Text, out float lowerRes) || lowerRes < 0 || lowerRes > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLowerRes.Text = Globals.upperLimitRes.ToString("0.00");
+                txtLowerRes.Text = Globals.lowerLimitRes.ToString("0.00");
                 return;
             }
 
-            Globals.upperLimitRes = lowerRes;
+            Globals.lowerLimitRes = lowerRes;
             string command = "LLR " + lowerRes.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
+        private void txtLowerRes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

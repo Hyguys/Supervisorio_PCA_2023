@@ -37,6 +37,10 @@ namespace Supervisório_PCA_2._0
         public static List<double> pureTempOutData = new List<double>();
         public static List<double> pureFlowData = new List<double>();
 
+        public static List<double> timeModelData = new List<double>();
+        public static List<double> flowModelCalc = new List<double>();
+        public static List<double> tempModelCalc = new List<double>();
+
         /*SEÇÃO VALORES PADRÃO VARIÁVEIS GLOBAIS*/
         public static int globalListsNumber = 13;
 
@@ -59,7 +63,7 @@ namespace Supervisório_PCA_2._0
         public static double defaultPumpPower = 0;
         public static double defaultSetpointVazao = 35;
         public static double defaultHistereseVazao = 10;
-        public static double defaultGanhoVazao = 1;
+        public static double defaultGanhoVazao = 2;
         public static double defaultIntegralVazao = 2;
         public static double defaultDerivativoVazao = 1;
 
@@ -86,11 +90,11 @@ namespace Supervisório_PCA_2._0
 
 
 
-
         public static bool defaultExibirGridVazao = true;
         public static bool defaultExibirLegendaVazao = true;
         public static bool defaultExibirPotenciaBomba = true;
         public static bool defaultExibirVazaoPreFiltragem = false;
+        public static bool defaultExibirPrevisaoVazao = false;
         public static int defaultMarkerSizeVazao = 3;
         public static int defaultLineSizeVazao = 1;
         public static int defaultHistoricoVazao = 5;
@@ -104,6 +108,7 @@ namespace Supervisório_PCA_2._0
         public static bool defaultExibirPotenciaResistencia = true;
         public static bool defaultExibirTempEntrada = false;
         public static bool defaultExibirTempPreFiltragem = false;
+        public static bool defaultExibirPrevisaoTemp = false;
         public static int defaultMarkerSizeTemp = 3;
         public static int defaultLineSizeTemp = 1;
         public static int defaultHistoricoTemp = 10;
@@ -169,6 +174,7 @@ namespace Supervisório_PCA_2._0
         public static bool ExibirLegendaVazao = defaultExibirLegendaVazao;
         public static bool ExibirPotenciaBomba = defaultExibirPotenciaBomba;
         public static bool ExibirVazaoPreFiltragem = defaultExibirVazaoPreFiltragem;
+        public static bool ExibirPrevisaoVazao = defaultExibirPrevisaoVazao;
         public static int MarkerSizeVazao = defaultMarkerSizeVazao;
         public static int LineSizeVazao = defaultLineSizeVazao;
         public static double HistoricoVazao = defaultHistoricoVazao;
@@ -182,6 +188,7 @@ namespace Supervisório_PCA_2._0
         public static bool ExibirPotenciaResistencia = defaultExibirPotenciaResistencia;
         public static bool ExibirTempEntrada = defaultExibirTempEntrada;
         public static bool ExibirTempPreFiltragem = defaultExibirTempPreFiltragem;
+        public static bool ExibirPrevisaoTemp = defaultExibirPrevisaoTemp;
         public static int MarkerSizeTemp = defaultMarkerSizeTemp;
         public static int LineSizeTemp = defaultLineSizeTemp;
         public static double HistoricoTemp = defaultHistoricoTemp;
@@ -191,7 +198,13 @@ namespace Supervisório_PCA_2._0
         public static Color CorTempPrefiltragem = defaultCorTempPrefiltragem;
         public static Color CorTempEntrada = defaultCorTempEntrada;
 
-   
+        public static double KpVazao;
+        public static double TauVazao;
+        public static double ThetaVazao;
+
+        public static double KpTemp;
+        public static double TauTemp;
+        public static double ThetaTemp;
     }
 
 }
