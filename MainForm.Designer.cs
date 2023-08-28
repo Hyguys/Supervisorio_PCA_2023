@@ -353,7 +353,7 @@ namespace Supervisório_PCA_2._0
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "SUPERVISÓRIO 2.0 PROJETO DE CONTROLE COM ARDUINO por Leandro Favaretto";
+            this.Text = "SUPERVISÓRIO PROJETO DE CONTROLE COM ARDUINO por Leandro Favaretto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);

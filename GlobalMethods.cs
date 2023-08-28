@@ -90,6 +90,9 @@ namespace Supervisório_PCA_2._0
 
             Globals.lowerLimitRes = Globals.defaultLowerLimitRes;
             Globals.upperLimitRes = Globals.defaultUpperLimitRes;
+
+            Globals.alfaDerivativoBomba = Globals.defaultAlfaDerivativoBomba;
+            Globals.alfaDerivativoResistencia = Globals.defaultAlfaDerivativoResistencia;
         }
 
         public static DialogResult ShowInputDialog(ref string input)

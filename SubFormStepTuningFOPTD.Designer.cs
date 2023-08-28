@@ -288,6 +288,7 @@
             this.txtPotenciaInicial.TabIndex = 32;
             this.txtPotenciaInicial.Text = "0";
             this.txtPotenciaInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPotenciaInicial.TextChanged += new System.EventHandler(this.txtPotenciaInicial_TextChanged);
             // 
             // lblPotenciaInicial
             // 

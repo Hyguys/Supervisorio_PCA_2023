@@ -193,5 +193,10 @@ namespace Supervisório_PCA_2._0
         {
 
         }
+
+        private void lblEWMAVazao_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

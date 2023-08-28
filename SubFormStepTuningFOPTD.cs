@@ -48,8 +48,8 @@ namespace Supervisório_PCA_2._0
         // Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 5%)
         private double equilibriumThreshold = 0.05;
 
-        // Número de pontos a serem considerados para verificar a variação, baseados em 2 segundos de pontos
-        private int numPointsToCheck = (int)(2/((double)Globals.intervalSampling/1000)); 
+        // Número de pontos a serem considerados para verificar a variação, baseados em 5 segundos de pontos
+        private int numPointsToCheck = (int)(5/((double)Globals.intervalSampling/1000)); 
 
         // Função para verificar se o sistema atingiu o equilíbrio
         private bool HasSystemReachedEquilibrium(List<double> data)
@@ -89,7 +89,8 @@ namespace Supervisório_PCA_2._0
                 MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
+            lblEquilibrium.Visible = false;
             //Observe que aqui o valor do numero que está no txtPotenciaBomba é convertido na variável stepPumpPower,
             //mesmo que o experimento a ser realizado seja da resistencia. isso é corrigido mais a frente.
             if (!double.TryParse(txtPotenciaBomba.Text,out stepPumpPower) || stepPumpPower < -100 || stepPumpPower > 100)
@@ -175,11 +176,65 @@ namespace Supervisório_PCA_2._0
         {
             if (selectedSystem == "Vazão")
             {
-                txtPotenciaInicial.Text = Globals.flowData.Last().ToString("0.00");
+                if (!IsDisposed && InvokeRequired)
+                {
+                    try
+                    {
+                        // Invoca o método novamente na thread da UI principal
+                        BeginInvoke(new MethodInvoker(() => txtPotenciaInicial.Text = Globals.pumpPowerData.Last().ToString("0.00")));
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Trate a exceção ObjectDisposedException, se necessário
+                        // ou apenas retorne do método
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        // Invoca o método novamente na thread da UI princip
+                        txtPotenciaInicial.Text = Globals.pumpPowerData.Last().ToString("0.00");
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Trate a exceção ObjectDisposedException, se necessário
+                        // ou apenas retorne do método
+                        return;
+                    }
+                }
             }
             else
             {
-                txtPotenciaInicial.Text = Globals.tempOutData.Last().ToString("0.00");
+                 if (!IsDisposed && InvokeRequired)
+                {
+                    try
+                    {
+                        // Invoca o método novamente na thread da UI principal
+                        BeginInvoke(new MethodInvoker(() => txtPotenciaInicial.Text = Globals.tempOutData.Last().ToString("0.00")));
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Trate a exceção ObjectDisposedException, se necessário
+                        // ou apenas retorne do método
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        // Invoca o método novamente na thread da UI princip
+                        txtPotenciaInicial.Text = Globals.tempOutData.Last().ToString("0.00");
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Trate a exceção ObjectDisposedException, se necessário
+                        // ou apenas retorne do método
+                        return;
+                    }
+                }
             }
             // Verificar se o experimento está em execução
             if (experimentRunning)
@@ -237,7 +292,17 @@ namespace Supervisório_PCA_2._0
                     if (HasSystemReachedEquilibrium(flowExp) && messageEquilibriumShown == false)
                     {
                         // O sistema atingiu o equilíbrio, você pode fazer alguma ação aqui
-                        MessageBox.Show("Regime permanente/estado estacionário detectado. Você pode finalizar o experimento!", "Estado Estacionário Detectado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            // Invoca o método novamente na thread da UI principal
+                            BeginInvoke(new MethodInvoker(() =>lblEquilibrium.Visible = true));
+                        }
+                        catch (ObjectDisposedException)
+                        {
+                            // Trate a exceção ObjectDisposedException, se necessário
+                            // ou apenas retorne do método
+                            return;
+                        }
                         messageEquilibriumShown = true;
                     }
                 }
@@ -290,7 +355,17 @@ namespace Supervisório_PCA_2._0
                     if (HasSystemReachedEquilibrium(tempExp) && messageEquilibriumShown == false)
                     {
                         // O sistema atingiu o equilíbrio, você pode fazer alguma ação aqui
-                        MessageBox.Show("Regime permanente/estado estacionário detectado. Você pode finalizar o experimento!", "Estado Estacionário Detectado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            // Invoca o método novamente na thread da UI principal
+                            BeginInvoke(new MethodInvoker(() => lblEquilibrium.Visible = true));
+                        }
+                        catch (ObjectDisposedException)
+                        {
+                            // Trate a exceção ObjectDisposedException, se necessário
+                            // ou apenas retorne do método
+                            return;
+                        }
                         messageEquilibriumShown = true;
                     }
                 }
@@ -627,6 +702,11 @@ namespace Supervisório_PCA_2._0
                     tabelaControle.Columns[1].HeaderText = "Kc [%/°C]";
                     break;
             }
+        }
+
+        private void txtPotenciaInicial_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     

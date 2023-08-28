@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVazao = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtAlfaDerivativoBomba = new System.Windows.Forms.TextBox();
+            this.lblAlfaDerivativoBomba = new System.Windows.Forms.Label();
             this.lblRampFlow = new System.Windows.Forms.Label();
             this.rampDurationFlow = new System.Windows.Forms.NumericUpDown();
             this.cmbFlowSPChange = new System.Windows.Forms.ComboBox();
@@ -56,6 +59,9 @@
             this.cmbControlVazao = new System.Windows.Forms.ComboBox();
             this.lblInterval = new System.Windows.Forms.Label();
             this.tabTemp = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtAlfaDerivativoResistencia = new System.Windows.Forms.TextBox();
+            this.lblAlfaDerivativoResistencia = new System.Windows.Forms.Label();
             this.lblRampTemp = new System.Windows.Forms.Label();
             this.rampDurationTemp = new System.Windows.Forms.NumericUpDown();
             this.cmbTempSPChange = new System.Windows.Forms.ComboBox();
@@ -81,9 +87,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rampDurationFlow)).BeginInit();
@@ -98,14 +104,14 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(478, 372);
+            this.tabControl1.Size = new System.Drawing.Size(478, 402);
             this.tabControl1.TabIndex = 10;
             // 
             // tabVazao
             // 
             this.tabVazao.Controls.Add(this.label26);
-            this.tabVazao.Controls.Add(this.textBox1);
-            this.tabVazao.Controls.Add(this.label27);
+            this.tabVazao.Controls.Add(this.txtAlfaDerivativoBomba);
+            this.tabVazao.Controls.Add(this.lblAlfaDerivativoBomba);
             this.tabVazao.Controls.Add(this.lblRampFlow);
             this.tabVazao.Controls.Add(this.rampDurationFlow);
             this.tabVazao.Controls.Add(this.cmbFlowSPChange);
@@ -134,11 +140,42 @@
             this.tabVazao.Location = new System.Drawing.Point(4, 30);
             this.tabVazao.Name = "tabVazao";
             this.tabVazao.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVazao.Size = new System.Drawing.Size(470, 338);
+            this.tabVazao.Size = new System.Drawing.Size(470, 368);
             this.tabVazao.TabIndex = 0;
             this.tabVazao.Text = "Vazão";
             this.tabVazao.UseVisualStyleBackColor = true;
             this.tabVazao.Click += new System.EventHandler(this.tabVazao_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(332, 302);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(0, 21);
+            this.label26.TabIndex = 31;
+            // 
+            // txtAlfaDerivativoBomba
+            // 
+            this.txtAlfaDerivativoBomba.AcceptsReturn = true;
+            this.txtAlfaDerivativoBomba.Location = new System.Drawing.Point(220, 298);
+            this.txtAlfaDerivativoBomba.MaxLength = 3;
+            this.txtAlfaDerivativoBomba.Name = "txtAlfaDerivativoBomba";
+            this.txtAlfaDerivativoBomba.ReadOnly = true;
+            this.txtAlfaDerivativoBomba.Size = new System.Drawing.Size(110, 29);
+            this.txtAlfaDerivativoBomba.TabIndex = 30;
+            this.txtAlfaDerivativoBomba.Text = "0";
+            this.txtAlfaDerivativoBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAlfaDerivativoBomba.TextChanged += new System.EventHandler(this.txtAlfaDerivativoBomba_TextChanged);
+            // 
+            // lblAlfaDerivativoBomba
+            // 
+            this.lblAlfaDerivativoBomba.AutoSize = true;
+            this.lblAlfaDerivativoBomba.Location = new System.Drawing.Point(6, 298);
+            this.lblAlfaDerivativoBomba.Name = "lblAlfaDerivativoBomba";
+            this.lblAlfaDerivativoBomba.Size = new System.Drawing.Size(214, 21);
+            this.lblAlfaDerivativoBomba.TabIndex = 32;
+            this.lblAlfaDerivativoBomba.Text = "Filtro da Ação Derivativa (αD)";
+            this.lblAlfaDerivativoBomba.Click += new System.EventHandler(this.label27_Click);
             // 
             // lblRampFlow
             // 
@@ -400,7 +437,7 @@
             "Controle P",
             "Controle PI",
             "Controle PID",
-            "Controle PID-f"});
+            "Controle PID-fd"});
             this.cmbControlVazao.Location = new System.Drawing.Point(220, 88);
             this.cmbControlVazao.Name = "cmbControlVazao";
             this.cmbControlVazao.Size = new System.Drawing.Size(110, 29);
@@ -419,6 +456,12 @@
             // 
             // tabTemp
             // 
+            this.tabTemp.Controls.Add(this.button1);
+            this.tabTemp.Controls.Add(this.label28);
+            this.tabTemp.Controls.Add(this.label29);
+            this.tabTemp.Controls.Add(this.label27);
+            this.tabTemp.Controls.Add(this.txtAlfaDerivativoResistencia);
+            this.tabTemp.Controls.Add(this.lblAlfaDerivativoResistencia);
             this.tabTemp.Controls.Add(this.lblRampTemp);
             this.tabTemp.Controls.Add(this.rampDurationTemp);
             this.tabTemp.Controls.Add(this.cmbTempSPChange);
@@ -447,10 +490,41 @@
             this.tabTemp.Location = new System.Drawing.Point(4, 30);
             this.tabTemp.Name = "tabTemp";
             this.tabTemp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTemp.Size = new System.Drawing.Size(470, 299);
+            this.tabTemp.Size = new System.Drawing.Size(470, 368);
             this.tabTemp.TabIndex = 1;
             this.tabTemp.Text = "Temperatura";
             this.tabTemp.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(332, 302);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(0, 21);
+            this.label27.TabIndex = 37;
+            // 
+            // txtAlfaDerivativoResistencia
+            // 
+            this.txtAlfaDerivativoResistencia.AcceptsReturn = true;
+            this.txtAlfaDerivativoResistencia.Location = new System.Drawing.Point(220, 298);
+            this.txtAlfaDerivativoResistencia.MaxLength = 3;
+            this.txtAlfaDerivativoResistencia.Name = "txtAlfaDerivativoResistencia";
+            this.txtAlfaDerivativoResistencia.ReadOnly = true;
+            this.txtAlfaDerivativoResistencia.Size = new System.Drawing.Size(110, 29);
+            this.txtAlfaDerivativoResistencia.TabIndex = 36;
+            this.txtAlfaDerivativoResistencia.Text = "0";
+            this.txtAlfaDerivativoResistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAlfaDerivativoResistencia.TextChanged += new System.EventHandler(this.txtAlfaDerivativoResistencia_TextChanged);
+            this.txtAlfaDerivativoResistencia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlfaDerivativoResistencia_KeyDown);
+            // 
+            // lblAlfaDerivativoResistencia
+            // 
+            this.lblAlfaDerivativoResistencia.AutoSize = true;
+            this.lblAlfaDerivativoResistencia.Location = new System.Drawing.Point(6, 298);
+            this.lblAlfaDerivativoResistencia.Name = "lblAlfaDerivativoResistencia";
+            this.lblAlfaDerivativoResistencia.Size = new System.Drawing.Size(214, 21);
+            this.lblAlfaDerivativoResistencia.TabIndex = 38;
+            this.lblAlfaDerivativoResistencia.Text = "Filtro da Ação Derivativa (αD)";
             // 
             // lblRampTemp
             // 
@@ -666,7 +740,7 @@
             "Controle P",
             "Controle PI",
             "Controle PID",
-            "Controle PID-f",
+            "Controle PID-fd",
             "Cascata P",
             "Cascata PI",
             "Cascata PID"});
@@ -730,35 +804,32 @@
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
             // 
-            // label26
+            // label28
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(332, 302);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 21);
-            this.label26.TabIndex = 31;
-            this.label26.Text = "segundos";
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(332, 337);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(0, 21);
+            this.label28.TabIndex = 40;
             // 
-            // textBox1
+            // label29
             // 
-            this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(220, 298);
-            this.textBox1.MaxLength = 3;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(110, 29);
-            this.textBox1.TabIndex = 30;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 333);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(152, 21);
+            this.label29.TabIndex = 41;
+            this.label29.Text = "Controle Não-Linear";
             // 
-            // label27
+            // button1
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 298);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(164, 21);
-            this.label27.TabIndex = 32;
-            this.label27.Text = "Tempo Derivativo (τD)\r\n";
+            this.button1.Location = new System.Drawing.Point(220, 333);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 29);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "Configurar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SubFormConfigControl
             // 
@@ -766,7 +837,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(497, 389);
+            this.ClientSize = new System.Drawing.Size(497, 418);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -840,7 +911,13 @@
         private System.Windows.Forms.Label lblRampTemp;
         private System.Windows.Forms.NumericUpDown rampDurationTemp;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAlfaDerivativoBomba;
+        private System.Windows.Forms.Label lblAlfaDerivativoBomba;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtAlfaDerivativoResistencia;
+        private System.Windows.Forms.Label lblAlfaDerivativoResistencia;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button button1;
     }
 }

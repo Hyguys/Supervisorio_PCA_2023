@@ -80,7 +80,8 @@ namespace Supervisório_PCA_2._0
         public static bool defaultRampFlowSP = false;
         public static bool defaultRampTempSP = false;
 
-
+        public static double defaultAlfaDerivativoBomba = 0.5;
+        public static double defaultAlfaDerivativoResistencia = 0.5;
 
         public static double defaultLowerLimitPump = 0;
         public static double defaultUpperLimitPump = 100;
@@ -101,7 +102,7 @@ namespace Supervisório_PCA_2._0
         public static Color defaultCorVazao = Color.Blue;
         public static Color defaultCorSPVazao = Color.Green;
         public static Color defaultCorPotenciaBomba = Color.DarkMagenta;
-        public static Color defaultCorVazaoPrefiltragem = Color.Aqua;
+        public static Color defaultCorVazaoPrefiltragem = Color.LightBlue;
 
         public static bool defaultExibirGridTemp = true;
         public static bool defaultExibirLegendaTemp = true;
@@ -157,14 +158,15 @@ namespace Supervisório_PCA_2._0
         public static bool RampFlowSP = defaultRampFlowSP;
         public static bool RampTempSP = defaultRampTempSP;
 
+        public static double alfaDerivativoBomba = defaultAlfaDerivativoBomba;
+        public static double alfaDerivativoResistencia = defaultAlfaDerivativoResistencia;
 
 
+        public static double lowerLimitPump = defaultLowerLimitPump;
+        public static double upperLimitPump = defaultUpperLimitPump;
 
-        public static double lowerLimitPump = 0;
-        public static double upperLimitPump = 100;
-
-        public static double lowerLimitRes = 0;
-        public static double upperLimitRes = 100;
+        public static double lowerLimitRes = defaultLowerLimitRes;
+        public static double upperLimitRes = defaultLowerLimitRes;
 
 
 

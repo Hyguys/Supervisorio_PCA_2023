@@ -31,6 +31,10 @@ namespace Supervisório_PCA_2._0
             txtIntegralTemp.Text = Convert.ToString(Globals.integralTemp);
             txtDerivativoTemp.Text = Convert.ToString(Globals.derivativoTemp);
             txtPotenciaResistencia.Text = Globals.resPower.ToString("0.00");
+
+            txtAlfaDerivativoBomba.Text = Globals.alfaDerivativoBomba.ToString("0.00");
+            txtAlfaDerivativoResistencia.Text = Globals.alfaDerivativoResistencia.ToString("0.00");
+
         }
 
         private void txtPotenciaBomba_TextChanged(object sender, EventArgs e)
@@ -41,14 +45,14 @@ namespace Supervisório_PCA_2._0
         private void SubFormDataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             // Lógica para lidar com os dados recebidos na porta serial no SubFormConfigControl
-            if (Globals.controlTypePump == 1 || Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+            if (txtPotenciaBomba.ReadOnly)
             {
                 try
                 {
                     if (!IsDisposed && txtPotenciaBomba.InvokeRequired)
                     {
                         // Executa o código na thread de interface do usuário usando Invoke
-                        Invoke((MethodInvoker)(() => txtPotenciaBomba.Text = Convert.ToString(Globals.pumpPowerData.Last())));
+                        BeginInvoke((MethodInvoker)(() => txtPotenciaBomba.Text = Convert.ToString(Globals.pumpPowerData.Last())));
                     }
                     else
                     {
@@ -71,14 +75,14 @@ namespace Supervisório_PCA_2._0
                 }
             }
 
-            if (Globals.controlTypeRes == 1 || Globals.controlTypeRes == 2 || Globals.controlTypeRes == 3 || Globals.controlTypeRes == 4)
+            if (txtPotenciaResistencia.ReadOnly)
             {
                 try
                 {
                     if (!IsDisposed && txtPotenciaBomba.InvokeRequired)
                     {
                         // Executa o código na thread de interface do usuário usando Invoke
-                        Invoke((MethodInvoker)(() => txtPotenciaResistencia.Text = Convert.ToString(Globals.resPowerData.Last())));
+                        BeginInvoke((MethodInvoker)(() => txtPotenciaResistencia.Text = Convert.ToString(Globals.resPowerData.Last())));
                     }
                     else
                     {
@@ -147,15 +151,10 @@ namespace Supervisório_PCA_2._0
                     txtPotenciaBomba.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
+                    txtAlfaDerivativoBomba.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = false;
 
-                    // Definir cores dos TextBox
-                    //txtPotenciaBomba.BackColor = Color.White;
-                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
-                    //txtGanhoVazao.BackColor = Color.Gainsboro;
-                    //txtIntegralVazao.BackColor = Color.Gainsboro;
-                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
                     break;
 
                 case 1: // ON-OFF
@@ -165,15 +164,11 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = true;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
+                    txtAlfaDerivativoBomba.ReadOnly = true;
                     Globals.showHysteresisVazao = true;
                     Globals.showSPVazao = true;
 
-                    // Definir cores dos TextBox
-                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
-                    //txtHysteresisVazao.BackColor = Color.White;
-                    //txtGanhoVazao.BackColor = Color.Gainsboro;
-                    //txtIntegralVazao.BackColor = Color.Gainsboro;
-                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
+           
                     break;
 
                 case 2: // Controle Proporcional
@@ -182,15 +177,9 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = true;
                     txtDerivativoVazao.ReadOnly = true;
+                    txtAlfaDerivativoBomba.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
-
-                    // Definir cores dos TextBox
-                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
-                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
-                    //txtGanhoVazao.BackColor = Color.White;
-                    //txtIntegralVazao.BackColor = Color.Gainsboro;
-                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
 
                     MessageBox.Show("O Controle Proporcional necessita do bias (saída do controle no setpoint desejado). Para o sistema de vazão, isso foi feito a partir de uma estimativa com o ganho do processo, dividindo o setpoint por um fator de 0.63 para se encontrar o bias.", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
@@ -202,14 +191,9 @@ namespace Supervisório_PCA_2._0
                     txtIntegralVazao.ReadOnly = false;
                     txtDerivativoVazao.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
+                    txtAlfaDerivativoBomba.ReadOnly = true;
                     Globals.showSPVazao = true;
 
-                    // Definir cores dos TextBox
-                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
-                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
-                    //txtGanhoVazao.BackColor = Color.White;
-                    //txtIntegralVazao.BackColor = Color.White;
-                    //txtDerivativoVazao.BackColor = Color.Gainsboro;
                     break;
 
                 case 4: // Controle Proporcional Integral e Derivativo
@@ -218,15 +202,21 @@ namespace Supervisório_PCA_2._0
                     txtGanhoVazao.ReadOnly = false;
                     txtIntegralVazao.ReadOnly = false;
                     txtDerivativoVazao.ReadOnly = false;
+                    txtAlfaDerivativoBomba.ReadOnly = true;
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
 
-                    // Definir cores dos TextBox
-                    //txtPotenciaBomba.BackColor = Color.Gainsboro;
-                    //txtHysteresisVazao.BackColor = Color.Gainsboro;
-                    //txtGanhoVazao.BackColor = Color.White;
-                    //txtIntegralVazao.BackColor = Color.White;
-                    //txtDerivativoVazao.BackColor = Color.White;
+           
+                    break;
+                case 5: //Controle PID-filtro derivativo
+                    txtPotenciaBomba.ReadOnly = true;
+                    txtHysteresisVazao.ReadOnly = true;
+                    txtGanhoVazao.ReadOnly = false;
+                    txtIntegralVazao.ReadOnly = false;
+                    txtDerivativoVazao.ReadOnly = false;
+                    txtAlfaDerivativoBomba.ReadOnly = false;
+                    Globals.showHysteresisVazao = false;
+                    Globals.showSPVazao = true;
                     break;
 
             }
@@ -737,6 +727,7 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = true;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    txtAlfaDerivativoResistencia.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = false;
 
@@ -748,6 +739,7 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = true;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    txtAlfaDerivativoResistencia.ReadOnly = true;
                     Globals.showHysteresisTemp = true;
                     Globals.showSPTemp = true;
 
@@ -759,6 +751,7 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = true;
                     txtDerivativoTemp.ReadOnly = true;
+                    txtAlfaDerivativoResistencia.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
 
@@ -771,6 +764,7 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = true;
+                    txtAlfaDerivativoResistencia.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
 
@@ -782,14 +776,30 @@ namespace Supervisório_PCA_2._0
                     txtGanhoTemp.ReadOnly = false;
                     txtIntegralTemp.ReadOnly = false;
                     txtDerivativoTemp.ReadOnly = false;
+                    txtAlfaDerivativoResistencia.ReadOnly = true;
                     Globals.showHysteresisTemp = false;
                     Globals.showSPTemp = true;
 
                     txtPotenciaBomba.ReadOnly = false;
                     txtSetpointVazao.ReadOnly = false;
                     break;
-                case 5: // Controle Cascata Proporcional
-                    if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
+                case 5: //Controle pid com filtro derivativo
+                    txtPotenciaResistencia.ReadOnly = true;
+                    txtHysteresisTemp.ReadOnly = true;
+                    txtGanhoTemp.ReadOnly = false;
+                    txtIntegralTemp.ReadOnly = false;
+                    txtDerivativoTemp.ReadOnly = false;
+                    txtAlfaDerivativoResistencia.ReadOnly = false;
+                    Globals.showHysteresisTemp = false;
+                    Globals.showSPTemp = true;
+
+                    txtPotenciaBomba.ReadOnly = false;
+                    txtSetpointVazao.ReadOnly = false;
+                    break;
+                case 6: 
+                    
+                    // Controle Cascata Proporcional
+                    if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4 || Globals.controlTypePump == 5)
                     {
 
                     }
@@ -808,7 +818,7 @@ namespace Supervisório_PCA_2._0
                     txtPotenciaBomba.ReadOnly = true;
                     txtSetpointVazao.ReadOnly = true;
                     break;
-                case 6: // Controle Cascata Proporcional-Integral
+                case 7: // Controle Cascata Proporcional-Integral
                     if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
                     {
 
@@ -828,7 +838,7 @@ namespace Supervisório_PCA_2._0
                     txtPotenciaBomba.ReadOnly = true;
                     txtSetpointVazao.ReadOnly = true;
                     break;
-                case 7: // Controle Cascata PID
+                case 8: // Controle Cascata PID
                     if (Globals.controlTypePump == 2 || Globals.controlTypePump == 3 || Globals.controlTypePump == 4)
                     {
 
@@ -893,6 +903,82 @@ namespace Supervisório_PCA_2._0
         private void tabVazao_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAlfaDerivativoResistencia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAlfaDerivativoBomba_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAlfaDerivativoResistencia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!float.TryParse(txtAlfaDerivativoResistencia.Text, out float alfaDerivativoRes) || alfaDerivativoRes < 0 || alfaDerivativoRes > 1)
+            {
+                MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAlfaDerivativoResistencia.Text = Globals.resPower.ToString("0.00");
+                return;
+            }
+
+            Globals.alfaDerivativoResistencia = alfaDerivativoRes;
+            string command = "ADR " + alfaDerivativoRes.ToString("0.00");
+            Globals.serialPort.WriteLine(command);
+
+            MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+            private void txtAlfaDerivativoBomba_KeyDown(object sender, KeyEventArgs e)
+            {
+                if (e.KeyCode != Keys.Enter)
+                {
+                    return;
+                }
+
+                if (Globals.serialConnected == false || Globals.serialPort == null)
+                {
+                    MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!float.TryParse(txtAlfaDerivativoBomba.Text, out float alfaDerivativoBomba) || alfaDerivativoBomba < 0 || alfaDerivativoBomba > 1)
+                {
+                    MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtAlfaDerivativoBomba.Text = Globals.resPower.ToString("0.00");
+                    return;
+                }
+
+                Globals.alfaDerivativoBomba = alfaDerivativoBomba;
+                string command = "ADP " + alfaDerivativoBomba.ToString("0.00");
+                Globals.serialPort.WriteLine(command);
+
+                MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ainda em desenvolvimento!", "Em desenvolvimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

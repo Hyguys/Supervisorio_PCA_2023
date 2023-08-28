@@ -129,6 +129,7 @@ namespace Supervisório_PCA_2._0
             this.lblEWMAVazao.Size = new System.Drawing.Size(178, 42);
             this.lblEWMAVazao.TabIndex = 4;
             this.lblEWMAVazao.Text = "Parâmetro (α) da Média \r\nMóvel Exponencial";
+            this.lblEWMAVazao.Click += new System.EventHandler(this.lblEWMAVazao_Click);
             // 
             // txtEWMAVazao
             // 

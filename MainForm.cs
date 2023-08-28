@@ -691,6 +691,7 @@ namespace Supervisório_PCA_2._0
 
         private void cadastroDeModeloFOPTDToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Essa função ainda não está pronta, portanto, algumas funcionalidades podem não funcionar!", "Em desenvolvimento!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             SubFormConfigModeloFOPTD subForm = new SubFormConfigModeloFOPTD();
             subForm.Show();
         }
