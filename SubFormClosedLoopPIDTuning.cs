@@ -33,6 +33,11 @@ namespace Supervisório_PCA_2023
 
         }
 
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //private bool experimentRunning = false;
 
         //private List<double> timeExp = new List<double>();
@@ -50,7 +55,7 @@ namespace Supervisório_PCA_2023
 
         //private bool messageEquilibriumShown = false;
 
-       
+
 
         //// Limite para considerar que o sistema atingiu o equilíbrio (por exemplo, 5%)
         //private double equilibriumThreshold = 0.05;
@@ -120,11 +125,11 @@ namespace Supervisório_PCA_2023
         //    experimentRunning = true;
         //}
 
-       
+
 
         //private void ClosedLoopPIDTuningDataHandler(object sender, SerialDataReceivedEventArgs e)
         //{
-         
+
         //    // Verificar se o experimento está em execução
         //    if (experimentRunning)
         //    {

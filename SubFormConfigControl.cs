@@ -980,5 +980,20 @@ namespace Supervisório_PCA_2._0
         {
             MessageBox.Show("Ainda em desenvolvimento!", "Em desenvolvimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

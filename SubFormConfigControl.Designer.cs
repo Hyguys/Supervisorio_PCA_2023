@@ -59,6 +59,9 @@
             this.cmbControlVazao = new System.Windows.Forms.ComboBox();
             this.lblInterval = new System.Windows.Forms.Label();
             this.tabTemp = new System.Windows.Forms.TabPage();
+            this.btnNonLinTemp = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.txtAlfaDerivativoResistencia = new System.Windows.Forms.TextBox();
             this.lblAlfaDerivativoResistencia = new System.Windows.Forms.Label();
@@ -87,9 +90,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rampDurationFlow)).BeginInit();
@@ -101,14 +103,17 @@
             // 
             this.tabControl1.Controls.Add(this.tabVazao);
             this.tabControl1.Controls.Add(this.tabTemp);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(10, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(478, 402);
             this.tabControl1.TabIndex = 10;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabVazao
             // 
+            this.tabVazao.Controls.Add(this.button1);
+            this.tabVazao.Controls.Add(this.label30);
             this.tabVazao.Controls.Add(this.label26);
             this.tabVazao.Controls.Add(this.txtAlfaDerivativoBomba);
             this.tabVazao.Controls.Add(this.lblAlfaDerivativoBomba);
@@ -456,7 +461,7 @@
             // 
             // tabTemp
             // 
-            this.tabTemp.Controls.Add(this.button1);
+            this.tabTemp.Controls.Add(this.btnNonLinTemp);
             this.tabTemp.Controls.Add(this.label28);
             this.tabTemp.Controls.Add(this.label29);
             this.tabTemp.Controls.Add(this.label27);
@@ -494,6 +499,33 @@
             this.tabTemp.TabIndex = 1;
             this.tabTemp.Text = "Temperatura";
             this.tabTemp.UseVisualStyleBackColor = true;
+            // 
+            // btnNonLinTemp
+            // 
+            this.btnNonLinTemp.Location = new System.Drawing.Point(220, 333);
+            this.btnNonLinTemp.Name = "btnNonLinTemp";
+            this.btnNonLinTemp.Size = new System.Drawing.Size(110, 32);
+            this.btnNonLinTemp.TabIndex = 42;
+            this.btnNonLinTemp.Text = "Configurar";
+            this.btnNonLinTemp.UseVisualStyleBackColor = true;
+            this.btnNonLinTemp.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(332, 337);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(0, 21);
+            this.label28.TabIndex = 40;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 336);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(152, 21);
+            this.label29.TabIndex = 41;
+            this.label29.Text = "Controle Não-Linear";
             // 
             // label27
             // 
@@ -634,9 +666,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 263);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 21);
+            this.label2.Size = new System.Drawing.Size(164, 21);
             this.label2.TabIndex = 23;
-            this.label2.Text = "Tempo Derivativo (τ  )\r\n";
+            this.label2.Text = "Tempo Derivativo (τD)\r\n";
             // 
             // txtSetpointTemp
             // 
@@ -674,9 +706,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 228);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 21);
+            this.label4.Size = new System.Drawing.Size(139, 21);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Tempo Integral (τ  )\r\n";
+            this.label4.Text = "Tempo Integral (τI)\r\n";
             // 
             // txtPotenciaResistencia
             // 
@@ -696,9 +728,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 193);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(197, 21);
+            this.label12.Size = new System.Drawing.Size(196, 21);
             this.label12.TabIndex = 21;
-            this.label12.Text = "Ganho do Controlador (K  )\r\n";
+            this.label12.Text = "Ganho do Controlador (Kc)\r\n";
             // 
             // txtDerivativoTemp
             // 
@@ -804,32 +836,25 @@
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
             // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(332, 337);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(0, 21);
-            this.label28.TabIndex = 40;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(6, 333);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(152, 21);
-            this.label29.TabIndex = 41;
-            this.label29.Text = "Controle Não-Linear";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(220, 333);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 29);
-            this.button1.TabIndex = 42;
+            this.button1.Size = new System.Drawing.Size(110, 32);
+            this.button1.TabIndex = 44;
             this.button1.Text = "Configurar";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 336);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(152, 21);
+            this.label30.TabIndex = 43;
+            this.label30.Text = "Controle Não-Linear";
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // SubFormConfigControl
             // 
@@ -918,6 +943,8 @@
         private System.Windows.Forms.Label lblAlfaDerivativoResistencia;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button btnNonLinTemp;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label30;
     }
 }
