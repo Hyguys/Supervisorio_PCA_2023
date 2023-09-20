@@ -7,28 +7,65 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Supervisório_PCA_2._0
 {
     public static class GlobalMethods
     {
-
         public static string[] SearchSerialPorts()
         {
             // Obter todas as portas COM disponíveis no sistema
             string[] portNames = SerialPort.GetPortNames();
 
+            string arduinoPort = null;
+
             // Verificar se há portas COM disponíveis
             if (portNames.Length > 0)
             {
+                // Verificar se alguma das portas é um Arduino
+                foreach (string portName in portNames)
+                {
+                    try
+                    {
+                        using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM" + portName + ")%'"))
+                        {
+                            foreach (ManagementObject device in searcher.Get())
+                            {
+                                if (device != null)
+                                {
+                                    string deviceName = device["Name"] as string;
+                                    if (deviceName != null && deviceName.Contains("Arduino"))
+                                    {
+                                        arduinoPort = portName;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Tratar exceções, se houver algum problema ao verificar a porta
+                        Console.WriteLine("Erro ao verificar a porta " + portName + ": " + ex.Message);
+                    }
+                }
+
                 if (portNames.Length == 1)
                 {
-                    MessageBox.Show(" Uma porta COM foi encontrada!", "Porta COM encontrada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Uma porta COM foi encontrada!", "Porta COM encontrada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(portNames.Length + " portas COM foram encontradas!", "Portas COM encontradas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!string.IsNullOrEmpty(arduinoPort))
+                    {
+                        MessageBox.Show(portNames.Length + " portas COM foram encontradas!\nUm Arduino foi detectado na porta " + arduinoPort + "!", "Portas COM encontradas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(portNames.Length + " portas COM foram encontradas!", "Portas COM encontradas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
 
                 return portNames;
@@ -46,6 +83,7 @@ namespace Supervisório_PCA_2._0
                 }
             }
         }
+
 
         public static void ResetGlobalVariables()
         {

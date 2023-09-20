@@ -385,10 +385,10 @@
             this.tabPage2.Controls.Add(this.checkPotenciaRes);
             this.tabPage2.Controls.Add(this.checkLegendaTemp);
             this.tabPage2.Controls.Add(this.checkGridTemp);
-            this.tabPage2.Location = new System.Drawing.Point(3, 24);
+            this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(533, 290);
+            this.tabPage2.Size = new System.Drawing.Size(666, 363);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Temperatura";
             // 
@@ -558,6 +558,11 @@
             65536});
             this.numHistoricoTempoTemp.Location = new System.Drawing.Point(503, 5);
             this.numHistoricoTempoTemp.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.numHistoricoTempoTemp.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numHistoricoTempoTemp.Minimum = new decimal(new int[] {
             2,
             0,
@@ -568,7 +573,7 @@
             this.numHistoricoTempoTemp.TabIndex = 22;
             this.numHistoricoTempoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numHistoricoTempoTemp.Value = new decimal(new int[] {
-            5,
+            60,
             0,
             0,
             0});

@@ -28,23 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtPotenciaBomba = new System.Windows.Forms.TextBox();
             this.lblDegrau = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             this.tabela = new System.Windows.Forms.DataGridView();
-            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Theta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sp = new ScottPlot.FormsPlot();
             this.lblEquilibrium = new System.Windows.Forms.Label();
             this.tabelaControle = new System.Windows.Forms.DataGridView();
@@ -57,15 +53,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtPotenciaInicial = new System.Windows.Forms.TextBox();
             this.lblPotenciaInicial = new System.Windows.Forms.Label();
+            this.lblResidualType = new System.Windows.Forms.Label();
+            this.cbResidualType = new System.Windows.Forms.ComboBox();
+            this.btnReotimizar = new System.Windows.Forms.Button();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tau = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Theta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Determinação = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tabela)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaControle)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(12, 98);
+            this.btnIniciar.Location = new System.Drawing.Point(12, 138);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(84, 33);
+            this.btnIniciar.Size = new System.Drawing.Size(73, 27);
             this.btnIniciar.TabIndex = 1;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -83,10 +87,10 @@
             // txtPotenciaBomba
             // 
             this.txtPotenciaBomba.AcceptsReturn = true;
-            this.txtPotenciaBomba.Location = new System.Drawing.Point(258, 72);
+            this.txtPotenciaBomba.Location = new System.Drawing.Point(236, 72);
             this.txtPotenciaBomba.MaxLength = 4;
             this.txtPotenciaBomba.Name = "txtPotenciaBomba";
-            this.txtPotenciaBomba.Size = new System.Drawing.Size(84, 29);
+            this.txtPotenciaBomba.Size = new System.Drawing.Size(106, 29);
             this.txtPotenciaBomba.TabIndex = 0;
             this.txtPotenciaBomba.Text = "0";
             this.txtPotenciaBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -94,21 +98,21 @@
             // lblDegrau
             // 
             this.lblDegrau.AutoSize = true;
-            this.lblDegrau.Location = new System.Drawing.Point(12, 72);
+            this.lblDegrau.Location = new System.Drawing.Point(12, 75);
             this.lblDegrau.Name = "lblDegrau";
             this.lblDegrau.Size = new System.Drawing.Size(218, 21);
             this.lblDegrau.TabIndex = 24;
             this.lblDegrau.Text = "Degrau de Potência da Bomba";
             // 
-            // button1
+            // btnFinalizar
             // 
-            this.button1.Location = new System.Drawing.Point(102, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 33);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Finalizar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnFinalizar.Location = new System.Drawing.Point(87, 138);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(76, 27);
+            this.btnFinalizar.TabIndex = 2;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tabela
             // 
@@ -117,88 +121,53 @@
             this.index,
             this.Kp,
             this.tau,
-            this.Theta});
-            this.tabela.Location = new System.Drawing.Point(12, 137);
+            this.Theta,
+            this.Determinação});
+            this.tabela.Location = new System.Drawing.Point(12, 171);
             this.tabela.Name = "tabela";
             this.tabela.RowHeadersVisible = false;
             this.tabela.RowHeadersWidth = 51;
-            this.tabela.Size = new System.Drawing.Size(353, 163);
+            this.tabela.Size = new System.Drawing.Size(353, 142);
             this.tabela.TabIndex = 3;
             this.tabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabela_CellContentClick);
             this.tabela.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabela_CellEndEdit);
-            // 
-            // index
-            // 
-            this.index.HeaderText = "ID";
-            this.index.MinimumWidth = 6;
-            this.index.Name = "index";
-            this.index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.index.Width = 30;
-            // 
-            // Kp
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Kp.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Kp.HeaderText = "Ganho do Processo (Kp) [L/% h]";
-            this.Kp.MinimumWidth = 6;
-            this.Kp.Name = "Kp";
-            this.Kp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Kp.Width = 120;
-            // 
-            // tau
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tau.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tau.HeaderText = "Constante de tempo (τ) [s]";
-            this.tau.MinimumWidth = 6;
-            this.tau.Name = "tau";
-            this.tau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tau.Width = 120;
-            // 
-            // Theta
-            // 
-            this.Theta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Theta.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Theta.HeaderText = "Atraso (θ) [s]";
-            this.Theta.MinimumWidth = 6;
-            this.Theta.Name = "Theta";
-            this.Theta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // sp
             // 
             this.sp.Location = new System.Drawing.Point(372, 6);
             this.sp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sp.Name = "sp";
-            this.sp.Size = new System.Drawing.Size(477, 511);
+            this.sp.Size = new System.Drawing.Size(422, 453);
             this.sp.TabIndex = 27;
             this.sp.Load += new System.EventHandler(this.sp_Load);
             // 
             // lblEquilibrium
             // 
-            this.lblEquilibrium.AutoSize = true;
+            this.lblEquilibrium.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblEquilibrium.ForeColor = System.Drawing.Color.Blue;
-            this.lblEquilibrium.Location = new System.Drawing.Point(196, 104);
+            this.lblEquilibrium.Location = new System.Drawing.Point(292, 135);
             this.lblEquilibrium.Name = "lblEquilibrium";
-            this.lblEquilibrium.Size = new System.Drawing.Size(169, 21);
+            this.lblEquilibrium.Size = new System.Drawing.Size(73, 33);
             this.lblEquilibrium.TabIndex = 28;
             this.lblEquilibrium.Text = "Estabilidade detectada!";
+            this.lblEquilibrium.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEquilibrium.Visible = false;
             // 
             // tabelaControle
             // 
             this.tabelaControle.AllowUserToAddRows = false;
+            this.tabelaControle.AllowUserToOrderColumns = true;
             this.tabelaControle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tabelaControle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Método,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            this.tabelaControle.Location = new System.Drawing.Point(12, 306);
+            this.tabelaControle.Location = new System.Drawing.Point(12, 319);
             this.tabelaControle.Name = "tabelaControle";
             this.tabelaControle.RowHeadersVisible = false;
             this.tabelaControle.RowHeadersWidth = 51;
-            this.tabelaControle.Size = new System.Drawing.Size(353, 202);
+            this.tabelaControle.Size = new System.Drawing.Size(353, 140);
             this.tabelaControle.TabIndex = 29;
             // 
             // Método
@@ -251,10 +220,11 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Vazão",
-            "Temperatura"});
-            this.comboBox1.Location = new System.Drawing.Point(258, 6);
+            "Temperatura",
+            "Sensor de Temperatura"});
+            this.comboBox1.Location = new System.Drawing.Point(236, 6);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(84, 29);
+            this.comboBox1.Size = new System.Drawing.Size(106, 29);
             this.comboBox1.TabIndex = 30;
             this.comboBox1.Text = "Vazão";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -280,11 +250,11 @@
             // txtPotenciaInicial
             // 
             this.txtPotenciaInicial.AcceptsReturn = true;
-            this.txtPotenciaInicial.Location = new System.Drawing.Point(258, 40);
+            this.txtPotenciaInicial.Location = new System.Drawing.Point(236, 40);
             this.txtPotenciaInicial.MaxLength = 4;
             this.txtPotenciaInicial.Name = "txtPotenciaInicial";
             this.txtPotenciaInicial.ReadOnly = true;
-            this.txtPotenciaInicial.Size = new System.Drawing.Size(84, 29);
+            this.txtPotenciaInicial.Size = new System.Drawing.Size(106, 29);
             this.txtPotenciaInicial.TabIndex = 32;
             this.txtPotenciaInicial.Text = "0";
             this.txtPotenciaInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -293,18 +263,95 @@
             // lblPotenciaInicial
             // 
             this.lblPotenciaInicial.AutoSize = true;
-            this.lblPotenciaInicial.Location = new System.Drawing.Point(12, 40);
+            this.lblPotenciaInicial.Location = new System.Drawing.Point(12, 43);
             this.lblPotenciaInicial.Name = "lblPotenciaInicial";
             this.lblPotenciaInicial.Size = new System.Drawing.Size(186, 21);
             this.lblPotenciaInicial.TabIndex = 34;
             this.lblPotenciaInicial.Text = "Potência da Bomba Inicial";
+            // 
+            // lblResidualType
+            // 
+            this.lblResidualType.AutoSize = true;
+            this.lblResidualType.Location = new System.Drawing.Point(12, 108);
+            this.lblResidualType.Name = "lblResidualType";
+            this.lblResidualType.Size = new System.Drawing.Size(194, 21);
+            this.lblResidualType.TabIndex = 36;
+            this.lblResidualType.Text = "Tipo de Resíduo Estatístico";
+            // 
+            // cbResidualType
+            // 
+            this.cbResidualType.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbResidualType.FormattingEnabled = true;
+            this.cbResidualType.Items.AddRange(new object[] {
+            "Quadrático (SRQ)",
+            "Absoluto (SRA"});
+            this.cbResidualType.Location = new System.Drawing.Point(235, 105);
+            this.cbResidualType.Name = "cbResidualType";
+            this.cbResidualType.Size = new System.Drawing.Size(107, 29);
+            this.cbResidualType.TabIndex = 35;
+            this.cbResidualType.Text = "Quadrático";
+            this.cbResidualType.SelectedIndexChanged += new System.EventHandler(this.cbResidualType_SelectedIndexChanged);
+            // 
+            // btnReotimizar
+            // 
+            this.btnReotimizar.Location = new System.Drawing.Point(166, 138);
+            this.btnReotimizar.Name = "btnReotimizar";
+            this.btnReotimizar.Size = new System.Drawing.Size(97, 27);
+            this.btnReotimizar.TabIndex = 37;
+            this.btnReotimizar.Text = "Reotimizar";
+            this.btnReotimizar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnReotimizar.UseVisualStyleBackColor = true;
+            this.btnReotimizar.Click += new System.EventHandler(this.btnReotimizar_Click);
+            // 
+            // index
+            // 
+            this.index.HeaderText = "ID";
+            this.index.MinimumWidth = 6;
+            this.index.Name = "index";
+            this.index.Width = 30;
+            // 
+            // Kp
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Kp.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Kp.HeaderText = "Kp [L/% h]";
+            this.Kp.MinimumWidth = 6;
+            this.Kp.Name = "Kp";
+            this.Kp.Width = 90;
+            // 
+            // tau
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tau.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tau.HeaderText = "τ [s]";
+            this.tau.MinimumWidth = 6;
+            this.tau.Name = "tau";
+            this.tau.Width = 90;
+            // 
+            // Theta
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Theta.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Theta.HeaderText = "θ [s]";
+            this.Theta.MinimumWidth = 6;
+            this.Theta.Name = "Theta";
+            this.Theta.Width = 70;
+            // 
+            // Determinação
+            // 
+            this.Determinação.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Determinação.HeaderText = "R²";
+            this.Determinação.Name = "Determinação";
             // 
             // SubFormStepTuningFOPTD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(851, 515);
+            this.ClientSize = new System.Drawing.Size(802, 473);
+            this.Controls.Add(this.btnReotimizar);
+            this.Controls.Add(this.lblResidualType);
+            this.Controls.Add(this.cbResidualType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPotenciaInicial);
             this.Controls.Add(this.lblPotenciaInicial);
@@ -314,7 +361,7 @@
             this.Controls.Add(this.lblEquilibrium);
             this.Controls.Add(this.sp);
             this.Controls.Add(this.tabela);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtPotenciaBomba);
             this.Controls.Add(this.lblDegrau);
@@ -339,7 +386,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPotenciaBomba;
         private System.Windows.Forms.Label lblDegrau;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.DataGridView tabela;
         private ScottPlot.FormsPlot sp;
         private System.Windows.Forms.Label lblEquilibrium;
@@ -350,12 +397,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPotenciaInicial;
+        private System.Windows.Forms.Label lblPotenciaInicial;
+        private System.Windows.Forms.Label lblResidualType;
+        private System.Windows.Forms.ComboBox cbResidualType;
+        private System.Windows.Forms.Button btnReotimizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kp;
         private System.Windows.Forms.DataGridViewTextBoxColumn tau;
         private System.Windows.Forms.DataGridViewTextBoxColumn Theta;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPotenciaInicial;
-        private System.Windows.Forms.Label lblPotenciaInicial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Determinação;
     }
 }

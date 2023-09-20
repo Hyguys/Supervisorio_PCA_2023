@@ -18,18 +18,18 @@ namespace Supervisório_PCA_2._0
             InitializeComponent();
             Globals.serialPort.DataReceived += new SerialDataReceivedEventHandler(SubFormDataReceivedHandler);
 
-            txtSetpointVazao.Text = Convert.ToString(Globals.setpointVazao);
-            txtHysteresisVazao.Text = Convert.ToString(Globals.histereseVazao);
-            txtGanhoVazao.Text = Convert.ToString(Globals.ganhoVazao);
-            txtIntegralVazao.Text = Convert.ToString(Globals.integralVazao);
-            txtDerivativoVazao.Text = Convert.ToString(Globals.derivativoVazao);
+            txtSetpointVazao.Text = (Globals.setpointVazao).ToString("0.00");
+            txtHysteresisVazao.Text = Globals.histereseVazao.ToString("0.00");
+            txtGanhoVazao.Text = Globals.ganhoVazao.ToString("0.00");
+            txtIntegralVazao.Text = Globals.integralVazao.ToString("0.00");
+            txtDerivativoVazao.Text = Globals.derivativoVazao.ToString("0.00");
             txtPotenciaBomba.Text = Globals.pumpPower.ToString("0.00");
 
-            txtSetpointTemp.Text = Convert.ToString(Globals.setpointTemp);
-            txtHysteresisTemp.Text = Convert.ToString(Globals.histereseTemp);
-            txtGanhoTemp.Text = Convert.ToString(Globals.ganhoTemp);
-            txtIntegralTemp.Text = Convert.ToString(Globals.integralTemp);
-            txtDerivativoTemp.Text = Convert.ToString(Globals.derivativoTemp);
+            txtSetpointTemp.Text = Globals.setpointTemp.ToString("0.00");
+            txtHysteresisTemp.Text = Globals.histereseTemp.ToString("0.00");
+            txtGanhoTemp.Text = Globals.ganhoTemp.ToString("0.00");
+            txtIntegralTemp.Text = Globals.integralTemp.ToString("0.00");
+            txtDerivativoTemp.Text = Globals.derivativoTemp.ToString("0.00");
             txtPotenciaResistencia.Text = Globals.resPower.ToString("0.00");
 
             txtAlfaDerivativoBomba.Text = Globals.alfaDerivativoBomba.ToString("0.00");
@@ -121,7 +121,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtPotenciaBomba.Text, out float pumpPower) || pumpPower < 0 || pumpPower > 100)
+            if (!double.TryParse(txtPotenciaBomba.Text, out double pumpPower) || pumpPower < 0 || pumpPower > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPotenciaBomba.Text = Globals.pumpPower.ToString("0.00");
@@ -181,7 +181,7 @@ namespace Supervisório_PCA_2._0
                     Globals.showHysteresisVazao = false;
                     Globals.showSPVazao = true;
 
-                    MessageBox.Show("O Controle Proporcional necessita do bias (saída do controle no setpoint desejado). Para o sistema de vazão, isso foi feito a partir de uma estimativa com o ganho do processo, dividindo o setpoint por um fator de 0.63 para se encontrar o bias.", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("O Controle Proporcional necessita do bias (saída do controle no setpoint desejado). Para o sistema de vazão, isso foi feito a partir de uma estimativa com o ganho do processo. A curva de bias inicializada no código está disponível no manual técnico.", "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
 
                 case 3: // Controle Proporcional Integral
@@ -248,7 +248,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtSetpointVazao.Text, out float setpointVazao) || setpointVazao < 0 || setpointVazao > 80)
+            if (!double.TryParse(txtSetpointVazao.Text, out double setpointVazao) || setpointVazao < 0 || setpointVazao > 80)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 80.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSetpointVazao.Text = Globals.setpointVazao.ToString("0.00");
@@ -259,7 +259,7 @@ namespace Supervisório_PCA_2._0
 
             if (Globals.RampFlowSP == true)
             {
-                float durationRampFlow = (float)rampDurationFlow.Value;
+                double durationRampFlow = (double)rampDurationFlow.Value;
                 string command = "RSPF " + setpointVazao.ToString("0.00") + " " + durationRampFlow.ToString("0.00");
                 Globals.serialPort.WriteLine(command);
                 MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -313,7 +313,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtHysteresisVazao.Text, out float histereseVazao) || histereseVazao < 0 || histereseVazao > 50)
+            if (!double.TryParse(txtHysteresisVazao.Text, out double histereseVazao) || histereseVazao < 0 || histereseVazao > 50)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtHysteresisVazao.Text = Globals.histereseVazao.ToString("0.00");
@@ -345,7 +345,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtGanhoVazao.Text, out float ganhoVazao) || ganhoVazao < 0 || ganhoVazao > 5000)
+            if (!double.TryParse(txtGanhoVazao.Text, out double ganhoVazao) || ganhoVazao < 0 || ganhoVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGanhoVazao.Text = Globals.ganhoVazao.ToString("0.00");
@@ -373,7 +373,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtIntegralVazao.Text, out float integralVazao) || integralVazao < 0 || integralVazao > 5000)
+            if (!double.TryParse(txtIntegralVazao.Text, out double integralVazao) || integralVazao < 0 || integralVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIntegralVazao.Text = Globals.integralVazao.ToString("0.00");
@@ -402,7 +402,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtDerivativoVazao.Text, out float derivativoVazao) || derivativoVazao < 0 || derivativoVazao > 5000)
+            if (!double.TryParse(txtDerivativoVazao.Text, out double derivativoVazao) || derivativoVazao < 0 || derivativoVazao > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDerivativoVazao.Text =  Globals.derivativoVazao.ToString("0.00");
@@ -429,6 +429,12 @@ namespace Supervisório_PCA_2._0
 
         private void btnVazao_Click(object sender, EventArgs e)
         {
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int controlTypePump = cmbControlVazao.SelectedIndex;
             Globals.controlTypePump = controlTypePump;
             string command = "CTP " + controlTypePump.ToString("0.00");
@@ -475,6 +481,16 @@ namespace Supervisório_PCA_2._0
                     "Tempo derivativo do controlador: " + Globals.derivativoVazao + " s",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
+                case 5:
+                    MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
+                    "Controle proporcional-integral-derivativo com filtro derivativo iniciado com os seguintes parâmetros:\n" +
+                    "Setpoint da vazão: " + Globals.setpointVazao + " L/h\n" +
+                    "Ganho do controlador: " + Globals.ganhoVazao + " L h-1 %-1\n" +
+                    "Tempo integral do controlador: " + Globals.integralVazao + " s\n" +
+                    "Tempo derivativo do controlador: " + Globals.derivativoVazao + " s\n" +
+                    "Alfa derivativo do controlador: " + Globals.alfaDerivativoBomba + " s",
+                    "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
             }
 
         }
@@ -492,7 +508,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtSetpointTemp.Text, out float setpointTemp) || setpointTemp < 0 || setpointTemp > 50)
+            if (!double.TryParse(txtSetpointTemp.Text, out double setpointTemp) || setpointTemp < 0 || setpointTemp > 50)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 50.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSetpointTemp.Text = Globals.setpointTemp.ToString("0.00");
@@ -518,7 +534,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtHysteresisTemp.Text, out float histereseTemp) || histereseTemp < 0 || histereseTemp > 10)
+            if (!double.TryParse(txtHysteresisTemp.Text, out double histereseTemp) || histereseTemp < 0 || histereseTemp > 10)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 10.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtHysteresisTemp.Text = Globals.histereseTemp.ToString("0.00");
@@ -544,7 +560,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtGanhoTemp.Text, out float ganhoTemp) || ganhoTemp < 0 || ganhoTemp > 5000)
+            if (!double.TryParse(txtGanhoTemp.Text, out double ganhoTemp) || ganhoTemp < 0 || ganhoTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGanhoTemp.Text = Globals.ganhoTemp.ToString("0.00");
@@ -571,7 +587,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtIntegralTemp.Text, out float integralTemp) || integralTemp < 0 || integralTemp > 5000)
+            if (!double.TryParse(txtIntegralTemp.Text, out double integralTemp) || integralTemp < 0 || integralTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIntegralTemp.Text = Globals.integralTemp.ToString("0.00");
@@ -598,7 +614,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtDerivativoTemp.Text, out float derivativoTemp) || derivativoTemp < 0 || derivativoTemp > 5000)
+            if (!double.TryParse(txtDerivativoTemp.Text, out double derivativoTemp) || derivativoTemp < 0 || derivativoTemp > 5000)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 5000.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDerivativoTemp.Text = Globals.derivativoTemp.ToString("0.00");
@@ -614,6 +630,12 @@ namespace Supervisório_PCA_2._0
 
         private void btnTemp_Click(object sender, EventArgs e)
         {
+
+            if (Globals.serialConnected == false || Globals.serialPort == null)
+            {
+                MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int controlTypeRes = cmbControlRes.SelectedIndex;
             Globals.controlTypeRes = controlTypeRes;
             string command = "CTR " + controlTypeRes.ToString("0.00");
@@ -661,12 +683,22 @@ namespace Supervisório_PCA_2._0
                     return;
                 case 5:
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
+                    "Controle proporcional-integral-derivativo com filtro derivativo iniciado com os seguintes parâmetros:\n" +
+                    "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
+                    "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n" +
+                    "Tempo integral do controlador: " + Globals.integralTemp + " s\n" +
+                    "Tempo derivativo do controlador: " + Globals.derivativoTemp + " s\n" +
+                    "Alfa derivativo do controlador: " + Globals.alfaDerivativoResistencia + " s",
+                    "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                case 6:
+                    MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle cascata proporcional iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
                     "Ganho do controlador: " + Globals.ganhoTemp + " % / °C\n",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                case 6:
+                case 7:
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle cascata proporcional-integral iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
@@ -674,7 +706,7 @@ namespace Supervisório_PCA_2._0
                     "Tempo integral do controlador: " + Globals.integralTemp + " s",
                     "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                case 7:
+                case 8:
                     MessageBox.Show("Comando " + command + " enviado com sucesso.\n" +
                     "Controle cascata proporcional-integral-derivativo iniciado com os seguintes parâmetros:\n" +
                     "Setpoint da temperatura: " + Globals.setpointTemp + " °C\n" +
@@ -699,7 +731,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtPotenciaResistencia.Text, out float resPower) || resPower < 0 || resPower > 100)
+            if (!double.TryParse(txtPotenciaResistencia.Text, out double resPower) || resPower < 0 || resPower > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPotenciaResistencia.Text = Globals.resPower.ToString("0.00");
@@ -933,7 +965,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtAlfaDerivativoResistencia.Text, out float alfaDerivativoRes) || alfaDerivativoRes < 0 || alfaDerivativoRes > 1)
+            if (!double.TryParse(txtAlfaDerivativoResistencia.Text, out double alfaDerivativoRes) || alfaDerivativoRes < 0 || alfaDerivativoRes > 1)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAlfaDerivativoResistencia.Text = Globals.resPower.ToString("0.00");
@@ -961,7 +993,7 @@ namespace Supervisório_PCA_2._0
                     return;
                 }
 
-                if (!float.TryParse(txtAlfaDerivativoBomba.Text, out float alfaDerivativoBomba) || alfaDerivativoBomba < 0 || alfaDerivativoBomba > 1)
+                if (!double.TryParse(txtAlfaDerivativoBomba.Text, out double alfaDerivativoBomba) || alfaDerivativoBomba < 0 || alfaDerivativoBomba > 1)
                 {
                     MessageBox.Show("Digite um valor decimal entre 0 e 1.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAlfaDerivativoBomba.Text = Globals.resPower.ToString("0.00");
@@ -988,6 +1020,8 @@ namespace Supervisório_PCA_2._0
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
+            MessageBox.Show("Ainda em desenvolvimento!", "Em desenvolvimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 

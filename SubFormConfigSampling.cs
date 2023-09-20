@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -186,7 +187,17 @@ namespace Supervisório_PCA_2._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Para mais informações sobre essa seção, recomenda-se a leitura do apêndice A.1 do manual de operação do PCA.\n\n\nEm resumo, aqui estamos configurando o intervalo de amostragem e os filtros para atenuar os ruídos dos sensores.\n\nQuanto à amostragem, quanto menor o valor, mais imprecisa fica a leitura do sensor de vazão, pois toma um intervalo de tempo menor. Em compensação, você tem mais dados e consegue analisar melhor a resposta do sistema. \n\nQuanto aos filtros, se você configurar todos os parâmetros de filtragem como 1, você desliga os dois filtros, recebendo a leitura do sensor 'pura'.\n\nQuanto maior o tamanho da média móvel e quanto menor o valor de alfa, mais lento responde o sistema, mas mais suaves são os dados.\n\nVocê pode testar a eficácia do filtro plotando a variável filtrada e a variável pré-filtro simultâneamente, indo nas configurações dos gráficos.", "Ajuda - Tomada de Dados, Amostragem e Filtragem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string url = "https://docs.google.com/document/d/1VZLoLYIvWTJcpwHPKLnaq9GY4QwbK-XSpFI_VM4r4gc/edit?usp=sharing";
+
+            try
+            {
+                Process.Start(url);
+                MessageBox.Show("Para mais informações sobre essa seção, recomenda-se a leitura do apêndice A.1 do manual de operação do PCA. O manual técnico será aberto no seu navegador padrão.\n\n\nEm resumo, aqui estamos configurando o intervalo de amostragem e os filtros para atenuar os ruídos dos sensores.\n\nQuanto à amostragem, quanto menor o valor, mais imprecisa fica a leitura do sensor de vazão, pois toma um intervalo de tempo menor. Em compensação, você tem mais dados e consegue analisar melhor a resposta do sistema. \n\nQuanto aos filtros, se você configurar todos os parâmetros de filtragem como 1, você desliga os dois filtros, recebendo a leitura do sensor 'pura'.\n\nQuanto maior o tamanho da média móvel e quanto menor o valor de alfa, mais lento responde o sistema, mas mais suaves são os dados.\n\nVocê pode testar a eficácia do filtro plotando a variável filtrada e a variável pré-filtro simultâneamente, indo nas configurações dos gráficos.", "Ajuda - Tomada de Dados, Amostragem e Filtragem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir o navegador: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtInterval_TextChanged(object sender, EventArgs e)

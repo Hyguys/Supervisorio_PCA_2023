@@ -503,6 +503,12 @@ namespace Supervisório_PCA_2._0
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (timeExp.Count < 2 || flowExp.Count < 2)
+            {
+                MessageBox.Show("Não há dados armazenados para realizar a identificação! Inicie um experimento!", "Não há dados!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
             if (sistemaSelecionado.SelectedItem.ToString() == "Vazão")
             {
                 Kcu = (4 * (Globals.upperLimitPump - Globals.lowerLimitPump)/2 ) / (Math.PI * amplitude);
@@ -543,7 +549,7 @@ namespace Supervisório_PCA_2._0
                 ,"Experimento finalizado!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            MessageBox.Show("Para identificar o sistema, entre com uma estimativa do atraso do sistema (theta) na tabela à direita." 
+            MessageBox.Show("Para identificar o sistema, entre com uma estimativa do atraso do sistema (theta) na tabela à direita.\n\nLembre-se de que theta deve ser no mínimo maior do que Pu/4. Neste caso, theta deve ser maior do que " + Pu/4 + " segundos!"  
             , "Atenção! Forneça o atraso (theta)!",MessageBoxButtons.OK, MessageBoxIcon.Information);
             experimentRunning = false;
 
@@ -621,6 +627,13 @@ namespace Supervisório_PCA_2._0
                     // Recupera os valores das células da nova linha e realiza a conversão
                     if (double.TryParse(tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[3].Value.ToString(), out double theta))
                     {
+                        if (theta <= period/4)
+                        {
+                            
+                            MessageBox.Show("O valor de theta digitado foi inferior à 0.25*Pu (" + (0.25 * period).ToString("0.00") + "). Isso geraria valores incongruentes para o modelo FOPTD devido ao uso da função tangente. Para exemplificar, o theta foi reajustado para " + (0.3 * period).ToString("0.00") +".");
+                            theta = 0.3 * period;
+                            tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[3].Value = theta;
+                        }
                         tabelaSistema.Rows[tabelaSistema.NewRowIndex - 1].Cells[0].Value = tabelaSistema.NewRowIndex;
                         double tau = (period / (2 * Math.PI)) * Math.Tan((Math.PI * (period - 2 * theta)) / period);
                         double Kp = Math.Sqrt((1 + Math.Pow((2 * Math.PI * tau / period), 2)));

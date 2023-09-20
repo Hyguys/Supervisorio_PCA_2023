@@ -39,10 +39,10 @@ namespace Supervisório_PCA_2._0
             this.iniciarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.finalizarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDeControleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDosGráficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limitesDaBombaEDaResistênciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ferramentasAvançadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sintoniaAutomáticaDeFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testeDeDegrauEmMalhaAbertaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,16 +53,20 @@ namespace Supervisório_PCA_2._0
             this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPlot = new ScottPlot.FormsPlot();
             this.tempPlot = new ScottPlot.FormsPlot();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.searchPorts = new System.Windows.Forms.Button();
             this.portsBox = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.disconnectPort = new System.Windows.Forms.Button();
             this.connectPort = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.resetPort = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.textBox1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBox2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -78,7 +82,7 @@ namespace Supervisório_PCA_2._0
             this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(825, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -133,20 +137,13 @@ namespace Supervisório_PCA_2._0
             // configuraçõesToolStripMenuItem
             // 
             this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tomadaDeDadosToolStripMenuItem,
             this.configuraçõesDeControleToolStripMenuItem,
             this.configuraçõesDosGráficosToolStripMenuItem,
-            this.limitesDaBombaEDaResistênciaToolStripMenuItem});
+            this.limitesDaBombaEDaResistênciaToolStripMenuItem,
+            this.tomadaDeDadosToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
             this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(122, 25);
             this.configuraçõesToolStripMenuItem.Text = "Configurações";
-            // 
-            // tomadaDeDadosToolStripMenuItem
-            // 
-            this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
-            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
-            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados, Amostragem e Filtragem";
-            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // configuraçõesDeControleToolStripMenuItem
             // 
@@ -168,6 +165,13 @@ namespace Supervisório_PCA_2._0
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Text = "Limites da Bomba e da Resistência";
             this.limitesDaBombaEDaResistênciaToolStripMenuItem.Click += new System.EventHandler(this.limitesDaBombaEDaResistênciaToolStripMenuItem_Click);
+            // 
+            // tomadaDeDadosToolStripMenuItem
+            // 
+            this.tomadaDeDadosToolStripMenuItem.Name = "tomadaDeDadosToolStripMenuItem";
+            this.tomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(438, 26);
+            this.tomadaDeDadosToolStripMenuItem.Text = "Tomada de Dados, Amostragem e Filtragem";
+            this.tomadaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.tomadaDeDadosToolStripMenuItem_Click);
             // 
             // ferramentasAvançadasToolStripMenuItem
             // 
@@ -215,7 +219,7 @@ namespace Supervisório_PCA_2._0
             // 
             this.cadastroDeModeloFOPTDToolStripMenuItem.Name = "cadastroDeModeloFOPTDToolStripMenuItem";
             this.cadastroDeModeloFOPTDToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
-            this.cadastroDeModeloFOPTDToolStripMenuItem.Text = "Cadastro de Modelo FOPTD";
+            this.cadastroDeModeloFOPTDToolStripMenuItem.Text = "Cadastro de Modelo Preditivo FOPTD";
             this.cadastroDeModeloFOPTDToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeModeloFOPTDToolStripMenuItem_Click);
             // 
             // ajudaToolStripMenuItem
@@ -235,46 +239,31 @@ namespace Supervisório_PCA_2._0
             // 
             // flowPlot
             // 
+            this.flowPlot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowPlot.AutoSize = true;
-            this.flowPlot.Location = new System.Drawing.Point(13, 70);
+            this.flowPlot.Location = new System.Drawing.Point(12, 60);
             this.flowPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flowPlot.Name = "flowPlot";
-            this.flowPlot.Size = new System.Drawing.Size(427, 370);
+            this.flowPlot.Size = new System.Drawing.Size(397, 316);
             this.flowPlot.TabIndex = 1;
             // 
             // tempPlot
             // 
-            this.tempPlot.Location = new System.Drawing.Point(450, 70);
+            this.tempPlot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tempPlot.Location = new System.Drawing.Point(419, 60);
             this.tempPlot.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.tempPlot.Name = "tempPlot";
-            this.tempPlot.Size = new System.Drawing.Size(427, 370);
+            this.tempPlot.Size = new System.Drawing.Size(397, 321);
             this.tempPlot.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(12, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "Conexão com a Porta:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(179, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(126, 22);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "Não conectado!";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // searchPorts
             // 
-            this.searchPorts.Location = new System.Drawing.Point(311, 28);
+            this.searchPorts.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchPorts.Location = new System.Drawing.Point(12, 32);
             this.searchPorts.Name = "searchPorts";
-            this.searchPorts.Size = new System.Drawing.Size(151, 32);
+            this.searchPorts.Size = new System.Drawing.Size(151, 28);
             this.searchPorts.TabIndex = 6;
             this.searchPorts.Text = "Buscar Portas COM";
             this.searchPorts.UseVisualStyleBackColor = true;
@@ -282,29 +271,20 @@ namespace Supervisório_PCA_2._0
             // 
             // portsBox
             // 
+            this.portsBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.portsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portsBox.FormattingEnabled = true;
-            this.portsBox.Location = new System.Drawing.Point(468, 31);
+            this.portsBox.Location = new System.Drawing.Point(169, 31);
             this.portsBox.Name = "portsBox";
-            this.portsBox.Size = new System.Drawing.Size(136, 29);
+            this.portsBox.Size = new System.Drawing.Size(97, 29);
             this.portsBox.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.textBox3.Location = new System.Drawing.Point(683, 482);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 15);
-            this.textBox3.TabIndex = 8;
-            this.textBox3.Text = "Desenvolvido por Leandro Favaretto";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // disconnectPort
             // 
-            this.disconnectPort.Location = new System.Drawing.Point(610, 29);
+            this.disconnectPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.disconnectPort.Location = new System.Drawing.Point(381, 29);
             this.disconnectPort.Name = "disconnectPort";
-            this.disconnectPort.Size = new System.Drawing.Size(119, 30);
+            this.disconnectPort.Size = new System.Drawing.Size(104, 30);
             this.disconnectPort.TabIndex = 8;
             this.disconnectPort.Text = "Desconectar";
             this.disconnectPort.UseVisualStyleBackColor = true;
@@ -312,9 +292,10 @@ namespace Supervisório_PCA_2._0
             // 
             // connectPort
             // 
-            this.connectPort.Location = new System.Drawing.Point(735, 29);
+            this.connectPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.connectPort.Location = new System.Drawing.Point(272, 29);
             this.connectPort.Name = "connectPort";
-            this.connectPort.Size = new System.Drawing.Size(119, 30);
+            this.connectPort.Size = new System.Drawing.Size(104, 30);
             this.connectPort.TabIndex = 9;
             this.connectPort.Text = "Conectar";
             this.connectPort.UseVisualStyleBackColor = true;
@@ -322,28 +303,79 @@ namespace Supervisório_PCA_2._0
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::Supervisório_PCA_2023.Properties.Resources.logoextensa;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 448);
+            this.pictureBox1.Location = new System.Drawing.Point(653, 7);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 49);
+            this.pictureBox1.Size = new System.Drawing.Size(163, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            // 
+            // resetPort
+            // 
+            this.resetPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.resetPort.AutoSize = true;
+            this.resetPort.Location = new System.Drawing.Point(491, 29);
+            this.resetPort.Name = "resetPort";
+            this.resetPort.Size = new System.Drawing.Size(104, 31);
+            this.resetPort.TabIndex = 10;
+            this.resetPort.Text = "Reiniciar";
+            this.resetPort.UseVisualStyleBackColor = true;
+            this.resetPort.Click += new System.EventHandler(this.resetPort_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textBox1,
+            this.textBox2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(825, 26);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(199, 21);
+            this.textBox1.Text = "Conexão com a Porta COM:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(123, 21);
+            this.textBox2.Text = "Desconectado!";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.textBox3.Location = new System.Drawing.Point(631, 392);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(194, 15);
+            this.textBox3.TabIndex = 12;
+            this.textBox3.Text = "Desenvolvido por Leandro Favaretto";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(884, 509);
+            this.ClientSize = new System.Drawing.Size(825, 407);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.resetPort);
             this.Controls.Add(this.connectPort);
             this.Controls.Add(this.disconnectPort);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.portsBox);
             this.Controls.Add(this.searchPorts);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tempPlot);
             this.Controls.Add(this.flowPlot);
             this.Controls.Add(this.menuStrip1);
@@ -351,7 +383,6 @@ namespace Supervisório_PCA_2._0
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "SUPERVISÓRIO PROJETO DE CONTROLE COM ARDUINO por Leandro Favaretto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -359,6 +390,8 @@ namespace Supervisório_PCA_2._0
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,12 +414,9 @@ namespace Supervisório_PCA_2._0
         private System.Windows.Forms.ToolStripMenuItem configuraçõesDosGráficosToolStripMenuItem;
         private ScottPlot.FormsPlot flowPlot;
         private ScottPlot.FormsPlot tempPlot;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button searchPorts;
         private System.Windows.Forms.ComboBox portsBox;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button disconnectPort;
         private System.Windows.Forms.Button connectPort;
         private ToolStripMenuItem ferramentasAvançadasToolStripMenuItem;
@@ -396,6 +426,12 @@ namespace Supervisório_PCA_2._0
         private ToolStripMenuItem limitesDaBombaEDaResistênciaToolStripMenuItem;
         private ToolStripMenuItem cadastroDeModeloFOPTDToolStripMenuItem;
         private ToolStripMenuItem testeEmMalhaFechadaPPIPIDToolStripMenuItem;
+        private Button resetPort;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel textBox1;
+        private ToolStripStatusLabel textBox2;
+        private TextBox textBox3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

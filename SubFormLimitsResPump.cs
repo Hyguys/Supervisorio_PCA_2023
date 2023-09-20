@@ -43,7 +43,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtUpperPump.Text, out float upperPump) || upperPump < 0 || upperPump > 100)
+            if (!double.TryParse(txtUpperPump.Text, out double upperPump) || upperPump < 0 || upperPump > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpperPump.Text = Globals.upperLimitPump.ToString("0.00");
@@ -70,7 +70,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtLowerPump.Text, out float lowerPump) || lowerPump < 0 || lowerPump > 100)
+            if (!double.TryParse(txtLowerPump.Text, out double lowerPump) || lowerPump < 0 || lowerPump > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtLowerPump.Text = Globals.lowerLimitPump.ToString("0.00");
@@ -97,7 +97,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtUpperRes.Text, out float upperRes) || upperRes < 0 || upperRes > 100)
+            if (!double.TryParse(txtUpperRes.Text, out double upperRes) || upperRes < 0 || upperRes > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUpperRes.Text = Globals.upperLimitRes.ToString("0.00");
@@ -124,7 +124,7 @@ namespace Supervisório_PCA_2._0
                 return;
             }
 
-            if (!float.TryParse(txtLowerRes.Text, out float lowerRes) || lowerRes < 0 || lowerRes > 100)
+            if (!double.TryParse(txtLowerRes.Text, out double lowerRes) || lowerRes < 0 || lowerRes > 100)
             {
                 MessageBox.Show("Digite um valor decimal entre 0 e 100.", "Valor inválido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtLowerRes.Text = Globals.lowerLimitRes.ToString("0.00");

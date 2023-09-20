@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVazao = new System.Windows.Forms.TabPage();
+            this.btnNonLinControlPump = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.txtAlfaDerivativoBomba = new System.Windows.Forms.TextBox();
             this.lblAlfaDerivativoBomba = new System.Windows.Forms.Label();
@@ -90,8 +92,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGanhoTemp = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label30 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVazao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rampDurationFlow)).BeginInit();
@@ -103,7 +103,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabVazao);
             this.tabControl1.Controls.Add(this.tabTemp);
-            this.tabControl1.Location = new System.Drawing.Point(10, 12);
+            this.tabControl1.Location = new System.Drawing.Point(1, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(478, 402);
@@ -112,7 +112,8 @@
             // 
             // tabVazao
             // 
-            this.tabVazao.Controls.Add(this.button1);
+            this.tabVazao.BackColor = System.Drawing.Color.White;
+            this.tabVazao.Controls.Add(this.btnNonLinControlPump);
             this.tabVazao.Controls.Add(this.label30);
             this.tabVazao.Controls.Add(this.label26);
             this.tabVazao.Controls.Add(this.txtAlfaDerivativoBomba);
@@ -148,8 +149,27 @@
             this.tabVazao.Size = new System.Drawing.Size(470, 368);
             this.tabVazao.TabIndex = 0;
             this.tabVazao.Text = "Vazão";
-            this.tabVazao.UseVisualStyleBackColor = true;
             this.tabVazao.Click += new System.EventHandler(this.tabVazao_Click);
+            // 
+            // btnNonLinControlPump
+            // 
+            this.btnNonLinControlPump.Location = new System.Drawing.Point(220, 333);
+            this.btnNonLinControlPump.Name = "btnNonLinControlPump";
+            this.btnNonLinControlPump.Size = new System.Drawing.Size(131, 32);
+            this.btnNonLinControlPump.TabIndex = 44;
+            this.btnNonLinControlPump.Text = "Configurar";
+            this.btnNonLinControlPump.UseVisualStyleBackColor = true;
+            this.btnNonLinControlPump.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 334);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(152, 21);
+            this.label30.TabIndex = 43;
+            this.label30.Text = "Controle Não-Linear";
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // label26
             // 
@@ -163,14 +183,15 @@
             // 
             this.txtAlfaDerivativoBomba.AcceptsReturn = true;
             this.txtAlfaDerivativoBomba.Location = new System.Drawing.Point(220, 298);
-            this.txtAlfaDerivativoBomba.MaxLength = 3;
+            this.txtAlfaDerivativoBomba.MaxLength = 4;
             this.txtAlfaDerivativoBomba.Name = "txtAlfaDerivativoBomba";
             this.txtAlfaDerivativoBomba.ReadOnly = true;
-            this.txtAlfaDerivativoBomba.Size = new System.Drawing.Size(110, 29);
+            this.txtAlfaDerivativoBomba.Size = new System.Drawing.Size(131, 29);
             this.txtAlfaDerivativoBomba.TabIndex = 30;
             this.txtAlfaDerivativoBomba.Text = "0";
             this.txtAlfaDerivativoBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAlfaDerivativoBomba.TextChanged += new System.EventHandler(this.txtAlfaDerivativoBomba_TextChanged);
+            this.txtAlfaDerivativoBomba.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlfaDerivativoBomba_KeyDown);
             // 
             // lblAlfaDerivativoBomba
             // 
@@ -185,16 +206,16 @@
             // lblRampFlow
             // 
             this.lblRampFlow.AutoSize = true;
-            this.lblRampFlow.Location = new System.Drawing.Point(388, 56);
+            this.lblRampFlow.Location = new System.Drawing.Point(408, 56);
             this.lblRampFlow.Name = "lblRampFlow";
-            this.lblRampFlow.Size = new System.Drawing.Size(77, 21);
+            this.lblRampFlow.Size = new System.Drawing.Size(37, 21);
             this.lblRampFlow.TabIndex = 29;
-            this.lblRampFlow.Text = "segundos";
+            this.lblRampFlow.Text = "seg.";
             this.lblRampFlow.Visible = false;
             // 
             // rampDurationFlow
             // 
-            this.rampDurationFlow.Location = new System.Drawing.Point(337, 53);
+            this.rampDurationFlow.Location = new System.Drawing.Point(357, 53);
             this.rampDurationFlow.Maximum = new decimal(new int[] {
             60,
             0,
@@ -219,7 +240,7 @@
             "Rampa"});
             this.cmbFlowSPChange.Location = new System.Drawing.Point(220, 53);
             this.cmbFlowSPChange.Name = "cmbFlowSPChange";
-            this.cmbFlowSPChange.Size = new System.Drawing.Size(110, 29);
+            this.cmbFlowSPChange.Size = new System.Drawing.Size(131, 29);
             this.cmbFlowSPChange.TabIndex = 1;
             this.cmbFlowSPChange.Text = "Degrau";
             this.cmbFlowSPChange.SelectedIndexChanged += new System.EventHandler(this.cmbFlowSPChange_SelectedIndexChanged);
@@ -235,7 +256,7 @@
             // 
             // btnVazao
             // 
-            this.btnVazao.Location = new System.Drawing.Point(337, 88);
+            this.btnVazao.Location = new System.Drawing.Point(357, 88);
             this.btnVazao.Name = "btnVazao";
             this.btnVazao.Size = new System.Drawing.Size(89, 29);
             this.btnVazao.TabIndex = 4;
@@ -246,7 +267,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(332, 162);
+            this.label20.Location = new System.Drawing.Point(352, 162);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 21);
             this.label20.TabIndex = 22;
@@ -256,10 +277,10 @@
             // 
             this.txtHysteresisVazao.AcceptsReturn = true;
             this.txtHysteresisVazao.Location = new System.Drawing.Point(220, 158);
-            this.txtHysteresisVazao.MaxLength = 3;
+            this.txtHysteresisVazao.MaxLength = 4;
             this.txtHysteresisVazao.Name = "txtHysteresisVazao";
             this.txtHysteresisVazao.ReadOnly = true;
-            this.txtHysteresisVazao.Size = new System.Drawing.Size(110, 29);
+            this.txtHysteresisVazao.Size = new System.Drawing.Size(131, 29);
             this.txtHysteresisVazao.TabIndex = 6;
             this.txtHysteresisVazao.Text = "0";
             this.txtHysteresisVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -278,7 +299,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(332, 22);
+            this.label16.Location = new System.Drawing.Point(352, 22);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 21);
             this.label16.TabIndex = 19;
@@ -288,9 +309,9 @@
             // 
             this.txtSetpointVazao.AcceptsReturn = true;
             this.txtSetpointVazao.Location = new System.Drawing.Point(220, 18);
-            this.txtSetpointVazao.MaxLength = 5;
+            this.txtSetpointVazao.MaxLength = 4;
             this.txtSetpointVazao.Name = "txtSetpointVazao";
-            this.txtSetpointVazao.Size = new System.Drawing.Size(110, 29);
+            this.txtSetpointVazao.Size = new System.Drawing.Size(131, 29);
             this.txtSetpointVazao.TabIndex = 0;
             this.txtSetpointVazao.Text = "0";
             this.txtSetpointVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -309,7 +330,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(332, 267);
+            this.label10.Location = new System.Drawing.Point(352, 267);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 21);
             this.label10.TabIndex = 16;
@@ -319,10 +340,10 @@
             // 
             this.txtDerivativoVazao.AcceptsReturn = true;
             this.txtDerivativoVazao.Location = new System.Drawing.Point(220, 263);
-            this.txtDerivativoVazao.MaxLength = 3;
+            this.txtDerivativoVazao.MaxLength = 5;
             this.txtDerivativoVazao.Name = "txtDerivativoVazao";
             this.txtDerivativoVazao.ReadOnly = true;
-            this.txtDerivativoVazao.Size = new System.Drawing.Size(110, 29);
+            this.txtDerivativoVazao.Size = new System.Drawing.Size(131, 29);
             this.txtDerivativoVazao.TabIndex = 9;
             this.txtDerivativoVazao.Text = "0";
             this.txtDerivativoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -341,7 +362,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(332, 232);
+            this.label8.Location = new System.Drawing.Point(352, 232);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 21);
             this.label8.TabIndex = 13;
@@ -354,7 +375,7 @@
             this.txtIntegralVazao.MaxLength = 5;
             this.txtIntegralVazao.Name = "txtIntegralVazao";
             this.txtIntegralVazao.ReadOnly = true;
-            this.txtIntegralVazao.Size = new System.Drawing.Size(110, 29);
+            this.txtIntegralVazao.Size = new System.Drawing.Size(131, 29);
             this.txtIntegralVazao.TabIndex = 8;
             this.txtIntegralVazao.Text = "0";
             this.txtIntegralVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -373,7 +394,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(332, 197);
+            this.label6.Location = new System.Drawing.Point(352, 197);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 21);
             this.label6.TabIndex = 10;
@@ -383,10 +404,10 @@
             // 
             this.txtGanhoVazao.AcceptsReturn = true;
             this.txtGanhoVazao.Location = new System.Drawing.Point(220, 193);
-            this.txtGanhoVazao.MaxLength = 4;
+            this.txtGanhoVazao.MaxLength = 6;
             this.txtGanhoVazao.Name = "txtGanhoVazao";
             this.txtGanhoVazao.ReadOnly = true;
-            this.txtGanhoVazao.Size = new System.Drawing.Size(110, 29);
+            this.txtGanhoVazao.Size = new System.Drawing.Size(131, 29);
             this.txtGanhoVazao.TabIndex = 7;
             this.txtGanhoVazao.Text = "0";
             this.txtGanhoVazao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -405,7 +426,7 @@
             // lblUnitInterval
             // 
             this.lblUnitInterval.AutoSize = true;
-            this.lblUnitInterval.Location = new System.Drawing.Point(332, 127);
+            this.lblUnitInterval.Location = new System.Drawing.Point(352, 127);
             this.lblUnitInterval.Name = "lblUnitInterval";
             this.lblUnitInterval.Size = new System.Drawing.Size(23, 21);
             this.lblUnitInterval.TabIndex = 3;
@@ -415,9 +436,9 @@
             // 
             this.txtPotenciaBomba.AcceptsReturn = true;
             this.txtPotenciaBomba.Location = new System.Drawing.Point(220, 123);
-            this.txtPotenciaBomba.MaxLength = 5;
+            this.txtPotenciaBomba.MaxLength = 4;
             this.txtPotenciaBomba.Name = "txtPotenciaBomba";
-            this.txtPotenciaBomba.Size = new System.Drawing.Size(110, 29);
+            this.txtPotenciaBomba.Size = new System.Drawing.Size(131, 29);
             this.txtPotenciaBomba.TabIndex = 5;
             this.txtPotenciaBomba.Text = "0";
             this.txtPotenciaBomba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -445,7 +466,7 @@
             "Controle PID-fd"});
             this.cmbControlVazao.Location = new System.Drawing.Point(220, 88);
             this.cmbControlVazao.Name = "cmbControlVazao";
-            this.cmbControlVazao.Size = new System.Drawing.Size(110, 29);
+            this.cmbControlVazao.Size = new System.Drawing.Size(131, 29);
             this.cmbControlVazao.TabIndex = 3;
             this.cmbControlVazao.Text = "Manual";
             this.cmbControlVazao.SelectedIndexChanged += new System.EventHandler(this.cmbControlVazao_SelectedIndexChanged);
@@ -461,6 +482,7 @@
             // 
             // tabTemp
             // 
+            this.tabTemp.BackColor = System.Drawing.Color.White;
             this.tabTemp.Controls.Add(this.btnNonLinTemp);
             this.tabTemp.Controls.Add(this.label28);
             this.tabTemp.Controls.Add(this.label29);
@@ -498,13 +520,12 @@
             this.tabTemp.Size = new System.Drawing.Size(470, 368);
             this.tabTemp.TabIndex = 1;
             this.tabTemp.Text = "Temperatura";
-            this.tabTemp.UseVisualStyleBackColor = true;
             // 
             // btnNonLinTemp
             // 
             this.btnNonLinTemp.Location = new System.Drawing.Point(220, 333);
             this.btnNonLinTemp.Name = "btnNonLinTemp";
-            this.btnNonLinTemp.Size = new System.Drawing.Size(110, 32);
+            this.btnNonLinTemp.Size = new System.Drawing.Size(131, 32);
             this.btnNonLinTemp.TabIndex = 42;
             this.btnNonLinTemp.Text = "Configurar";
             this.btnNonLinTemp.UseVisualStyleBackColor = true;
@@ -521,7 +542,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(6, 336);
+            this.label29.Location = new System.Drawing.Point(6, 334);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(152, 21);
             this.label29.TabIndex = 41;
@@ -542,7 +563,7 @@
             this.txtAlfaDerivativoResistencia.MaxLength = 3;
             this.txtAlfaDerivativoResistencia.Name = "txtAlfaDerivativoResistencia";
             this.txtAlfaDerivativoResistencia.ReadOnly = true;
-            this.txtAlfaDerivativoResistencia.Size = new System.Drawing.Size(110, 29);
+            this.txtAlfaDerivativoResistencia.Size = new System.Drawing.Size(131, 29);
             this.txtAlfaDerivativoResistencia.TabIndex = 36;
             this.txtAlfaDerivativoResistencia.Text = "0";
             this.txtAlfaDerivativoResistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -561,16 +582,16 @@
             // lblRampTemp
             // 
             this.lblRampTemp.AutoSize = true;
-            this.lblRampTemp.Location = new System.Drawing.Point(388, 56);
+            this.lblRampTemp.Location = new System.Drawing.Point(408, 56);
             this.lblRampTemp.Name = "lblRampTemp";
-            this.lblRampTemp.Size = new System.Drawing.Size(77, 21);
+            this.lblRampTemp.Size = new System.Drawing.Size(37, 21);
             this.lblRampTemp.TabIndex = 31;
-            this.lblRampTemp.Text = "segundos";
+            this.lblRampTemp.Text = "seg.";
             this.lblRampTemp.Visible = false;
             // 
             // rampDurationTemp
             // 
-            this.rampDurationTemp.Location = new System.Drawing.Point(337, 53);
+            this.rampDurationTemp.Location = new System.Drawing.Point(357, 53);
             this.rampDurationTemp.Maximum = new decimal(new int[] {
             60,
             0,
@@ -595,7 +616,7 @@
             "Rampa"});
             this.cmbTempSPChange.Location = new System.Drawing.Point(220, 53);
             this.cmbTempSPChange.Name = "cmbTempSPChange";
-            this.cmbTempSPChange.Size = new System.Drawing.Size(110, 29);
+            this.cmbTempSPChange.Size = new System.Drawing.Size(131, 29);
             this.cmbTempSPChange.TabIndex = 12;
             this.cmbTempSPChange.Text = "Degrau";
             this.cmbTempSPChange.SelectedIndexChanged += new System.EventHandler(this.cmbTempSPChange_SelectedIndexChanged);
@@ -611,7 +632,7 @@
             // 
             // btnTemp
             // 
-            this.btnTemp.Location = new System.Drawing.Point(337, 88);
+            this.btnTemp.Location = new System.Drawing.Point(357, 88);
             this.btnTemp.Name = "btnTemp";
             this.btnTemp.Size = new System.Drawing.Size(89, 29);
             this.btnTemp.TabIndex = 16;
@@ -622,7 +643,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(332, 162);
+            this.label22.Location = new System.Drawing.Point(352, 162);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(26, 21);
             this.label22.TabIndex = 32;
@@ -635,7 +656,7 @@
             this.txtHysteresisTemp.MaxLength = 2;
             this.txtHysteresisTemp.Name = "txtHysteresisTemp";
             this.txtHysteresisTemp.ReadOnly = true;
-            this.txtHysteresisTemp.Size = new System.Drawing.Size(110, 29);
+            this.txtHysteresisTemp.Size = new System.Drawing.Size(131, 29);
             this.txtHysteresisTemp.TabIndex = 18;
             this.txtHysteresisTemp.Text = "0";
             this.txtHysteresisTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -654,7 +675,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(332, 22);
+            this.label18.Location = new System.Drawing.Point(352, 22);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(26, 21);
             this.label18.TabIndex = 22;
@@ -676,7 +697,7 @@
             this.txtSetpointTemp.Location = new System.Drawing.Point(220, 18);
             this.txtSetpointTemp.MaxLength = 5;
             this.txtSetpointTemp.Name = "txtSetpointTemp";
-            this.txtSetpointTemp.Size = new System.Drawing.Size(110, 29);
+            this.txtSetpointTemp.Size = new System.Drawing.Size(131, 29);
             this.txtSetpointTemp.TabIndex = 11;
             this.txtSetpointTemp.Text = "0";
             this.txtSetpointTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -695,7 +716,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(332, 267);
+            this.label1.Location = new System.Drawing.Point(352, 267);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 21);
             this.label1.TabIndex = 30;
@@ -716,7 +737,7 @@
             this.txtPotenciaResistencia.Location = new System.Drawing.Point(220, 123);
             this.txtPotenciaResistencia.MaxLength = 5;
             this.txtPotenciaResistencia.Name = "txtPotenciaResistencia";
-            this.txtPotenciaResistencia.Size = new System.Drawing.Size(110, 29);
+            this.txtPotenciaResistencia.Size = new System.Drawing.Size(131, 29);
             this.txtPotenciaResistencia.TabIndex = 17;
             this.txtPotenciaResistencia.Text = "0";
             this.txtPotenciaResistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -739,7 +760,7 @@
             this.txtDerivativoTemp.MaxLength = 4;
             this.txtDerivativoTemp.Name = "txtDerivativoTemp";
             this.txtDerivativoTemp.ReadOnly = true;
-            this.txtDerivativoTemp.Size = new System.Drawing.Size(110, 29);
+            this.txtDerivativoTemp.Size = new System.Drawing.Size(131, 29);
             this.txtDerivativoTemp.TabIndex = 21;
             this.txtDerivativoTemp.Text = "0";
             this.txtDerivativoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -778,7 +799,7 @@
             "Cascata PID"});
             this.cmbControlRes.Location = new System.Drawing.Point(220, 88);
             this.cmbControlRes.Name = "cmbControlRes";
-            this.cmbControlRes.Size = new System.Drawing.Size(110, 29);
+            this.cmbControlRes.Size = new System.Drawing.Size(131, 29);
             this.cmbControlRes.TabIndex = 15;
             this.cmbControlRes.Text = "Manual";
             this.cmbControlRes.SelectedIndexChanged += new System.EventHandler(this.cmbControlRes_SelectedIndexChanged);
@@ -786,7 +807,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 232);
+            this.label3.Location = new System.Drawing.Point(352, 232);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 21);
             this.label3.TabIndex = 27;
@@ -799,7 +820,7 @@
             this.txtIntegralTemp.MaxLength = 5;
             this.txtIntegralTemp.Name = "txtIntegralTemp";
             this.txtIntegralTemp.ReadOnly = true;
-            this.txtIntegralTemp.Size = new System.Drawing.Size(110, 29);
+            this.txtIntegralTemp.Size = new System.Drawing.Size(131, 29);
             this.txtIntegralTemp.TabIndex = 20;
             this.txtIntegralTemp.Text = "0";
             this.txtIntegralTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -808,7 +829,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(332, 127);
+            this.label13.Location = new System.Drawing.Point(352, 127);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(23, 21);
             this.label13.TabIndex = 19;
@@ -817,7 +838,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(332, 197);
+            this.label5.Location = new System.Drawing.Point(352, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 21);
             this.label5.TabIndex = 24;
@@ -830,31 +851,11 @@
             this.txtGanhoTemp.MaxLength = 4;
             this.txtGanhoTemp.Name = "txtGanhoTemp";
             this.txtGanhoTemp.ReadOnly = true;
-            this.txtGanhoTemp.Size = new System.Drawing.Size(110, 29);
+            this.txtGanhoTemp.Size = new System.Drawing.Size(131, 29);
             this.txtGanhoTemp.TabIndex = 19;
             this.txtGanhoTemp.Text = "0";
             this.txtGanhoTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanhoTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGanhoTemp_KeyDown);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(220, 333);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 32);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Configurar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 336);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(152, 21);
-            this.label30.TabIndex = 43;
-            this.label30.Text = "Controle Não-Linear";
-            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // SubFormConfigControl
             // 
@@ -862,7 +863,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(497, 418);
+            this.ClientSize = new System.Drawing.Size(480, 403);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -944,7 +945,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button btnNonLinTemp;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNonLinControlPump;
         private System.Windows.Forms.Label label30;
     }
 }

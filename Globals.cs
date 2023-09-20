@@ -52,11 +52,11 @@ namespace Supervisório_PCA_2._0
         public static bool defaultShowSPTemp = false;
         public static bool defaultShowSPVazao = false;
 
-        public static int defaultNumberFlowPoints = 5*1000/250;
+        public static int defaultNumberFlowPoints = 8*1000/250;
         public static int defaultMediaMovelFlow = 8;
         public static double defaultAlfaFlow = 0.4;
 
-        public static int defaultNumberTempPoints = 10 * 1000 / 250;
+        public static int defaultNumberTempPoints = 60* 1000 / 250;
         public static int defaultMediaMovelTemp = 10;
         public static double defaultAlfaTemp = 0.1;
 
@@ -96,9 +96,9 @@ namespace Supervisório_PCA_2._0
         public static bool defaultExibirPotenciaBomba = true;
         public static bool defaultExibirVazaoPreFiltragem = false;
         public static bool defaultExibirPrevisaoVazao = false;
-        public static int defaultMarkerSizeVazao = 3;
+        public static int defaultMarkerSizeVazao = 1;
         public static int defaultLineSizeVazao = 1;
-        public static int defaultHistoricoVazao = 5;
+        public static int defaultHistoricoVazao = 8;
         public static Color defaultCorVazao = Color.Blue;
         public static Color defaultCorSPVazao = Color.Green;
         public static Color defaultCorPotenciaBomba = Color.DarkMagenta;
@@ -110,9 +110,9 @@ namespace Supervisório_PCA_2._0
         public static bool defaultExibirTempEntrada = false;
         public static bool defaultExibirTempPreFiltragem = false;
         public static bool defaultExibirPrevisaoTemp = false;
-        public static int defaultMarkerSizeTemp = 3;
+        public static int defaultMarkerSizeTemp = 1;
         public static int defaultLineSizeTemp = 1;
-        public static int defaultHistoricoTemp = 10;
+        public static int defaultHistoricoTemp = 60;
         public static Color defaultCorTemp = Color.Red;
         public static Color defaultCorSPTemp = Color.Green;
         public static Color defaultCorPotenciaRes = Color.DarkMagenta;
@@ -166,7 +166,7 @@ namespace Supervisório_PCA_2._0
         public static double upperLimitPump = defaultUpperLimitPump;
 
         public static double lowerLimitRes = defaultLowerLimitRes;
-        public static double upperLimitRes = defaultLowerLimitRes;
+        public static double upperLimitRes = defaultUpperLimitRes;
 
 
 

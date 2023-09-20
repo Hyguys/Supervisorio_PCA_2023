@@ -13,6 +13,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using Supervisório_PCA_2023;
+using System.Diagnostics;
 
 namespace Supervisório_PCA_2._0
 {
@@ -79,7 +80,7 @@ namespace Supervisório_PCA_2._0
         private void disconnectPort_Click(object sender, EventArgs e)
         {
             GlobalMethods.DisconnectSerialPort();
-            textBox2.Text = "Disconectado!";
+            textBox2.Text = "Desconectado!";
             textBox2.ForeColor = Color.Black;
         }
 
@@ -130,7 +131,7 @@ namespace Supervisório_PCA_2._0
                 // Grava a linha de dados no StreamWriter caso esteja gravando dados
                 if (Globals.isRecordingData)
                 {
-                    dataStreamWriter.Write(string.Join(",", subStrings));
+                    dataStreamWriter.Write(string.Join(";", subStrings));
                 }
 
                 // Verifica se a invocação é necessária
@@ -531,10 +532,14 @@ namespace Supervisório_PCA_2._0
             // Verifica se a porta serial está conectada
             if (Globals.serialConnected == false)
             {
-                MessageBox.Show("Não há nenhuma porta serial conectada.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Não há nenhuma porta serial conectada.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (Globals.isRecordingData == true)
+            {
+                MessageBox.Show("Já há uma gravação de dados em andamento. Antes de iniciar outra, certifique-se de finalizar a anterior.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
             // Exibe uma caixa de diálogo de confirmação
             DialogResult result = MessageBox.Show("Deseja começar a gravação dos dados atuais em um arquivo CSV?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -686,7 +691,19 @@ namespace Supervisório_PCA_2._0
 
         private void manualDeOperaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Entre em contato com a comissão do PCA do PET Engenharia Química da UEM para ter acesso ao manual de operação. Você encaminhar um e-mail para pet.uem.eq@gmail.com.", "Entrar em contato!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           
+            string url = "https://docs.google.com/document/d/1VZLoLYIvWTJcpwHPKLnaq9GY4QwbK-XSpFI_VM4r4gc/edit?usp=sharing";
+
+            try
+            {
+                Process.Start(url);
+                MessageBox.Show("O manual técnico será aberto no seu navegador padrão.", "Abrir Manual", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir o navegador: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private void cadastroDeModeloFOPTDToolStripMenuItem_Click(object sender, EventArgs e)
@@ -698,7 +715,27 @@ namespace Supervisório_PCA_2._0
 
         private void testeEmMalhaFechadaPPIPIDToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Essa função ainda não está pronta!", "Em desenvolvimento!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 
+        }
+
+        private void resetPort_Click(object sender, EventArgs e)
+        {
+            GlobalMethods.DisconnectSerialPort();
+            textBox2.Text = "Disconectado!";
+            textBox2.ForeColor = Color.Black;
+            if (portsBox.SelectedItem != null) // Verifica se um item foi selecionado na combobox
+            {
+                string selectedPort = portsBox.SelectedItem.ToString();
+                GlobalMethods.ConnectSerialPort(selectedPort);
+                if (Globals.serialConnected)
+                {
+                    flowPlot.Reset();
+                    tempPlot.Reset();
+                    textBox2.Text = "Conectado!";
+                    textBox2.ForeColor = Color.Blue;
+                }
+            }
         }
     }
 }
