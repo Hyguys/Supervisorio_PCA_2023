@@ -40,7 +40,9 @@ namespace Supervisório_PCA_2._0
 
         private bool messageEquilibriumShown = false;
 
-        private int residualType = 0; //0 = quadratic, 1 = absolute;
+        private int residualType = 1; //0 = quadratic, 1 = absolute;
+
+        private int numIdentification = 0;
 
         public SubFormStepTuningFOPTD()
         {
@@ -182,6 +184,8 @@ namespace Supervisório_PCA_2._0
             }
 
             /* INICIAR ARMAZENAMENTO DOS DADOS DO EXPERIMENTO */
+
+            numIdentification++;
             experimentRunning = true;
         }
 
@@ -633,7 +637,7 @@ namespace Supervisório_PCA_2._0
             {
                 // Chute inicial para as variáveis de decisão
                 Vector<double> initialGuess = DenseVector.OfArray(new double[] { 1, 1, 1 });
-                stepResPower = Convert.ToDouble(lblPotenciaInicial.Text) - initialTemp;
+                stepResPower = Convert.ToDouble(txtPotenciaInicial.Text) - initialTemp;
                 // Definir os limites inferior e superior para as variáveis de decisão
                 ///////////////////////////////////////////////////////////////K  THETA   TAU
                 Vector<double> lowerBound = DenseVector.OfArray(new double[] { 1, 0.5, 0.5 });
@@ -741,7 +745,7 @@ namespace Supervisório_PCA_2._0
             double Kp = optimalK_process;
             double theta = optimalLag_process;
             double tau = optimalTimeConstant_process;
-            tabela.Rows.Add(tabela.Rows.Count.ToString("0"),
+            tabela.Rows.Add(numIdentification.ToString("0"),
                              Kp.ToString("0.000"),
                              tau.ToString("0.000"),
                              theta.ToString("0.000"),
@@ -1214,7 +1218,7 @@ namespace Supervisório_PCA_2._0
             {
                 // Chute inicial para as variáveis de decisão
                 Vector<double> initialGuess = DenseVector.OfArray(new double[] { 1, 1, 1 });
-                stepResPower = Convert.ToDouble(lblPotenciaInicial.Text) - initialTemp;
+                stepResPower = Convert.ToDouble(txtPotenciaInicial.Text) - initialTemp;
                 // Definir os limites inferior e superior para as variáveis de decisão
                 ///////////////////////////////////////////////////////////////K  THETA   TAU
                 Vector<double> lowerBound = DenseVector.OfArray(new double[] { 1, 0.5, 0.5 });
@@ -1253,6 +1257,7 @@ namespace Supervisório_PCA_2._0
 
             MessageBox.Show(message, "Resultados da Otimização", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            double RSquared = 0;
             if (selectedSystem == "Vazão")
             {
 
@@ -1273,7 +1278,7 @@ namespace Supervisório_PCA_2._0
                     }
                 }
 
-
+                RSquared = GoodnessOfFit.RSquared(flowExp, flowModel);
                 // Plotar os pontos da série flowExp
                 sp.Plot.AddScatter(timeExp.ToArray(), flowModel, label: "Desvio da Vazão Modelada", markerShape: MarkerShape.filledCircle, markerSize: 0, lineWidth: 1);
 
@@ -1304,8 +1309,9 @@ namespace Supervisório_PCA_2._0
                 }
 
 
+                RSquared = GoodnessOfFit.RSquared(tempExp, tempModel);
                 // Plotar os pontos da série tempExp
-                sp.Plot.AddScatter(timeExp.ToArray(), tempModel, label: "Desvio da Vazão Modelada", markerShape: MarkerShape.filledCircle, markerSize: 0, lineWidth: 1);
+                sp.Plot.AddScatter(timeExp.ToArray(), tempModel, label: "Desvio da Temperatura Modelada", markerShape: MarkerShape.filledCircle, markerSize: 0, lineWidth: 1);
 
                 // Configurar o gráfico com rótulos, título e legenda
 
@@ -1313,7 +1319,6 @@ namespace Supervisório_PCA_2._0
                 sp.Plot.YLabel("Temperatura");
                 sp.Plot.Title("Gráfico de Temperatura Modelada em FOPTD");
             }
-
             sp.Plot.Legend();
             sp.Plot.Render();
             sp.Refresh();
@@ -1321,7 +1326,7 @@ namespace Supervisório_PCA_2._0
             double Kp = optimalK_process;
             double theta = optimalLag_process;
             double tau = optimalTimeConstant_process;
-            tabela.Rows.Add((tabela.Rows.Count-1).ToString("0") + "*",
+            tabela.Rows.Add(numIdentification.ToString("0") + "*",
                              Kp.ToString("0.000"),
                              tau.ToString("0.000"),
                              theta.ToString("0.000"));

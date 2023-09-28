@@ -208,7 +208,7 @@ namespace Supervisório_PCA_2._0
                 tempPlot.Plot.Grid(Globals.ExibirGridTemp);
                 tempPlot.Plot.XAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
                 tempPlot.Plot.YAxis.MajorGrid(Globals.ExibirGridTemp, color: Color.FromArgb(35, Color.Black));
-                tempPlot.Plot.SetAxisLimitsY(Math.Min(Globals.tempOutData.Min() * 0.8,0), Math.Max(Globals.tempOutData.Max() * 1.2,0.1));
+                tempPlot.Plot.SetAxisLimitsY(Globals.tempOutData.Min() * 0.9, Math.Max(Globals.tempOutData.Max() * 1.1,0.1));
                 tempPlot.Plot.SetAxisLimitsY(-3, 110, tempPlot.Plot.RightAxis.AxisIndex);
                 tempPlot.Plot.Title("Controle de Temperatura");
                 tempPlot.Plot.YAxis.Label("Temperatura (°C)");
@@ -736,6 +736,20 @@ namespace Supervisório_PCA_2._0
                     textBox2.ForeColor = Color.Blue;
                 }
             }
+        }
+
+        private void leiturasInstantâneasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            SubFormInstantReads subForm = new SubFormInstantReads();
+            subForm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            SubFormInstantReads subForm = new SubFormInstantReads();
+            subForm.Show();
         }
     }
 }

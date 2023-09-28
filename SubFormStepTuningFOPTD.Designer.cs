@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtPotenciaBomba = new System.Windows.Forms.TextBox();
             this.lblDegrau = new System.Windows.Forms.Label();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.tabela = new System.Windows.Forms.DataGridView();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tau = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Theta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Determinação = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sp = new ScottPlot.FormsPlot();
             this.lblEquilibrium = new System.Windows.Forms.Label();
             this.tabelaControle = new System.Windows.Forms.DataGridView();
@@ -56,11 +61,6 @@
             this.lblResidualType = new System.Windows.Forms.Label();
             this.cbResidualType = new System.Windows.Forms.ComboBox();
             this.btnReotimizar = new System.Windows.Forms.Button();
-            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Theta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Determinação = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tabela)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaControle)).BeginInit();
             this.SuspendLayout();
@@ -131,6 +131,46 @@
             this.tabela.TabIndex = 3;
             this.tabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabela_CellContentClick);
             this.tabela.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabela_CellEndEdit);
+            // 
+            // index
+            // 
+            this.index.HeaderText = "ID";
+            this.index.MinimumWidth = 6;
+            this.index.Name = "index";
+            this.index.Width = 30;
+            // 
+            // Kp
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Kp.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Kp.HeaderText = "Kp [L/% h]";
+            this.Kp.MinimumWidth = 6;
+            this.Kp.Name = "Kp";
+            this.Kp.Width = 90;
+            // 
+            // tau
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tau.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tau.HeaderText = "τ [s]";
+            this.tau.MinimumWidth = 6;
+            this.tau.Name = "tau";
+            this.tau.Width = 90;
+            // 
+            // Theta
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Theta.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Theta.HeaderText = "θ [s]";
+            this.Theta.MinimumWidth = 6;
+            this.Theta.Name = "Theta";
+            this.Theta.Width = 70;
+            // 
+            // Determinação
+            // 
+            this.Determinação.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Determinação.HeaderText = "R²";
+            this.Determinação.Name = "Determinação";
             // 
             // sp
             // 
@@ -284,12 +324,12 @@
             this.cbResidualType.FormattingEnabled = true;
             this.cbResidualType.Items.AddRange(new object[] {
             "Quadrático (SRQ)",
-            "Absoluto (SRA"});
+            "Absoluto (SRA)"});
             this.cbResidualType.Location = new System.Drawing.Point(235, 105);
             this.cbResidualType.Name = "cbResidualType";
             this.cbResidualType.Size = new System.Drawing.Size(107, 29);
             this.cbResidualType.TabIndex = 35;
-            this.cbResidualType.Text = "Quadrático";
+            this.cbResidualType.Text = "Absoluto (SRA)";
             this.cbResidualType.SelectedIndexChanged += new System.EventHandler(this.cbResidualType_SelectedIndexChanged);
             // 
             // btnReotimizar
@@ -302,46 +342,6 @@
             this.btnReotimizar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnReotimizar.UseVisualStyleBackColor = true;
             this.btnReotimizar.Click += new System.EventHandler(this.btnReotimizar_Click);
-            // 
-            // index
-            // 
-            this.index.HeaderText = "ID";
-            this.index.MinimumWidth = 6;
-            this.index.Name = "index";
-            this.index.Width = 30;
-            // 
-            // Kp
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Kp.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Kp.HeaderText = "Kp [L/% h]";
-            this.Kp.MinimumWidth = 6;
-            this.Kp.Name = "Kp";
-            this.Kp.Width = 90;
-            // 
-            // tau
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tau.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tau.HeaderText = "τ [s]";
-            this.tau.MinimumWidth = 6;
-            this.tau.Name = "tau";
-            this.tau.Width = 90;
-            // 
-            // Theta
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Theta.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Theta.HeaderText = "θ [s]";
-            this.Theta.MinimumWidth = 6;
-            this.Theta.Name = "Theta";
-            this.Theta.Width = 70;
-            // 
-            // Determinação
-            // 
-            this.Determinação.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Determinação.HeaderText = "R²";
-            this.Determinação.Name = "Determinação";
             // 
             // SubFormStepTuningFOPTD
             // 

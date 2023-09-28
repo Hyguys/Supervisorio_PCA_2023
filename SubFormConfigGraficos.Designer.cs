@@ -256,6 +256,11 @@
             65536});
             this.numHistoricoTempoVazao.Location = new System.Drawing.Point(503, 5);
             this.numHistoricoTempoVazao.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.numHistoricoTempoVazao.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
             this.numHistoricoTempoVazao.Minimum = new decimal(new int[] {
             2,
             0,
@@ -559,7 +564,7 @@
             this.numHistoricoTempoTemp.Location = new System.Drawing.Point(503, 5);
             this.numHistoricoTempoTemp.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.numHistoricoTempoTemp.Maximum = new decimal(new int[] {
-            300,
+            3600,
             0,
             0,
             0});

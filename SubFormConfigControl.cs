@@ -356,6 +356,7 @@ namespace Supervisório_PCA_2._0
             string command = "KCP " + ganhoVazao.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtGanhoVazao.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -384,6 +385,7 @@ namespace Supervisório_PCA_2._0
             string command = "TIP " + integralVazao.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtIntegralVazao.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -413,6 +415,7 @@ namespace Supervisório_PCA_2._0
             string command = "TDP " + derivativoVazao.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtDerivativoVazao.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -429,7 +432,7 @@ namespace Supervisório_PCA_2._0
 
         private void btnVazao_Click(object sender, EventArgs e)
         {
-
+            
             if (Globals.serialConnected == false || Globals.serialPort == null)
             {
                 MessageBox.Show("Não há uma porta serial conectada.", "Porta serial não conectada!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -442,6 +445,7 @@ namespace Supervisório_PCA_2._0
             txtGanhoVazao.ForeColor = System.Drawing.Color.Black;
             txtIntegralVazao.ForeColor = System.Drawing.Color.Black;
             txtDerivativoVazao.ForeColor = System.Drawing.Color.Black;
+            btnVazao.ForeColor = System.Drawing.Color.Black;
             switch (controlTypePump)
             {
                 case 0:
@@ -571,6 +575,7 @@ namespace Supervisório_PCA_2._0
             string command = "KCR " + ganhoTemp.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtGanhoTemp.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -598,6 +603,7 @@ namespace Supervisório_PCA_2._0
             string command = "TIR " + integralTemp.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtIntegralTemp.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -625,6 +631,7 @@ namespace Supervisório_PCA_2._0
             string command = "TDR " + derivativoTemp.ToString("0.00");
             Globals.serialPort.WriteLine(command);
             txtDerivativoTemp.ForeColor = System.Drawing.Color.Green;
+            btnVazao.ForeColor = System.Drawing.Color.Red;
             MessageBox.Show("Comando " + command + " enviado com sucesso.", "Envio do comando!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
