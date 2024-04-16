@@ -38,6 +38,8 @@ namespace Supervisório_PCA_2._0
             this.coletaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.finalizarColetaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leiturasInstantâneasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gráficosDaTomadaDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDeControleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesDosGráficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,8 +53,6 @@ namespace Supervisório_PCA_2._0
             this.cadastroDeModeloFOPTDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeOperaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowPlot = new ScottPlot.FormsPlot();
-            this.tempPlot = new ScottPlot.FormsPlot();
             this.searchPorts = new System.Windows.Forms.Button();
             this.portsBox = new System.Windows.Forms.ComboBox();
             this.disconnectPort = new System.Windows.Forms.Button();
@@ -63,9 +63,7 @@ namespace Supervisório_PCA_2._0
             this.textBox2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.leiturasInstantâneasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,17 +82,17 @@ namespace Supervisório_PCA_2._0
             this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(866, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(865, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // arquivoToolStripMenuItem
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.conexãoComArduinoToolStripMenuItem,
             this.coletaDeDadosToolStripMenuItem,
-            this.leiturasInstantâneasToolStripMenuItem});
+            this.leiturasInstantâneasToolStripMenuItem,
+            this.gráficosDaTomadaDeDadosToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
             this.arquivoToolStripMenuItem.Text = "Geral";
@@ -104,7 +102,7 @@ namespace Supervisório_PCA_2._0
             this.conexãoComArduinoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.conectarAoArduinoToolStripMenuItem});
             this.conexãoComArduinoToolStripMenuItem.Name = "conexãoComArduinoToolStripMenuItem";
-            this.conexãoComArduinoToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.conexãoComArduinoToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
             this.conexãoComArduinoToolStripMenuItem.Text = "Conexão com Arduino";
             // 
             // conectarAoArduinoToolStripMenuItem
@@ -120,7 +118,7 @@ namespace Supervisório_PCA_2._0
             this.iniciarColetaDeDadosToolStripMenuItem,
             this.finalizarColetaDeDadosToolStripMenuItem});
             this.coletaDeDadosToolStripMenuItem.Name = "coletaDeDadosToolStripMenuItem";
-            this.coletaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.coletaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
             this.coletaDeDadosToolStripMenuItem.Text = "Coleta de Dados";
             // 
             // iniciarColetaDeDadosToolStripMenuItem
@@ -136,6 +134,19 @@ namespace Supervisório_PCA_2._0
             this.finalizarColetaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.finalizarColetaDeDadosToolStripMenuItem.Text = "Finalizar Coleta de Dados";
             this.finalizarColetaDeDadosToolStripMenuItem.Click += new System.EventHandler(this.finalizarColetaDeDadosToolStripMenuItem_Click);
+            // 
+            // leiturasInstantâneasToolStripMenuItem
+            // 
+            this.leiturasInstantâneasToolStripMenuItem.Name = "leiturasInstantâneasToolStripMenuItem";
+            this.leiturasInstantâneasToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
+            this.leiturasInstantâneasToolStripMenuItem.Text = "Visão de Supervisório";
+            this.leiturasInstantâneasToolStripMenuItem.Click += new System.EventHandler(this.leiturasInstantâneasToolStripMenuItem_Click);
+            // 
+            // gráficosDaTomadaDeDadosToolStripMenuItem
+            // 
+            this.gráficosDaTomadaDeDadosToolStripMenuItem.Name = "gráficosDaTomadaDeDadosToolStripMenuItem";
+            this.gráficosDaTomadaDeDadosToolStripMenuItem.Size = new System.Drawing.Size(285, 26);
+            this.gráficosDaTomadaDeDadosToolStripMenuItem.Text = "Gráficos da Tomada de Dados";
             // 
             // configuraçõesToolStripMenuItem
             // 
@@ -240,31 +251,10 @@ namespace Supervisório_PCA_2._0
             this.manualDeOperaçãoToolStripMenuItem.Text = "Manual de Operação";
             this.manualDeOperaçãoToolStripMenuItem.Click += new System.EventHandler(this.manualDeOperaçãoToolStripMenuItem_Click);
             // 
-            // flowPlot
-            // 
-            this.flowPlot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.flowPlot.AutoSize = true;
-            this.flowPlot.Location = new System.Drawing.Point(0, 60);
-            this.flowPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.flowPlot.Name = "flowPlot";
-            this.flowPlot.Size = new System.Drawing.Size(435, 406);
-            this.flowPlot.TabIndex = 1;
-            // 
-            // tempPlot
-            // 
-            this.tempPlot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tempPlot.Location = new System.Drawing.Point(436, 57);
-            this.tempPlot.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.tempPlot.Name = "tempPlot";
-            this.tempPlot.Size = new System.Drawing.Size(430, 409);
-            this.tempPlot.TabIndex = 2;
-            // 
             // searchPorts
             // 
             this.searchPorts.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchPorts.Location = new System.Drawing.Point(8, 32);
+            this.searchPorts.Location = new System.Drawing.Point(7, 32);
             this.searchPorts.Name = "searchPorts";
             this.searchPorts.Size = new System.Drawing.Size(151, 28);
             this.searchPorts.TabIndex = 6;
@@ -277,15 +267,16 @@ namespace Supervisório_PCA_2._0
             this.portsBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.portsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portsBox.FormattingEnabled = true;
-            this.portsBox.Location = new System.Drawing.Point(170, 31);
+            this.portsBox.Location = new System.Drawing.Point(169, 31);
             this.portsBox.Name = "portsBox";
             this.portsBox.Size = new System.Drawing.Size(97, 29);
             this.portsBox.TabIndex = 7;
+            this.portsBox.SelectedIndexChanged += new System.EventHandler(this.portsBox_SelectedIndexChanged);
             // 
             // disconnectPort
             // 
             this.disconnectPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.disconnectPort.Location = new System.Drawing.Point(382, 29);
+            this.disconnectPort.Location = new System.Drawing.Point(381, 29);
             this.disconnectPort.Name = "disconnectPort";
             this.disconnectPort.Size = new System.Drawing.Size(104, 30);
             this.disconnectPort.TabIndex = 8;
@@ -296,7 +287,7 @@ namespace Supervisório_PCA_2._0
             // connectPort
             // 
             this.connectPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.connectPort.Location = new System.Drawing.Point(273, 29);
+            this.connectPort.Location = new System.Drawing.Point(272, 29);
             this.connectPort.Name = "connectPort";
             this.connectPort.Size = new System.Drawing.Size(104, 30);
             this.connectPort.TabIndex = 9;
@@ -308,7 +299,7 @@ namespace Supervisório_PCA_2._0
             // 
             this.resetPort.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.resetPort.AutoSize = true;
-            this.resetPort.Location = new System.Drawing.Point(487, 29);
+            this.resetPort.Location = new System.Drawing.Point(486, 29);
             this.resetPort.Name = "resetPort";
             this.resetPort.Size = new System.Drawing.Size(104, 31);
             this.resetPort.TabIndex = 10;
@@ -319,12 +310,13 @@ namespace Supervisório_PCA_2._0
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textBox1,
             this.textBox2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 457);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 508);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(866, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(865, 26);
             this.statusStrip1.TabIndex = 11;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -347,48 +339,30 @@ namespace Supervisório_PCA_2._0
             this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.textBox3.Location = new System.Drawing.Point(672, 468);
+            this.textBox3.Location = new System.Drawing.Point(671, 519);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(194, 15);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "Desenvolvido por Leandro Favaretto";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // leiturasInstantâneasToolStripMenuItem
-            // 
-            this.leiturasInstantâneasToolStripMenuItem.Name = "leiturasInstantâneasToolStripMenuItem";
-            this.leiturasInstantâneasToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-            this.leiturasInstantâneasToolStripMenuItem.Text = "Leituras Instantâneas";
-            this.leiturasInstantâneasToolStripMenuItem.Click += new System.EventHandler(this.leiturasInstantâneasToolStripMenuItem_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::Supervisório_PCA_2023.Properties.Resources.logoextensa;
-            this.pictureBox1.Location = new System.Drawing.Point(694, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(690, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(163, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(365, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 35);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Visão de Supervisório";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(866, 483);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(865, 534);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.resetPort);
@@ -397,16 +371,14 @@ namespace Supervisório_PCA_2._0
             this.Controls.Add(this.portsBox);
             this.Controls.Add(this.searchPorts);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.tempPlot);
-            this.Controls.Add(this.flowPlot);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "SUPERVISÓRIO PROJETO DE CONTROLE COM ARDUINO por Leandro Favaretto";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -419,42 +391,39 @@ namespace Supervisório_PCA_2._0
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem conexãoComArduinoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem conectarAoArduinoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem coletaDeDadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem iniciarColetaDeDadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem finalizarColetaDeDadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tomadaDeDadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraçõesDeControleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manualDeOperaçãoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraçõesDosGráficosToolStripMenuItem;
-        private ScottPlot.FormsPlot flowPlot;
-        private ScottPlot.FormsPlot tempPlot;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button searchPorts;
-        private System.Windows.Forms.ComboBox portsBox;
-        private System.Windows.Forms.Button disconnectPort;
-        private System.Windows.Forms.Button connectPort;
-        private ToolStripMenuItem ferramentasAvançadasToolStripMenuItem;
-        private ToolStripMenuItem sintoniaAutomáticaDeFOPTDToolStripMenuItem;
-        private ToolStripMenuItem testeDeDegrauEmMalhaAbertaToolStripMenuItem;
-        private ToolStripMenuItem testeEmMalhaFechadaToolStripMenuItem;
-        private ToolStripMenuItem limitesDaBombaEDaResistênciaToolStripMenuItem;
-        private ToolStripMenuItem cadastroDeModeloFOPTDToolStripMenuItem;
-        private ToolStripMenuItem testeEmMalhaFechadaPPIPIDToolStripMenuItem;
-        private Button resetPort;
-        private StatusStrip statusStrip1;
-        private ToolStripStatusLabel textBox1;
-        private ToolStripStatusLabel textBox2;
-        private TextBox textBox3;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private ToolStripMenuItem leiturasInstantâneasToolStripMenuItem;
-        private Button button1;
+        public System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem conexãoComArduinoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem conectarAoArduinoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem coletaDeDadosToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem finalizarColetaDeDadosToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem tomadaDeDadosToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem configuraçõesDeControleToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem manualDeOperaçãoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem configuraçõesDosGráficosToolStripMenuItem;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Button searchPorts;
+        public System.Windows.Forms.ComboBox portsBox;
+        public System.Windows.Forms.Button disconnectPort;
+        public System.Windows.Forms.Button connectPort;
+        public ToolStripMenuItem ferramentasAvançadasToolStripMenuItem;
+        public ToolStripMenuItem sintoniaAutomáticaDeFOPTDToolStripMenuItem;
+        public ToolStripMenuItem testeDeDegrauEmMalhaAbertaToolStripMenuItem;
+        public ToolStripMenuItem testeEmMalhaFechadaToolStripMenuItem;
+        public ToolStripMenuItem limitesDaBombaEDaResistênciaToolStripMenuItem;
+        public ToolStripMenuItem cadastroDeModeloFOPTDToolStripMenuItem;
+        public ToolStripMenuItem testeEmMalhaFechadaPPIPIDToolStripMenuItem;
+        public Button resetPort;
+        public StatusStrip statusStrip1;
+        public ToolStripStatusLabel textBox1;
+        public ToolStripStatusLabel textBox2;
+        public TextBox textBox3;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
+        public ToolStripMenuItem leiturasInstantâneasToolStripMenuItem;
+        public ToolStripMenuItem gráficosDaTomadaDeDadosToolStripMenuItem;
+        public MenuStrip menuStrip1;
+        public ToolStripMenuItem arquivoToolStripMenuItem;
+        public ToolStripMenuItem iniciarColetaDeDadosToolStripMenuItem;
     }
 }
 

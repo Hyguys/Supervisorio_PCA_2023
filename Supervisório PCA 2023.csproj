@@ -260,6 +260,12 @@
     <Compile Include="SubFormClosedLoopPIDTuning.Designer.cs">
       <DependentUpon>SubFormClosedLoopPIDTuning.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubFormGraficos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubFormGraficos.Designer.cs">
+      <DependentUpon>SubFormGraficos.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubFormInstantReads.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </Compile>
     <EmbeddedResource Include="SubFormClosedLoopPIDTuning.resx">
       <DependentUpon>SubFormClosedLoopPIDTuning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubFormGraficos.resx">
+      <DependentUpon>SubFormGraficos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubFormInstantReads.resx">
       <DependentUpon>SubFormInstantReads.cs</DependentUpon>

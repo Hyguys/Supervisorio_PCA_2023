@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,10 @@ namespace Supervisório_PCA_2._0
 {
     public static class Globals
     {
-
+        public static StreamWriter dataStreamWriter; // Variável local para armazenar o objeto StreamWriter
         //apesar de declarada aqui, a serialPort global esta inicializada no mainForm
         public static SerialPort serialPort;
+        public static string selectedPort = ""; //variável global que armazena a porta serial selecionada
 
         public static bool serialConnected = false; //variável global que armazena o estado global da conexão com a porta serial
 

@@ -84,7 +84,28 @@ namespace Supervisório_PCA_2._0
             }
         }
 
+        public static void FinalizarColetaDeDados()
+        {
+            if (Globals.isRecordingData)
+            {
+                // Verifica se o objeto StreamWriter está inicializado
+                if (Globals.dataStreamWriter != null)
+                {
+                    // Fecha o arquivo e libera os recursos
+                    Globals.dataStreamWriter.Close();
+                    Globals.dataStreamWriter = null; // Define como null para indicar que não há um arquivo aberto
 
+                    // Define a flag global como FALSE para indicar que a gravação de dados foi finalizada
+                    Globals.isRecordingData = false;
+
+                    MessageBox.Show("Gravação dos dados finalizada e arquivo salvo.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma gravação de dados em andamento.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         public static void ResetGlobalVariables()
         {
             Globals.isRecordingData = Globals.defaultIsRecordingData;
@@ -300,6 +321,40 @@ namespace Supervisório_PCA_2._0
             return input.Split(' ');
         }
 
+
+        public static void ReiniciarArduino()
+        {
+            try
+            {
+                // Verifica se a porta serial está aberta
+                if (Globals.serialPort.IsOpen)
+                {
+
+                    GlobalMethods.ClearLists();
+                    GlobalMethods.ResetGlobalVariables();
+
+                    // Define o sinal DTR como true por um breve período de tempo
+                    Globals.serialPort.DtrEnable = true;
+                    Thread.Sleep(500);  // Aguarda 500ms para permitir a reinicialização do Arduino
+
+                    GlobalMethods.ClearLists();
+                    GlobalMethods.ResetGlobalVariables();
+                    Globals.serialPort.DtrEnable = false;  // Restaura o sinal DTR para false
+
+                    GlobalMethods.DisconnectSerialPort();
+
+                    MessageBox.Show("Comando de reinicialização enviado para o Arduino e porta serial fechada.", "Reinicialização do Arduino", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Não é possível reinicializar o Arduino. A porta serial não está aberta.", "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao reinicializar o Arduino: " + ex.Message, "Erro na reinicialização", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
         public static Color ColorPicker(Color currentColor)
